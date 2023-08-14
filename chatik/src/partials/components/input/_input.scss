@@ -8,11 +8,11 @@
   background-color: $on-primary;
   border-radius: $raduis;
   position: relative;
+  padding: 0px #{$baseline * 4}px;
 }
 
 .input {
   width: 100%;
-  padding: 0px #{$baseline * 4}px;
   height: 100%;
   border: none;
   outline: none;
@@ -34,16 +34,4 @@
   position: absolute;
   left: 0;
   bottom: #{$baseline}px;
-}
-
-.material-symbols-outlined {
-  padding: 0px 16px;
-  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 40;
-  background-color: inherit;
-  color: $primary;
-  font-size: 36px;
-  &:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
 }

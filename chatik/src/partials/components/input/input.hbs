@@ -6,7 +6,7 @@
     placeholder='{{placeholder}}'
   />
   {{#if icon}}
-    <span class='material-symbols-outlined'> visibility </span>
+    {{> components/icon/icon name="input" type="visibility" size="36" color=uiConstants.palette.light fill=1 }}
   {{/if}}
     <span class="error-text">{{error}}</spna>
 </div>

@@ -5,8 +5,8 @@
   min-height: 1024px;
   background: $bg-color;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: start;
   align-items: center;
   font-family: $font-stack;
 }

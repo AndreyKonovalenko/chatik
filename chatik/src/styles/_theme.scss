@@ -40,6 +40,10 @@ $small: 14px;
   @include set-typography($light, bold, $medium);
 }
 
+@mixin medium-text-on-primary {
+  @include set-typography($on-primary, bold, $medium);
+}
+
 @mixin small-error-text {
   @include set-typography($error-color, bold, $small);
 }

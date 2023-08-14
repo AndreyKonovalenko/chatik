@@ -1,3 +1,15 @@
+.input-wrapper {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $on-primary;
+  border-radius: $raduis;
+  position: relative;
+}
+
 .input {
   width: 100%;
   padding: 0px #{$baseline * 4}px;
@@ -9,33 +21,19 @@
     @include medium-text-light;
     font-family: $font-stack;
   }
+  &:hover {
+    transform: scale(0.99);
+  }
   @include medium-text-light;
   font-family: $font-stack;
 }
 
-.input-container {
-  width: 100%;
-  height: 60px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background-color: $on-primary;
-  border-radius: $raduis;
-}
-
-.text-container {
-  width: 100%;
-  height: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-  background-color: $on-primary;
-  span {
-    @include small-error-text;
-    padding: 0px #{$baseline * 4}px;
-  }
+.error-text {
+  @include small-error-text;
+  padding: 0px #{$baseline * 4}px;
+  position: absolute;
+  left: 0;
+  bottom: #{$baseline}px;
 }
 
 .material-symbols-outlined {
@@ -44,4 +42,8 @@
   background-color: inherit;
   color: $primary;
   font-size: 36px;
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
 }

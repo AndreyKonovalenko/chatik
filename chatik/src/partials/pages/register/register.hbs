@@ -1,0 +1,25 @@
+{{#> components/layout/layout}}
+  {{>components/side-bar/side-bar}}
+  <div class="register-form-container">
+    <div class="form-container">
+      <div class="header">
+        <p>{{uiConstants.headers.REGISTER}}</p>
+      </div>
+      <from class="form">
+        {{> components/input/input type="email" placeholder=uiConstants.placeholders.EMAIL}} 
+        {{> components/input/input type="login" placeholder=uiConstants.placeholders.LOGIN}}
+        {{> components/input/input type="text" placeholder=uiConstants.placeholders.FIRST_NAME}} 
+        {{> components/input/input type="text" placeholder=uiConstants.placeholders.LAST_NAME}}
+        {{> components/input/input type="text" placeholder=uiConstants.placeholders.PHONE_NUMBER}}
+        {{> components/input/input type="password" placeholder=uiConstants.placeholders.PASSWORD icon=true}}
+        {{> components/input/input type="password" placeholder=uiConstants.placeholders.REPEAT_PASSWORD icon=true}}
+        <div class="register-button-container">
+          {{> components/button/button type="submit" text=uiConstants.buttons.CREATE_ACCOUNT}}
+        </div>
+          <div class="register-button-container register-button-alter-bg">
+          {{> components/button/button type="submit" text=uiConstants.buttons.HAVE_ACCOUNT}}
+        </div>
+      </from>
+    </div>
+  </div>
+{{/ components/layout/layout}}

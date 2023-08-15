@@ -1,13 +1,15 @@
 <div class='side-bar-container'>
   <div class='logo-container'>
-    <p>C</p>
+    <a href="/">
+      <p>C</p>
+    </a>
   </div>
   <div class='nav-bar-container'>
     <div class='nav-bar-menu-container'>
-      {{> components/icon/icon name="side-bar" type="person" size="46" color=uiConstants.palette.onPrimary fill=0}}
-      {{> components/icon/icon name="side-bar" type="forum" size="46" color=uiConstants.palette.onPrimary fill=0}}
-      {{> components/icon/icon name="side-bar" type="archive" size="46" color=uiConstants.palette.onPrimary fill=0}}
+      {{> components/icon/icon key="side-bar" type="person" size="46" color=uiConstants.palette.ON_PRIMARY fill=0}}
+      {{> components/icon/icon key="side-bar1" type="forum" size="46" color=uiConstants.palette.ON_PRIMARY fill=0}}
+      {{> components/icon/icon key="side-bar2" type="archive" size="46" color=uiConstants.palette.ON_PRIMARY fill=0}}
     </div>
-      {{> components/icon/icon name="side-bar" type="logout" size="46" color=uiConstants.palette.onPrimary fill=0}}
+      {{> components/icon/icon key="side-bar3" type="logout" size="46" color=uiConstants.palette.ON_PRIMARY fill=0}}
   </div>
 </div>

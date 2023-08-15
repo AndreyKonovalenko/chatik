@@ -1,13 +1,33 @@
 const uiConstants = {
-  LOGIN: 'Login',
-  CREATE_ACCOUNT: 'Create account',
-  WRONG_PASSWORD: 'wrong password',
-  WRONG_LOGIN: 'wrong login',
+  headers: {
+    LOGIN: 'LOGIN',
+    REGISTER: 'REGISTER',
+  },
+  buttons: {
+    LOGIN: 'Login',
+    REGISTER: 'Register',
+    CREATE_ACCOUNT: 'Create account',
+    HAVE_ACCOUNT: 'Have an account?',
+  },
+  placeholders: {
+    LOGIN: 'login',
+    EMAIL: 'email',
+    FIRST_NAME: 'first name',
+    LAST_NAME: 'last name',
+    PHONE_NUMBER: 'phone number',
+    PASSWORD: 'password',
+    REPEAT_PASSWORD: 'repeat password',
+  },
+  errors: {
+    WRONG_PASSWORD: 'wrong password',
+    LOGIN_DOES_NOT_EXIST: 'login does not extist',
+    PASSWORDS_DO_NOT_MATCH: 'passwords do not match',
+  },
   palette: {
-    primary: '#bb86fc',
-    light: '#c89efc',
-    dark: '#825db0',
-    onPrimary: '#ffffff',
+    PRIMARY: '#bb86fc',
+    LIGHT: '#c89efc',
+    DARK: '#825db0',
+    ON_PRIMARY: '#ffffff',
   },
 };
 

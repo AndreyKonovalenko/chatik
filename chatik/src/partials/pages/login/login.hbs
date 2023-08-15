@@ -3,16 +3,16 @@
   <div class="login-form-container">
     <div class="form-container">
       <div class="header">
-        <p>{{uiConstants.LOGIN}}</p>
+        <p>{{uiConstants.headers.LOGIN}}</p>
       </div>
       <from class="form">
-        {{> components/input/input type="login" placeholder="login" }} 
-        {{> components/input/input type="password" placeholder="password" icon=true error=uiConstants.WRONG_PASSWORD }}
+        {{> components/input/input type="login" placeholder=uiConstants.placeholders.LOGIN}} 
+        {{> components/input/input type="password" placeholder=uiConstants.placeholders.PASSWORD icon=true error=uiConstants.errors.WRONG_PASSWORD }}
         <div class="login-button-container">
-          {{> components/button/button type="submit" text=uiConstants.LOGIN}}
+          {{> components/button/button type="submit" text=uiConstants.buttons.LOGIN}}
         </div>
           <div class="login-button-container login-button-alter-bg">
-          {{> components/button/button type="submit" text=uiConstants.CREATE_ACCOUNT}}
+          {{> components/button/button type="submit" text=uiConstants.buttons.CREATE_ACCOUNT}}
         </div>
       </from>
     </div>

@@ -2,12 +2,19 @@ const uiConstants = {
   headers: {
     LOGIN: 'LOGIN',
     REGISTER: 'REGISTER',
+    ERROR_404: '404',
+    ERROR_500: '500',
+  },
+  text: {
+    PAGE_NOT_FOUND: 'Page not found',
+    INTERNAL_SERVER_ERROR: 'Internal server error',
   },
   buttons: {
     LOGIN: 'Login',
     REGISTER: 'Register',
     CREATE_ACCOUNT: 'Create account',
     HAVE_ACCOUNT: 'Have an account?',
+    GO_BACK: 'GO BACK',
   },
   placeholders: {
     LOGIN: 'login',

@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import handlebars from 'vite-plugin-handlebars';
 import uiConstants from './src/utils/ui-constants';
-
+import test_user from './src/utils/test_user';
 export default defineConfig({
   plugins: [
     handlebars({
@@ -10,6 +10,7 @@ export default defineConfig({
       context: {
         title: 'Chatik',
         uiConstants: uiConstants,
+        test_user: test_user,
       },
     }),
   ],

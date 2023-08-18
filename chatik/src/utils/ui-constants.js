@@ -14,7 +14,9 @@ const uiConstants = {
     REGISTER: 'Register',
     CREATE_ACCOUNT: 'Create account',
     HAVE_ACCOUNT: 'Have an account?',
-    GO_BACK: 'GO BACK',
+    GO_BACK: 'Go back',
+    SAVE: 'Save',
+    CHANGE_PASSWORD: 'Change password',
   },
   placeholders: {
     LOGIN: 'login',

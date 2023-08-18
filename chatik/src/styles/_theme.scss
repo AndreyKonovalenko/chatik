@@ -36,6 +36,10 @@ $small: 14px;
   @include set-typography($on-primary, bold, $large);
 }
 
+@mixin medium-text {
+  @include set-typography($black, 400, $medium);
+}
+
 @mixin medium-text-light {
   @include set-typography($light, bold, $medium);
 }

@@ -1,0 +1,34 @@
+.profile-input-container {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $on-primary;
+  border-radius: $raduis;
+  padding: 0px #{$baseline * 4}px;
+}
+.profile-field-name {
+  @include medium-text-light;
+  font-family: $font-stack;
+}
+
+.profile-input {
+  height: 100%;
+  text-align: right;
+  border: none;
+  outline: none;
+  border-radius: $raduis;
+  @include medium-text;
+  opacity: 0.6;
+  font-family: $font-stack;
+
+  &::placeholder {
+    @include medium-text;
+    font-family: $font-stack;
+  }
+  &:hover {
+    transform: scale(0.99);
+  }
+}

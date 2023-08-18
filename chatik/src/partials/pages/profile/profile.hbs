@@ -1,0 +1,11 @@
+{{#> components/layout/layout}}
+  <div class="profile-form-container">
+    {{#> components/form/form }}
+        {{> components/profile-input/profile-input type="login" field_name=uiConstants.placeholders.LOGIN placeholder=test_user.first_name}} 
+        {{> components/profile-input/profile-input type="login" disabled='true' field_name=test_user.first_name placeholder=uiConstants.placeholders.LOGIN}} 
+        <div>
+          {{> components/button/button type="submit" text=uiConstants.buttons.CHANGE_PASSWORD}}
+        </div>
+    {{/ components/form/form}}
+  </div>
+{{/ components/layout/layout}}

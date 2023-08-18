@@ -2,12 +2,15 @@
 @import '../partials/components/form/form';
 @import '../partials/pages/login/_login.scss';
 @import '../partials/pages/register/_register.scss';
+@import '../partials/pages/profile/_profile.scss';
+
 @import '../partials/components/layout/_loyout.scss';
 @import '../partials/components/input/_input.scss';
 @import '../partials/components/button/_button.scss';
 @import '../partials/components/side-bar/_side-bar.scss';
 @import '../partials/components/icon/_icon.scss';
 @import '../partials/components/error-card/_error-card.scss';
+@import '../partials/components/profile-input/profile-input.scss';
 
 * {
   box-sizing: border-box;

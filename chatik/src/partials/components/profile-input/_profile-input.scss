@@ -6,7 +6,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: $on-primary;
-  border-radius: $raduis;
+  border-radius: $radius;
   padding: 0px #{$baseline * 4}px;
 }
 .profile-field-name {
@@ -19,7 +19,7 @@
   text-align: right;
   border: none;
   outline: none;
-  border-radius: $raduis;
+  border-radius: $radius;
   @include medium-text;
   opacity: 0.6;
   font-family: $font-stack;

@@ -2,7 +2,7 @@
   width: 64px;
   height: 100%;
   background-color: $primary;
-  border-radius: $raduis;
+  border-radius: $radius;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -14,7 +14,7 @@
   width: 48px;
   height: 48px;
   background-color: $dark;
-  border-radius: $raduis;
+  border-radius: $radius;
   display: flex;
   flex-direction: row;
   justify-content: center;

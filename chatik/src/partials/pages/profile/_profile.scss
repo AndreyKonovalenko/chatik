@@ -5,3 +5,17 @@
   justify-content: center;
   align-self: center;
 }
+
+.profile-image-container {
+  width: 100%;
+  border-radius: $radius;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $on-primary;
+}
+
+.profile-image {
+  border-radius: $radius;
+}

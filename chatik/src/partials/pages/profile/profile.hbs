@@ -1,6 +1,9 @@
 {{#> components/layout/layout}}
   <div class="profile-form-container">
     {{#> components/form/form }}
+        <div class="profile-image-container">
+          <img class="profile-image" src="/src/utils/avatar.png" alt="avater" width="200" height="200"/>
+        </div>
         {{> components/profile-input/profile-input type="login" field_name=uiConstants.placeholders.LOGIN placeholder=test_user.first_name}} 
         {{> components/profile-input/profile-input type="login" disabled='true' field_name=test_user.first_name placeholder=uiConstants.placeholders.LOGIN}} 
         <div>

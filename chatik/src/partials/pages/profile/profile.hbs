@@ -1,12 +1,22 @@
 {{#> components/layout/layout}}
   <div class="profile-form-container">
-    {{#> components/form/form }}
-        <div class="profile-image-container">
-          <img class="profile-image" src="/src/utils/avatar.png" alt="avater" width="200" height="200"/>
+    {{#> components/form/form}}
+        <div class="profile-icon-container">
+              <div class="profile-icon-container-item">
+                {{> components/icon/icon key="profile-form-icon" type="edit" size="36" color=uiConstants.palette.ON_PRIMARY fill=0}}
+              </div>
         </div>
-        {{> components/profile-input/profile-input type="login" field_name=uiConstants.placeholders.LOGIN placeholder=test_user.first_name}} 
-        {{> components/profile-input/profile-input type="login" disabled='true' field_name=test_user.first_name placeholder=uiConstants.placeholders.LOGIN}} 
-        <div>
+        <div class="profile-image-container">
+          <img class="profile-image" src={{test_user.avatar}} alt="avater" width="200" height="200"/>
+          <p class="profile-image-card-text">{{test_user.display_name}}</p>
+        </div>
+        {{> components/profile-input/profile-input type="text" field_name=uiConstants.placeholders.LOGIN placeholder=test_user.first_name}} 
+        {{> components/profile-input/profile-input type="text" field_name=uiConstants.placeholders.LAST_NAME placeholder=test_user.second_name}} 
+        {{> components/profile-input/profile-input type="text" field_name=uiConstants.placeholders.DISPLAY_NAME placeholder=test_user.first_name}} 
+        {{> components/profile-input/profile-input type="login" disabled='true' field_name=uiConstants.placeholders.LOGIN placeholder=test_user.login}} 
+        {{> components/profile-input/profile-input type="text" field_name=uiConstants.placeholders.PHONE_NUMBER placeholder=test_user.phone}}
+        {{> components/profile-input/profile-input type="email" field_name=uiConstants.placeholders.EMAIL placeholder=test_user.email}}  
+        <div class="profile-button-container">
           {{> components/button/button type="submit" text=uiConstants.buttons.CHANGE_PASSWORD}}
         </div>
     {{/ components/form/form}}

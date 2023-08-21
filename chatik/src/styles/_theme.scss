@@ -32,6 +32,10 @@ $small: 14px;
   @include set-typography($primary, bold, $large);
 }
 
+@mixin large-text-dark {
+  @include set-typography($dark, bold, $large);
+}
+
 @mixin large-text-on-primary {
   @include set-typography($on-primary, bold, $large);
 }

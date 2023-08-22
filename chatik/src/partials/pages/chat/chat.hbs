@@ -1,0 +1,16 @@
+{{#> components/layout/layout}}
+    <div class="chat-container">
+        <div class="chat-main-section">
+            {{> components/search-bar/search-bar}}
+            <div class="chat-list-container"></div>
+            </div>
+        <div class="chat-message-section">
+            <div class="chat-message-section-header"></div>
+            {{> components/chat-field/chat-field}}
+            {{> components/send-message-bar/send-message-bar}}
+        </div>
+         {{#if uiConstants.settings.edit_mode}}
+              <div class="chat-edit-section"></div>
+        {{/if}}
+    </div> 
+{{/ components/layout/layout}}

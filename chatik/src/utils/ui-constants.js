@@ -39,6 +39,9 @@ const uiConstants = {
     DARK: "#825db0",
     ON_PRIMARY: "#ffffff",
   },
+  settings: {
+    edit_mode: true,
+  },
 };
 
 export default uiConstants;

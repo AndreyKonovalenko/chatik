@@ -1,0 +1,33 @@
+.chat-list-container {
+  width: 100%;
+  background-color: $bg-color;
+  border-radius: $radius;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: #{$baseline * 4}px;
+}
+
+.chat-list-header {
+  padding: 0px #{$baseline * 4}px;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    @include medium-text-light;
+  }
+}
+
+.chat-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+}

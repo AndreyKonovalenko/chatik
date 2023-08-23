@@ -12,10 +12,13 @@
 @import '../partials/components/icon/_icon.scss';
 @import '../partials/components/error-card/_error-card.scss';
 @import '../partials/components/profile-input/_profile-input.scss';
-@import '../partials/components/search-bar/_search-bar.scss';
-@import '../partials/components/send-message-bar/_send-message-bar.scss';
-@import '../partials/components/chat-field/_chat-field.scss';
-
+@import '../partials/components/chat/search-bar/_search-bar.scss';
+@import '../partials/components/chat/send-message-bar/_send-message-bar.scss';
+@import '../partials/components/chat/chat-field/_chat-field.scss';
+@import '../partials/components/chat/attach-popup/_attach-popup.scss';
+@import '../partials/components/chat/chat-main-section/_chat-main-section.scss';
+@import '../partials/components/chat/chat-message-section/_chat-message-section.scss';
+@import '../partials/components/chat/chat-list/_chat-list.scss';
 * {
   box-sizing: border-box;
   margin: 0;

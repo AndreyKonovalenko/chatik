@@ -4,8 +4,13 @@
         {{#if controls}}
           {{> components/icon/icon key="chat-list-settings" type="settings" size="36" color=uiConstants.palette.LIGHT fill=0 }}
         {{/if}}
+        {{#if edit}}
+          {{> components/icon/icon key="chat-list-settings" type="settings" size="36" color=uiConstants.palette.LIGHT fill=1 }}
+        {{/if}}
       </div>
       <div class="chat-list">
-       {{> @partial-block}}
+        <ul>
+          {{> @partial-block}} 
+        </ul>
       </div>
 </div>

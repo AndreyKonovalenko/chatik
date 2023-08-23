@@ -2,7 +2,10 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import handlebars from 'vite-plugin-handlebars';
 import uiConstants from './src/utils/ui-constants';
-import test_user from './src/utils/test_user';
+import _mock_user from './src/utils/_mock_user';
+import _mock_chats from './src/utils/_mock_chats';
+import dateFormatter from './src/helpers/date-formater';
+
 export default defineConfig({
   plugins: [
     handlebars({
@@ -10,7 +13,11 @@ export default defineConfig({
       context: {
         title: 'Chatik',
         uiConstants: uiConstants,
-        test_user: test_user,
+        _mock_user: _mock_user,
+        _mock_chats: _mock_chats,
+      },
+      helpers: {
+        dateFormatter,
       },
     }),
   ],

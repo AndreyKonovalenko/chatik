@@ -56,6 +56,10 @@ $small: 14px;
   @include set-typography($on-primary, bold, $medium);
 }
 
+@mixin small-text {
+  @include set-typography($black, bold, $small);
+}
+
 @mixin small-error-text {
   @include set-typography($error-color, bold, $small);
 }

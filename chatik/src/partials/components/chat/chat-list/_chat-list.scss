@@ -8,6 +8,12 @@
   justify-content: flex-start;
   align-items: center;
   padding-bottom: #{$baseline * 4}px;
+  ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 .chat-list-header {

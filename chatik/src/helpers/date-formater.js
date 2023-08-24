@@ -1,23 +1,23 @@
 const getDate = (date) => {
   const newDate = new Date(date);
-  const day = new Intl.DateTimeFormat('en-US', { day: 'numeric' }).format(
+  const day = new Intl.DateTimeFormat("en-US", { day: "numeric" }).format(
     newDate
   );
-  const month = new Intl.DateTimeFormat('en-US', {
-    month: 'short',
+  const month = new Intl.DateTimeFormat("en-US", {
+    month: "short",
   }).format(newDate);
-  const time = new Intl.DateTimeFormat('en-US', {
-    hour: 'numeric',
-    minute: 'numeric',
+  const time = new Intl.DateTimeFormat("en-US", {
+    hour: "numeric",
+    minute: "numeric",
     hour12: false,
   }).format(newDate);
 
-  const weekday = new Intl.DateTimeFormat('en-US', {
-    weekday: 'short',
+  const weekday = new Intl.DateTimeFormat("en-US", {
+    weekday: "short",
   }).format(newDate);
 
-  const year = new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
+  const year = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
   }).format(newDate);
 
   return { day: day, month: month, time: time, year: year, weekday: weekday };
@@ -43,8 +43,8 @@ const isToDay = (date) => {
   return result;
 };
 
-export default function dateFormatter(option) {
-  const last_message_date = new Date(option.fn(this));
+export default function dateFormatter(options) {
+  const last_message_date = new Date(options.fn(this));
   const result = getDate(last_message_date);
   if (isToDay(last_message_date)) {
     return result.time;

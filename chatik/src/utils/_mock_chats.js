@@ -19,7 +19,7 @@ const _mock_chats = [
     },
   },
   {
-    id: 12,
+    id: 2,
     title: "Time and space",
     avatar: "/src/utils/time.png",
     unread_count: 15,
@@ -35,7 +35,7 @@ const _mock_chats = [
     },
   },
   {
-    id: 13,
+    id: 3,
     title: "Time and space",
     avatar: "/src/utils/time.png",
     unread_count: 15,
@@ -51,7 +51,7 @@ const _mock_chats = [
     },
   },
   {
-    id: 14,
+    id: 4,
     title: "Time and space",
     avatar: "/src/utils/time.png",
     unread_count: 15,

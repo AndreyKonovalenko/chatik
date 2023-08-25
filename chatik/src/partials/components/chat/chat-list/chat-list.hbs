@@ -1,12 +1,14 @@
 <div class="chat-list-container">
       <div class="chat-list-header">
         <p>{{header}}</p>
+        <div class="chat-list-controls">
         {{#if controls}}
-          {{> components/icon/icon key="chat-list-settings" type="add_circle" size="36" color=uiConstants.palette.LIGHT fill=0 }}
+          {{> components/icon/icon key="chat-list-settings-0" type="add_circle" size="36" color=uiConstants.palette.LIGHT fill=0 }}
         {{/if}}
         {{#if edit}}
-          {{> components/icon/icon key="chat-list-settings" type="settings" size="36" color=uiConstants.palette.LIGHT fill=1 }}
+          {{> components/icon/icon key="chat-list-settings-1" type="edit" size="36" color=uiConstants.palette.LIGHT fill=0 }}
         {{/if}}
+      </div>
       </div>
       <div class="chat-list">
         <ul>

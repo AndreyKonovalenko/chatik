@@ -5,6 +5,7 @@ const uiConstants = {
     ERROR_404: "404",
     ERROR_500: "500",
     CHAT_LIST: "Chat list",
+    USERS_LIST: "Users list",
   },
   text: {
     PAGE_NOT_FOUND: "Page not found",

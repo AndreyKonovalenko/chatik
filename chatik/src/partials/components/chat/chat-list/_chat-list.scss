@@ -29,6 +29,14 @@
   }
 }
 
+.chat-list-controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: #{$baseline*4}px;
+}
+
 .chat-list {
   width: 100%;
   display: flex;

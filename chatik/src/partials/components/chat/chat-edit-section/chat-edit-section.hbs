@@ -10,9 +10,13 @@
        <img src={{_mock_chats.[0].avatar}} alt="chat bage"/>
         {{> components/button/button type='button' text='choose image'}}
     </div>
-    {{> components/input/input type="login" placeholder=_mock_chats.[0].title}} 
-    
- 
+      <input
+        class="chat-edit-section-input"
+        type='text'
+        value='{{value}}'
+        placeholder='{{_mock_chats.[0].title}}'
+        size="20"
+      />
   </div>
   {{#> components/chat/chat-list/chat-list header=uiConstants.headers.USERS_LIST controls=true edit=true }}
       {{#each _mock_users}}

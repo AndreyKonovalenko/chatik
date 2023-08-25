@@ -8,6 +8,18 @@
   justify-content: flex-start;
   align-items: center;
   padding: #{$baseline * 2}px 0px;
+  a:link {
+    text-decoration: none;
+  }
+  a:visited {
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  a:active {
+    text-decoration: none;
+  }
 }
 
 .logo-container {
@@ -22,19 +34,6 @@
   p {
     @include large-text-on-primary;
     font-weight: 900;
-  }
-
-  a:link {
-    text-decoration: none;
-  }
-  a:visited {
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-  a:active {
-    text-decoration: none;
   }
 }
 

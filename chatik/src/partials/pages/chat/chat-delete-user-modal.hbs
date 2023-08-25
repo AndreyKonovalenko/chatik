@@ -1,0 +1,9 @@
+{{#> components/layout/layout modal=true delete_user=true}}
+    <div class="chat-container">
+        {{> components/chat/chat-main-section/chat-main-section}}
+        {{> components/chat/chat-message-section/chat-message-section}}
+         {{#if uiConstants.settings.edit_mode}}
+            {{> components/chat/chat-edit-section/chat-edit-section}}
+        {{/if}}
+    </div> 
+{{/ components/layout/layout}}

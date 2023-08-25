@@ -7,9 +7,26 @@
     <title>{{title}}</title>
   </head>
   <body>
-    {{#if modal}}
-      {{> modal}}
-    {{/if}}
+      {{#if modal}}
+        {{#if delete_chat}}
+        {{#> components/modal/modal/modal}}
+          {{> components/chat/chat-modal-card/chat-modal-card 
+            header=uiConstants.headers.DELETE_CHAT 
+            warning=uiConstants.warnings.DELETE_CHAT
+            item=_mock_chats.[0].title
+          }}
+         {{/ components/modal/modal/modal}}
+        {{/if}}
+        {{#if delete_user}}
+        {{#> components/modal/modal/modal}}
+          {{> components/chat/chat-modal-card/chat-modal-card 
+            header=uiConstants.headers.DELETE_USER 
+            warning=uiConstants.warnings.DELETE_USER
+            item=_mock_users.[1].login
+          }}
+         {{/ components/modal/modal/modal}}
+        {{/if}}
+      {{/if}}
     <div class="layout">
         {{> components/side-bar/side-bar}}
         {{> @partial-block}}

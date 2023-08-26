@@ -10,7 +10,7 @@
 
 ```
 git clone https://github.com/AndreyKonovalenko/middle.messenger.praktikum.yandex.git
-cd middle.messenger.praktikum.yandex.git/chatik
+cd middle.messenger.praktikum.yandex.git
 npm install
 npm run dev
 ```

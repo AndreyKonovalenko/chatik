@@ -1,8 +1,8 @@
 {{#> components/layout/layout}}
   <div class="login-form-container">
     {{#> components/form/form form_title=uiConstants.headers.LOGIN}}
-        {{> components/input/input type="login" placeholder=uiConstants.placeholders.LOGIN}} 
-        {{> components/input/input type="password" placeholder=uiConstants.placeholders.PASSWORD icon=true error=uiConstants.errors.WRONG_PASSWORD }}
+        {{> components/input/input type="login" name="login" placeholder=uiConstants.placeholders.LOGIN}} 
+        {{> components/input/input type="password" name="password" placeholder=uiConstants.placeholders.PASSWORD icon=true error=uiConstants.errors.WRONG_PASSWORD }}
         <div class="login-button-container">
           {{> components/button/button type="submit" text=uiConstants.buttons.LOGIN}}
         </div>

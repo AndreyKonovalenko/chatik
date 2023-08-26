@@ -10,12 +10,12 @@
           <img class="profile-image" src={{_mock_users.[0].avatar}} alt="avater" width="200" height="200"/>
           <p class="profile-image-card-text">{{_mock_users.[0].display_name}}</p>
         </div>
-        {{> components/profile-input/profile-input type="text" field_name=uiConstants.placeholders.FIRST_NAME placeholder=_mock_users.[0].first_name}} 
-        {{> components/profile-input/profile-input type="text" field_name=uiConstants.placeholders.LAST_NAME placeholder=_mock_users.[0].second_name}} 
-        {{> components/profile-input/profile-input type="text" field_name=uiConstants.placeholders.DISPLAY_NAME placeholder=_mock_users.[0].display_name}} 
-        {{> components/profile-input/profile-input type="login" disabled='true' field_name=uiConstants.placeholders.LOGIN placeholder=_mock_users.[0].login}} 
-        {{> components/profile-input/profile-input type="text" field_name=uiConstants.placeholders.PHONE_NUMBER placeholder=_mock_users.[0].phone}}
-        {{> components/profile-input/profile-input type="email" field_name=uiConstants.placeholders.EMAIL placeholder=_mock_users.[0].email}}  
+          {{> components/profile-input/profile-input type="text" name="first_name" field_name=uiConstants.placeholders.FIRST_NAME placeholder=_mock_users.[0].first_name}} 
+          {{> components/profile-input/profile-input type="text" name="second_name" field_name=uiConstants.placeholders.LAST_NAME placeholder=_mock_users.[0].second_name}} 
+          {{> components/profile-input/profile-input type="text" name="display_name" field_name=uiConstants.placeholders.DISPLAY_NAME placeholder=_mock_users.[0].display_name}} 
+          {{> components/profile-input/profile-input type="login" name="login"  disabled='true' field_name=uiConstants.placeholders.LOGIN placeholder=_mock_users.[0].login}} 
+          {{> components/profile-input/profile-input type="text" name="phone" field_name=uiConstants.placeholders.PHONE_NUMBER placeholder=_mock_users.[0].phone}}
+          {{> components/profile-input/profile-input type="email" name="email" field_name=uiConstants.placeholders.EMAIL placeholder=_mock_users.[0].email}}  
         <div class="profile-button-container">
           {{> components/button/button type="submit" text=uiConstants.buttons.CHANGE_PASSWORD}}
         </div>

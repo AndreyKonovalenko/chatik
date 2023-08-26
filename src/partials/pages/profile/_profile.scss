@@ -7,7 +7,7 @@
 }
 
 .profile-image-card-text {
-  @include large-text-dark
+  @include large-text-dark;
 }
 
 .profile-image-container {
@@ -40,6 +40,7 @@
   justify-content: flex-end;
   align-items: center;
 }
-.profile-icon-container-item{
+
+.profile-icon-container-item {
   width: 36px;
 }

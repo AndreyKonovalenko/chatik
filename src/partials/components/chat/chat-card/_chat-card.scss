@@ -34,7 +34,6 @@
   justify-content: flex-start;
   align-items: flex-start;
   gap: #{$baseline * 2}px;
-
 }
 
 .chat-card-styled-text {
@@ -59,7 +58,7 @@
 
 .chat-card-info-container-unread-counter {
   background-color: $dark;
-  padding: #{$baseline}px #{$baseline*2}px;
+  padding: #{$baseline}px #{$baseline * 2}px;
   border-radius: $radius;
   display: flex;
   flex-direction: row;
@@ -70,5 +69,5 @@
 
 .chat-card-selected {
   background-color: $light;
-  color: $on-primary
+  color: $on-primary;
 }

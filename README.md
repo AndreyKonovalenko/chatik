@@ -36,15 +36,12 @@ git clone https://github.com/AndreyKonovalenko/middle.messenger.praktikum.yandex
 
 ```
 cd middle.messenger.praktikum.yandex.git
-
 ```
 
 ```
 npm install
-
 ```
 
 ```
 npm run dev
-
 ```

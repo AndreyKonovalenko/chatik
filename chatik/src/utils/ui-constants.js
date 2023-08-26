@@ -8,6 +8,9 @@ const uiConstants = {
     USERS_LIST: 'Users list',
     DELETE_CHAT: 'Delete chat',
     DELETE_USER: 'Delete user',
+    ADD_USER: 'Add User',
+    CREATE_CHAT: 'Create chat',
+    CHANGE_PASSWORD: 'Change password',
   },
   text: {
     PAGE_NOT_FOUND: 'Page not found',
@@ -22,6 +25,8 @@ const uiConstants = {
     SAVE: 'Save',
     CHANGE_PASSWORD: 'Change password',
     DELETE: 'DELETE',
+    ADD: 'Add',
+    CREATE: 'Create',
   },
   placeholders: {
     LOGIN: 'login',
@@ -31,9 +36,13 @@ const uiConstants = {
     PHONE_NUMBER: 'phone number',
     DISPLAY_NAME: 'display name',
     PASSWORD: 'password',
+    CURRENT_PASSWORD: 'current password',
+    NEW_PASSWORD: 'new password',
     REPEAT_PASSWORD: 'repeat password',
     SEARCH: 'Search',
     MESSAGE: 'Message',
+    ENTER_USER_LOGIN: 'Enter user login',
+    ENTER_CHAT_TITLE: 'Enter chat title',
   },
   errors: {
     WRONG_PASSWORD: 'wrong password',

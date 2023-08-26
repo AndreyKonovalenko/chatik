@@ -1,7 +1,15 @@
 <div class="chat-modal-card-container">
   <p class="chat-modal-card-header">{{header}}</p> 
-  <p class="chat-modal-card-warning">{{warning}}: {{item}}?</p>
+  {{#if type_delete}}
+    <p class="chat-modal-card-warning">{{warning}}: {{item}}?</p>
+  {{/if}}
+  {{#if type_add_user}}
+    {{> components/chat/search-bar/search-bar placeholder=uiConstants.placeholders.ENTER_USER_LOGIN}}
+  {{/if}}
+  {{#if type_create_chat}}
+    {{> components/input/input placeholder=uiConstants.placeholders.ENTER_CHAT_TITLE}}
+  {{/if}}
   <div class="chat-modal-card-button-container">
-    {{>components/button/button type='button' text=uiConstants.buttons.DELETE}}
+    {{>components/button/button type='button' text=button_text }}
   </div>
 </div>

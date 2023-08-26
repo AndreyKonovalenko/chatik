@@ -1,0 +1,10 @@
+<div class="profile-modal-container">
+    {{#> components/form/form form_title=uiConstants.headers.CHANGE_PASSWORD}}
+        {{> components/input/input type="password" placeholder=uiConstants.placeholders.CURRENT_PASSWORD icon=true}}
+        {{> components/input/input type="password" placeholder=uiConstants.placeholders.NEW_PASSWORD icon=true}}
+          {{> components/input/input type="password" placeholder=uiConstants.placeholders.REPEAT_PASSWORD icon=true}}
+        <div class="profile-modal-button-container ">
+          {{> components/button/button type="submit" text=uiConstants.buttons.SAVE}}
+        </div>
+    {{/ components/form/form}}
+  </div>

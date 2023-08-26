@@ -25,8 +25,29 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: resolve(__dirname, 'index.html'),
-        login: resolve(__dirname, 'src/pages/login/login.html'),
-        register: resolve(__dirname, 'src/pages/register/register.html'),
+        login: resolve(__dirname, 'src/pages/login.html'),
+        register: resolve(__dirname, 'src/pages/register.html'),
+        error_404: resolve(__dirname, 'src/pages/error-404.html'),
+        error_500: resolve(__dirname, 'src/pages/error-500.html'),
+        profile: resolve(__dirname, 'src/pages/profile.html'),
+        profile_modal: resolve(
+          __dirname,
+          'src/pages/profile-chage-pass-modal.html'
+        ),
+        chat: resolve(__dirname, 'src/pages/chat.html'),
+        chat_delete_chat: resolve(
+          __dirname,
+          'src/pages/chat-delete-chat-modal.html'
+        ),
+        chat_delete_user: resolve(
+          __dirname,
+          'src/pages/chat-delete-user-modal.html'
+        ),
+        chat_add_user: resolve(__dirname, 'src/pages/chat-add-user-modal.html'),
+        chat_create_chate: resolve(
+          __dirname,
+          'src/pages/chat-create-chat-modal.html'
+        ),
       },
     },
   },

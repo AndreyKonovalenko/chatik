@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Podkova:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+$baseline: 4;
+$radius: 12px;
+
+$font-stack: 'Podkova', serif;
+$primary: #bb86fc;
+$light: #c89efc;
+$dark: #825db0;
+$bg-color: #fdfff5;
+$on-primary: #ffffff;
+$error-color: #fc86c7;
+$black: #000000;
+
+$large: 36px;
+$medium: 20px;
+$default: 16px;
+$small: 14px;
+
+@mixin set-typography($color, $wight, $size) {
+  color: $color;
+  font-weight: $wight;
+  font-size: $size;
+}
+
+@mixin large-text {
+  @include set-typography($black, bold, $large);
+}
+
+@mixin large-text-primary {
+  @include set-typography($primary, bold, $large);
+}
+
+@mixin large-text-dark {
+  @include set-typography($dark, bold, $large);
+}
+
+@mixin large-text-light {
+  @include set-typography($light, bold, $large);
+}
+
+@mixin large-text-on-primary {
+  @include set-typography($on-primary, bold, $large);
+}
+
+@mixin medium-text {
+  @include set-typography($black, 400, $medium);
+}
+
+@mixin medium-text-light {
+  @include set-typography($light, bold, $medium);
+}
+
+@mixin medium-text-on-primary {
+  @include set-typography($on-primary, bold, $medium);
+}
+
+@mixin small-text {
+  @include set-typography($black, bold, $small);
+}
+
+@mixin small-error-text {
+  @include set-typography($error-color, bold, $small);
+}

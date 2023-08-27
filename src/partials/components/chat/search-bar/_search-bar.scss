@@ -1,0 +1,29 @@
+.search-bar-container {
+  height: 60px;
+  width: 100%;
+  background-color: $on-primary;
+  border-radius: $radius;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 #{$baseline * 4}px;
+  gap: #{$baseline * 4}px;
+}
+
+.search-bar-input {
+  flex-grow: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  border-radius: $radius;
+  &::placeholder {
+    @include medium-text-light;
+    font-family: $font-stack;
+  }
+  &:hover {
+    transform: scale(0.99);
+  }
+  @include medium-text-light;
+  font-family: $font-stack;
+}

@@ -1,0 +1,13 @@
+<div class='profile-input-container'>
+  <p class='profile-field-name'>{{field_name}}</p>
+  <input
+    class='profile-input'
+    type='{{type}}'
+    name="{{name}}"
+    {{#if disabled}}
+      disabled
+    {{/if}}
+    value='{{value}}'
+    placeholder='{{placeholder}}'
+  />
+</div>

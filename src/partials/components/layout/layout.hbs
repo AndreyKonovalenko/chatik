@@ -1,0 +1,64 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <link rel='icon' type='image/svg+xml' href='/vite.svg' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+     <link rel="stylesheet" href="/src/styles/styles.scss" />
+    <title>{{title}}</title>
+  </head>
+  <body>
+      {{#if modal}}
+        {{#if delete_chat}}
+          {{#> components/modal/modal/modal}}
+            {{> components/chat/chat-modal-card/chat-modal-card
+              type_delete=true
+              header=uiConstants.headers.DELETE_CHAT 
+              warning=uiConstants.warnings.DELETE_CHAT
+              item=_mock_chats.[0].title
+              button_text=uiConstants.buttons.DELETE
+            }}
+          {{/ components/modal/modal/modal}}
+        {{/if}}
+        {{#if delete_user}}
+          {{#> components/modal/modal/modal}}
+            {{> components/chat/chat-modal-card/chat-modal-card
+              type_delete=true  
+              header=uiConstants.headers.DELETE_USER 
+              warning=uiConstants.warnings.DELETE_USER
+              item=_mock_users.[1].login
+              button_text=uiConstants.buttons.DELETE
+            }}
+          {{/ components/modal/modal/modal}}
+        {{/if}}
+        {{#if add_user}}
+          {{#> components/modal/modal/modal}}
+            {{> components/chat/chat-modal-card/chat-modal-card
+              type_add_user=true  
+              header=uiConstants.headers.ADD_USER
+              placeholder=uiConstants.placeholders.ENTER_USER_LOGIN
+              button_text=uiConstants.buttons.ADD
+            }}
+          {{/ components/modal/modal/modal}}
+        {{/if}}
+        {{#if create_chat}}
+          {{#> components/modal/modal/modal}}
+            {{> components/chat/chat-modal-card/chat-modal-card
+              type_create_chat=true  
+              header=uiConstants.headers.CREATE_CHAT
+              placeholder=uiConstants.placeholders.ENTER_CHAT_TITLE
+              button_text=uiConstants.buttons.CREATE
+            }}
+          {{/ components/modal/modal/modal}}
+        {{/if}}
+      {{/if}}
+      {{#if change_password}}
+        {{#> components/modal/modal/modal}}
+          {{> components/profile-modal/profile-modal}}
+        {{/ components/modal/modal/modal}}
+      {{/if}}
+    <main class="layout">
+        {{> components/side-bar/side-bar}}
+        {{> @partial-block}}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+  <li class={{#if selected}}'chat-card-container chat-card-selected'{{else}}'chat-card-container'{{/if}}>
+    <div class='chat-card-main-container'>
+      <img src={{avatar}} alt='avatar' />
+      <div class='chat-card-text-container'>
+        <p>{{title}}</p>
+        <p class='chat-card-styled-text'>        
+          {{#if archived}}
+              {{#dateFormatter}}{{time}}{{/dateFormatter}}
+          {{else}}
+            {{content}}
+          {{/if}} 
+        </p>
+      </div>
+    </div>
+      {{#if archived}}      
+        <div>
+          {{> components/icon/icon key="chat-card-archived-icon-0" type="unarchive" size="36" color=colors.LIGHT fill=0}}
+          {{> components/icon/icon key="chat-card-archived-icon-1" type="delete" size="36" color=colors.LIGHT fill=0}}
+        </div>
+      {{else}}
+         <div class='chat-card-info-container'>
+          {{#dateFormatter}}{{time}}{{/dateFormatter}}      
+          <div class="chat-card-info-container-unread-counter">{{unread}}</div>
+        </div>
+      {{/if}}
+  </li>

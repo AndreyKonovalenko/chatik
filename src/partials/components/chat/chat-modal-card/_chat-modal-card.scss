@@ -1,0 +1,28 @@
+.chat-modal-card-container {
+  width: 360px;
+  padding: #{$baseline * 4px};
+  background-color: $light;
+  border-radius: $radius;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $font-stack;
+  gap: #{$baseline * 4}px;
+}
+.chat-modal-card-header {
+  @include large-text-on-primary;
+}
+
+.chat-modal-card-warning {
+  @include medium-text-on-primary;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.chat-modal-card-button-container {
+  width: 120px;
+  height: 50px;
+  background-color: $dark;
+  border-radius: $radius;
+}

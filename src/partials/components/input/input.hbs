@@ -1,0 +1,13 @@
+<div class='input-wrapper'>
+  <input
+    class='input'
+    type='{{type}}'
+    value='{{value}}'
+    name="{{name}}"
+    placeholder='{{placeholder}}'
+  />
+  {{#if icon}}
+    {{> components/icon/icon key="input" type="visibility" size="36" color=uiConstants.palette.LIGHT fill=1 }}
+  {{/if}}
+    <span class="error-text">{{error}}</spna>
+</div>

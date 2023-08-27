@@ -1,0 +1,73 @@
+.chat-card-container {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px #{$baseline * 2}px;
+  background-color: $on-primary;
+  border-top: 3px solid $dark;
+  @include small-text;
+}
+
+.chat-card-main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: #{$baseline * 2}px;
+
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: $radius;
+    object-fit: cover;
+  }
+}
+
+.chat-card-text-container {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: #{$baseline * 2}px;
+}
+
+.chat-card-styled-text {
+  font-weight: 400;
+  opacity: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  max-width: 150px;
+}
+
+.chat-card-info-container {
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.chat-card-info-container-unread-counter {
+  background-color: $dark;
+  padding: #{$baseline}px #{$baseline * 2}px;
+  border-radius: $radius;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: $on-primary;
+}
+
+.chat-card-selected {
+  background-color: $light;
+  color: $on-primary;
+}

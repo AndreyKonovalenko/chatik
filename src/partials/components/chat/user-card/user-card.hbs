@@ -1,0 +1,14 @@
+  <li class='user-card-container'>
+    <div class='user-card-main-container'>
+      <img src={{avatar}} alt='avatar' />
+      <div class='user-card-text-container'>
+        <p>{{first_name}} {{last_name}}</p>
+        <p class='user-card-login-text'> {{login}}</p>
+      </div>
+    </div>
+      {{#if edit}}      
+        <div>
+          {{> components/icon/icon key="user-card-delete-icon-0" type="delete" size="36" color=colors.LIGHT fill=0}}
+        </div>
+      {{/if}}
+  </li>

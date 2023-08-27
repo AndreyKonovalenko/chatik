@@ -1,0 +1,17 @@
+<div class="chat-main-section">
+    {{> components/chat/search-bar/search-bar placeholder=uiConstants.placeholders.SEARCH }}
+    {{#> components/chat/chat-list/chat-list header=uiConstants.headers.CHAT_LIST controls=true }}
+      {{#each _mock_chats }}
+        {{> components/chat/chat-card/chat-card 
+          title=this.title 
+          avatar=this.avatar 
+          content=this.last_message.content 
+          time=this.last_message.time 
+          unread=this.unread_count 
+          selected=false
+          archived=false
+          colors=../uiConstants.palette
+        }}
+      {{/each}}
+    {{/ components/chat/chat-list/chat-list}}
+</div>

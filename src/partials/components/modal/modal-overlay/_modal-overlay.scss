@@ -1,0 +1,23 @@
+.modal-overlay {
+  width: 100%;
+  background: $black;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0.3;
+  z-index: 8000;
+}
+
+.temp-link:link {
+  text-decoration: none;
+}
+.temp-link:visited {
+  text-decoration: none;
+}
+.temp-link:hover {
+  text-decoration: none;
+}
+.temp-link:active {
+  text-decoration: none;
+}

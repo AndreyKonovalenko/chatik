@@ -1,0 +1,12 @@
+.chat-main-section {
+  width: 360px;
+  height: 100%;
+  background-color: $light;
+  border-radius: $radius;
+  padding: #{$baseline * 4}px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: #{$baseline * 4}px;
+}

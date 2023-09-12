@@ -33,7 +33,8 @@ export class Form extends Block {
                         </div>
                         {{/if}}
                         <from class="form">
-
+                            {{#each  inputs}}
+                            {{/ each}}
                         </div>
                     </from>
                 </div>

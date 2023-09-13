@@ -1,26 +1,25 @@
 import Block from "../../core/Block";
-import template from './side-bar.hbs?raw'
+import uiConstants from "../../utils/ui-constants";
+const {palette} = uiConstants;
 
 export class SideBar extends Block {
-    constructor() {
-        super({
-            // validate: {
-            //     login: (value: string) => value.length < 3 && value.length !== 0 ? `Length of login should not be less 3 letters.` : ''
-            // },
-            // onLogin: (event) => {
-            //     event.preventDefault();
-            //     const login =  this.refs.login.value();
-            //     const password =  this.refs.password.value();
-
-            //     console.log({
-            //         login,
-            //         password
-            // }
-        });
-    }
-
     protected render(): string {
-        return `${template}`;
+        return (`
+        <div class='side-bar-container'>
+        <a href="/">
+          <div class='logo-container'>
+              <p>C</p>
+          </div>
+        </a>
+        <div class='nav-bar-container'>
+          <div class='nav-bar-menu-container'>
+            <a href='/profile'>{{{ Icon key="side-bar-0" type="person" size="46" color="${palette.ON_PRIMARY}" fill=0  dist='profile' }}}</a>
+            <a href='/chat'>{{{ Icon key="side-bar-1" type="forum" size="46" color="${palette.ON_PRIMARY}" fill=0  dist='chat'}}}</a>
+            <a href='/archive'>{{{ Icon key="side-bar-2" type="archive" size="46" color="${palette.ON_PRIMARY}" fill=0 dist='archive' }}}</a>
+          </div>
+          {{{ Icon key="side-bar-3" type="logout" size="46" color="${palette.ON_PRIMARY}" fill=0 dist='logout' }}}
+        </div>
+      </div> `);
     }
 }
 

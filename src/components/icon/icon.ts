@@ -16,7 +16,7 @@ export class Icon extends Block {
 
     protected render(): string {
         return (`
-            <div>
+            <div class="icon-contanaier">
                 <style>.{{key}}-icon-settings { 
                     font-size:{{size}}px; color:{{color}};
                     font-variation-settings: 'FILL'{{fill}}, 'wght' 400, 'GRAD' 0, 'opsz' 40; 

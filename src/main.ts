@@ -3,8 +3,10 @@ import Handlebars from 'handlebars';
 import { LoginPage} from './pages/login/login';
 // Components
 import { SideBar } from './components/side-bar/side-bar'
-import { Form } from './components/form/form'
+import  Form  from './components/form/form.hbs?raw';
 import {Icon} from './components/icon/icon'
+import {Input} from './components/input/input'
+import {Button} from './components/button/button'
 //Partials
 import Layout  from './components/layout/layout.hbs?raw';
 
@@ -21,13 +23,16 @@ const pages = {
 
 
  Handlebars.registerPartial('Layout', Layout);
+ Handlebars.registerPartial('Form', Form);
 
 // Handlebars.registerPartial('ListCat', Components.ListCat);
 // Handlebars.registerPartial('CatCard', Components.CatCard);
 
 registerComponent('SideBar', SideBar);
-registerComponent('Form', Form);
 registerComponent('Icon', Icon);
+registerComponent('Input', Input);
+registerComponent('Button', Button);
+
 
 // registerComponent('Button', Components.Button);
 // registerComponent('InputField', Components.InputField);

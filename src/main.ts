@@ -2,6 +2,7 @@ import Handlebars from 'handlebars';
 // Pages
 import { LoginPage } from './pages/login/login';
 import { RegisterPage } from './pages/register/register';
+import { ProfilePage } from './pages/profile/profile';
 // Components
 import { SideBar } from './components/side-bar/side-bar';
 import Form from './components/form/form.hbs?raw';
@@ -19,6 +20,7 @@ import { registerComponent } from './core/registerComponent';
 const pages = {
   login: LoginPage,
   register: RegisterPage,
+  profile: ProfilePage,
 };
 
 Handlebars.registerPartial('Layout', Layout);
@@ -61,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => navigate('login'));
 document.addEventListener('click', (e) => {
   //@ts-ignore
   const page = e.target.getAttribute('page');
+  console.log(page);
   if (page) {
     navigate(page);
 

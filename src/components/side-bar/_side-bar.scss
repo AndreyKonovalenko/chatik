@@ -30,6 +30,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   p {
     @include large-text-on-primary;
     font-weight: 900;

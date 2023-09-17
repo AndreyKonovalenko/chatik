@@ -1,4 +1,5 @@
 .layout {
+  position: absolute;
   width: 100%;
   min-width: 1440px;
   height: 100%;
@@ -8,5 +9,5 @@
   flex-direction: row;
   justify-content: start;
   font-family: $font-stack;
-  align-items: stretch
+  align-items: stretch;
 }

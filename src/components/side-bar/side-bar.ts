@@ -20,5 +20,3 @@ export class SideBar extends Block {
       </div> `;
   }
 }
-
-export default SideBar;

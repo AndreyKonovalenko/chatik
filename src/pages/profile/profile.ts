@@ -1,9 +1,9 @@
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants.ts';
 const { placeholders, buttons, errors, palette } = uiConstants;
+import { setModal } from '../../utils/setModal.ts';
 import _mock_users from '../../__mocks__/_mock_users';
 import { ProfileModal } from '../../components/profile-modal/profile-modal.ts';
-
 
 class ProfilePage extends Block {
   constructor() {
@@ -16,11 +16,7 @@ class ProfilePage extends Block {
       },
       onChangePassword: (event) => {
         event.preventDefault();
-        const modals = document.getElementById('modals');
-        const Component = ProfileModal;
-        const component = new Component();
-        //@ts-ignore
-        modals?.append(component.getContent()!);
+        setModal(ProfileModal);
       },
 
       inputs: [
@@ -29,42 +25,42 @@ class ProfilePage extends Block {
           field_name: placeholders.FIRST_NAME,
           placeholder: _mock_users[0].first_name,
           type: 'text',
-          disabled: true
+          disabled: true,
         },
         {
           name: 'second_name',
           field_name: placeholders.LAST_NAME,
           placeholder: _mock_users[0].second_name,
           type: 'text',
-          disabled: true
+          disabled: true,
         },
         {
           name: 'display_name',
           field_name: placeholders.DISPLAY_NAME,
           placeholder: _mock_users[0].display_name,
           type: 'text',
-          disabled: true
+          disabled: true,
         },
         {
           name: 'login',
           field_name: placeholders.LOGIN,
           placeholder: _mock_users[0].login,
           type: 'login',
-          disabled: true
+          disabled: true,
         },
         {
           name: 'phone',
           field_name: placeholders.PHONE_NUMBER,
           placeholder: _mock_users[0].phone,
           type: 'text',
-          disabled: true
+          disabled: true,
         },
         {
           name: 'email',
           field_name: placeholders.EMAIL,
           placeholder: _mock_users[0].email,
           type: 'email',
-          disabled: true
+          disabled: true,
         },
       ],
     });

@@ -2,7 +2,7 @@ import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants.ts';
 const { headers, placeholders, buttons, errors } = uiConstants;
 
-class LoginPage extends Block {
+export class ProfileModal extends Block {
   constructor() {
     super({
       form_title: headers.LOGIN,
@@ -43,7 +43,7 @@ class LoginPage extends Block {
 
   protected render(): string {
     return ` 
-        {{#> Layout}}
+        {{#> Modal}}
             <div class="login-form-container">
                 {{#> Form form_title=form_title}}
                     {{#each  inputs}}
@@ -57,9 +57,18 @@ class LoginPage extends Block {
                     </div>
                 {{/ Form}}
             <div>
-        {{/ Layout}}
+        {{/ Modal}}
         `;
   }
 }
 
-export default LoginPage;
+// <div class="profile-modal-container">
+//     {{#> components/form/form form_title=uiConstants.headers.CHANGE_PASSWORD}}
+//         {{> components/input/input type="password" name="oldPassword" placeholder=uiConstants.placeholders.CURRENT_PASSWORD icon=true}}
+//         {{> components/input/input type="password" name="newPassword" placeholder=uiConstants.placeholders.NEW_PASSWORD icon=true}}
+//           {{> components/input/input type="password" name="newPassword" placeholder=uiConstants.placeholders.REPEAT_PASSWORD icon=true}}
+//         <div class="profile-modal-button-container ">
+//           {{> components/button/button type="submit" text=uiConstants.buttons.SAVE}}
+//         </div>
+//     {{/ components/form/form}}
+//   </div>

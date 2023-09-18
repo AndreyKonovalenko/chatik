@@ -1,9 +1,11 @@
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants.ts';
-const { headers, placeholders, buttons, errors, palette } = uiConstants;
+const { placeholders, buttons, errors, palette } = uiConstants;
 import _mock_users from '../../__mocks__/_mock_users';
+import { ProfileModal } from '../../components/profile-modal/profile-modal.ts';
 
-export class ProfilePage extends Block {
+
+class ProfilePage extends Block {
   constructor() {
     super({
       validate: {
@@ -12,30 +14,59 @@ export class ProfilePage extends Block {
             ? `Length of login should not be less 3 letters.`
             : '',
       },
-      onChangePassowrd: (event) => {
+      onChangePassword: (event) => {
         event.preventDefault();
-        // const login = this.refs.login.value();
-        // const password = this.refs.password.value();
-        // console.log({
-        //   login,
-        //   password,
-        // });
+        const modals = document.getElementById('modals');
+        const Component = ProfileModal;
+        const component = new Component();
+        //@ts-ignore
+        modals?.append(component.getContent()!);
       },
 
-      // inputs: [
-      //   {
-      //     name: 'login',
-      //     placeholder: placeholders.LOGIN,
-      //     icon: false,
-      //     type: 'login',
-      //   },
-      //   {
-      //     name: 'password',
-      //     placeholder: placeholders.PASSWORD,
-      //     icon: true,
-      //     type: 'password',
-      //   },
-      // ],
+      inputs: [
+        {
+          name: 'first_name',
+          field_name: placeholders.FIRST_NAME,
+          placeholder: _mock_users[0].first_name,
+          type: 'text',
+          disabled: true
+        },
+        {
+          name: 'second_name',
+          field_name: placeholders.LAST_NAME,
+          placeholder: _mock_users[0].second_name,
+          type: 'text',
+          disabled: true
+        },
+        {
+          name: 'display_name',
+          field_name: placeholders.DISPLAY_NAME,
+          placeholder: _mock_users[0].display_name,
+          type: 'text',
+          disabled: true
+        },
+        {
+          name: 'login',
+          field_name: placeholders.LOGIN,
+          placeholder: _mock_users[0].login,
+          type: 'login',
+          disabled: true
+        },
+        {
+          name: 'phone',
+          field_name: placeholders.PHONE_NUMBER,
+          placeholder: _mock_users[0].phone,
+          type: 'text',
+          disabled: true
+        },
+        {
+          name: 'email',
+          field_name: placeholders.EMAIL,
+          placeholder: _mock_users[0].email,
+          type: 'email',
+          disabled: true
+        },
+      ],
     });
   }
 
@@ -51,13 +82,13 @@ export class ProfilePage extends Block {
                   </div>
                   <div class="profile-image-container">
                      <img class="profile-image" src="${_mock_users[0].avatar}" alt="avater" width="200" height="200"/>
-                     <p class="profile-image-card-text">{{_mock_users.[0].display_name}}</p>
+                     <p class="profile-image-card-text">${_mock_users[0].display_name}</p>
                   </div>
                     {{#each  inputs}}
-                        // {{{ Input name="this.name" placeholder=this.placeholder type=this.type icon=this.icon }}}
+                       {{{ ProfileInput type=this.type name=this.name placeholder=this.placeholder field_name=this.field_name  disabled=this.disabled}}}
                     {{/ each}}
                     <div class="profile-button-container">
-                      {{{ Button type="submit" text='${buttons.CHANGE_PASSWORD}' }}}
+                      {{{ Button type="submit" text='${buttons.CHANGE_PASSWORD}' onClick=onChangePassword }}}
                     </div>
                 {{/ Form}}
             <div>
@@ -67,28 +98,3 @@ export class ProfilePage extends Block {
 }
 
 export default ProfilePage;
-
-// {{#> components/layout/layout}}
-//   <div class="profile-form-container">
-//     {{#> components/form/form}}
-//         <div class="profile-icon-container">
-//               <div class="profile-icon-container-item">
-//                 {{> components/icon/icon key="profile-form-icon" type="edit" size="36" color=uiConstants.palette.ON_PRIMARY fill=0}}
-//               </div>
-//         </div>
-//         <div class="profile-image-container">
-//           <img class="profile-image" src={{_mock_users.[0].avatar}} alt="avater" width="200" height="200"/>
-//           <p class="profile-image-card-text">{{_mock_users.[0].display_name}}</p>
-//         </div>
-//         {{> components/profile-input/profile-input type="text" name="first_name" field_name=uiConstants.placeholders.FIRST_NAME placeholder=_mock_users.[0].first_name}}
-//         {{> components/profile-input/profile-input type="text" name="second_name" field_name=uiConstants.placeholders.LAST_NAME placeholder=_mock_users.[0].second_name}}
-//         {{> components/profile-input/profile-input type="text" name="display_name" field_name=uiConstants.placeholders.DISPLAY_NAME placeholder=_mock_users.[0].display_name}}
-//         {{> components/profile-input/profile-input type="login" name="login"  disabled='true' field_name=uiConstants.placeholders.LOGIN placeholder=_mock_users.[0].login}}
-//         {{> components/profile-input/profile-input type="text" name="phone" field_name=uiConstants.placeholders.PHONE_NUMBER placeholder=_mock_users.[0].phone}}
-//         {{> components/profile-input/profile-input type="email" name="email" field_name=uiConstants.placeholders.EMAIL placeholder=_mock_users.[0].email}}
-//         <div class="profile-button-container">
-//           {{> components/button/button type="submit" text=uiConstants.buttons.CHANGE_PASSWORD}}
-//         </div>
-//     {{/ components/form/form}}
-//   </div>
-// {{/ components/layout/layout}}

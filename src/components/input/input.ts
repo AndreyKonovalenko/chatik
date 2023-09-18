@@ -20,5 +20,3 @@ export class Input extends Block {
       </div> `);
     }
 }
-
-export default Input;

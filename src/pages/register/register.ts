@@ -2,7 +2,7 @@ import Block from '../../core/Block.ts';
 import uiConstants from '../../utils/ui-constants.ts';
 const { headers, placeholders, buttons, errors } = uiConstants;
 
-export class RegisterPage extends Block {
+class RegisterPage extends Block {
   constructor() {
     super({
       form_title: headers.REGISTER,

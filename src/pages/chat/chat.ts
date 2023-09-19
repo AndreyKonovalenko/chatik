@@ -31,7 +31,7 @@ class ChatPage extends Block {
     return ` 
         {{#> Layout}}       
             <div class="chat-container">
-            {{{ ChatMainSection }}}
+                {{{ ChatMainSection }}}
             </div> 
         {{/ Layout}}
         `;

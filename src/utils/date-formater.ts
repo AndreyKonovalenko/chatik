@@ -1,4 +1,4 @@
-const getDate = (date) => {
+const getDate = (date: Date) => {
   const newDate = new Date(date);
   const day = new Intl.DateTimeFormat("en-US", { day: "numeric" }).format(
     newDate
@@ -23,7 +23,7 @@ const getDate = (date) => {
   return { day: day, month: month, time: time, year: year, weekday: weekday };
 };
 
-const isDateInThisWeek = (date) => {
+const isDateInThisWeek = (date: Date) => {
   const today = new Date();
   const firstDayOfWeek = new Date(
     today.setDate(today.getDate() - today.getDay())
@@ -34,7 +34,7 @@ const isDateInThisWeek = (date) => {
   return date >= firstDayOfWeek && date <= lastDayOfWeek ? true : false;
 };
 
-const isToDay = (date) => {
+const isToDay = (date: Date) => {
   const today = new Date();
   const result =
     date.getDate() === today.getDate() &&
@@ -43,8 +43,8 @@ const isToDay = (date) => {
   return result;
 };
 
-export default function dateFormatter(options) {
-  const last_message_date = new Date(options.fn(this));
+export  const  dateFormatter = (date: Date) => {
+  const last_message_date = new Date(date);
   const result = getDate(last_message_date);
   if (isToDay(last_message_date)) {
     return result.time;

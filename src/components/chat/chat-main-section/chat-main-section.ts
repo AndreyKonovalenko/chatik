@@ -3,7 +3,7 @@ import uiConstants from '../../../utils/ui-constants.ts';
 const { headers, placeholders, buttons, errors } = uiConstants;
 
 export class ChatMainSection extends Block {
-  constructor() {
+  constructor(props:any) {
     super({
       form_title: headers.LOGIN,
       validate: {
@@ -23,28 +23,17 @@ export class ChatMainSection extends Block {
       },
       onCreateAccount: (event) => {
         event.preventDefault();
-      },
-      inputs: [
-        {
-          name: 'login',
-          placeholder: placeholders.LOGIN,
-          icon: false,
-          type: 'login',
-        },
-        {
-          name: 'password',
-          placeholder: placeholders.PASSWORD,
-          icon: true,
-          type: 'password',
-        },
-      ],
-    });
+      },...props
+    })
   }
+
+  
 
   protected render(): string {
     return ` 
         <div class="chat-main-section">
             {{{ SearchBar placeholder='${placeholders.SEARCH}' }}}
+            {{{ ChatList controls=true edit=false}}}
         <div>
         `;
   }

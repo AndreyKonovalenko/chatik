@@ -13,6 +13,8 @@ import { Button } from './components/button/button';
 import { ModalOverLay } from './components/modal/modal-overlay/modal-overlay';
 import { ChatMainSection } from './components/chat/chat-main-section/chat-main-section';
 import { SearchBar } from './components/chat/search-bar/search-bar';
+import { ChatList } from './components/chat/chat-list/chat-list';
+import { ChatCard } from './components/chat/chat-card/chat-card';
 
 //Partials
 import Layout from './components/layout/layout.hbs?raw';
@@ -40,6 +42,8 @@ registerComponent('ModalOverLay', ModalOverLay);
 registerComponent('SideBar', SideBar);
 registerComponent('ChatMainSection', ChatMainSection);
 registerComponent('SearchBar', SearchBar);
+registerComponent('ChatList', ChatList);
+registerComponent('ChatCard', ChatCard)
 
 function navigate(page: string) {
   const app = document.getElementById('app');

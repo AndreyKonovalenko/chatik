@@ -1,6 +1,7 @@
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants.ts';
 const { headers, placeholders, buttons, errors } = uiConstants;
+import _mock_chats from '../../__mocks__/_mock_chats';
 
 class ChatPage extends Block {
   constructor() {
@@ -28,10 +29,11 @@ class ChatPage extends Block {
   }
 
   protected render(): string {
+    console.log(_mock_chats)
     return ` 
         {{#> Layout}}       
             <div class="chat-container">
-                {{{ ChatMainSection }}}
+                {{{ ChatMainSection  }}}
             </div> 
         {{/ Layout}}
         `;

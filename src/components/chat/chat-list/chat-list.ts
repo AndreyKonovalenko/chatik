@@ -22,6 +22,10 @@ export class ChatList extends Block {
           password,
         });
       },
+      onChatSelect: props.onChatSelect,
+      onHover: (event) => {
+        event.preventDefault();
+      },
       onCreateAccount: (event) => {
         event.preventDefault();
       },
@@ -31,23 +35,25 @@ export class ChatList extends Block {
   }
 
   protected render(): string {
+    console.log(typeof this.props.onChatSelect);
     return ` 
         <div class="chat-list-container">
             <div class="chat-list-header">
                 <p>${headers.CHAT_LIST}</p>
                 <div class="chat-list-controls">
-                {{#if ${ this.props.controls && 'controls'} }}
+                  {{#if ${ this.props.controls && 'controls'} }}
                     {{{ Icon key="chat-list-settings-0" type="add_circle" size="36" color='${palette.LIGHT}' fill=0 }}}
-                {{/if}}
-                {{#if ${ this.props.edit && 'edit'} }}
+                  {{/if}}
+                  {{#if ${ this.props.edit && 'edit'} }}
                     {{{ Icon key="chat-list-settings-1" type="edit" size="36" color='${palette.LIGHT}' fill=0 }}}
-                {{/if}}
+                  {{/if}}
                 </div>
             </div>
             <div class="chat-list">
                 <ul>
                     {{#each chats}}
-                        {{{ ChatCard   
+                        {{{ ChatCard
+                            id=this.id   
                             title=this.title 
                             avatar=this.avatar 
                             content=this.last_message.content 
@@ -55,6 +61,7 @@ export class ChatList extends Block {
                             unread=this.unread_count 
                             selected=false
                             archived=false
+                            onChatSelect=onChatSelect
                         }}}
                     {{/each}}
                 </ul>

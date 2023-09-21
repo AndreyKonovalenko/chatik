@@ -21,21 +21,20 @@ export class ChatMainSection extends Block {
           password,
         });
       },
+      onChatSelect: props.onChatSelect, 
       onCreateAccount: (event) => {
         event.preventDefault();
       },...props
     })
   }
-
   
-
   protected render(): string {
     return ` 
-        <div class="chat-main-section">
-            {{{ SearchBar placeholder='${placeholders.SEARCH}' }}}
-            {{{ ChatList controls=true edit=false}}}
-        <div>
-        `;
+      <div class="chat-main-section">
+        {{{ SearchBar placeholder='${placeholders.SEARCH}' }}}
+        {{{ ChatList controls=true edit=false onChatSelect=onChatSelect }}}
+      </div>
+    `;
   }
 }
 
@@ -45,7 +44,8 @@ export class ChatMainSection extends Block {
 
 
 
-
+// {{{ SearchBar placeholder='${placeholders.SEARCH}' }}}
+// {{{ ChatList controls=true edit=false}}}
 
 
 

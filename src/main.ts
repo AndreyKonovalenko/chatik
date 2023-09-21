@@ -15,6 +15,7 @@ import { ChatMainSection } from './components/chat/chat-main-section/chat-main-s
 import { SearchBar } from './components/chat/search-bar/search-bar';
 import { ChatList } from './components/chat/chat-list/chat-list';
 import { ChatCard } from './components/chat/chat-card/chat-card';
+import { ChatMessageSection } from './components/chat/chat-message-section/chat-message-secton';
 
 //Partials
 import Layout from './components/layout/layout.hbs?raw';
@@ -43,7 +44,8 @@ registerComponent('SideBar', SideBar);
 registerComponent('ChatMainSection', ChatMainSection);
 registerComponent('SearchBar', SearchBar);
 registerComponent('ChatList', ChatList);
-registerComponent('ChatCard', ChatCard)
+registerComponent('ChatCard', ChatCard);
+registerComponent('ChatMessageSection', ChatMessageSection);
 
 function navigate(page: string) {
   const app = document.getElementById('app');
@@ -63,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => navigate('login'));
 document.addEventListener('click', (e) => {
   //@ts-ignore
   const page = e.target.getAttribute('page');
-  console.log(page);
   if (page) {
     navigate(page);
     e.preventDefault();

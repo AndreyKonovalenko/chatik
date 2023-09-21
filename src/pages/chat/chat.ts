@@ -4,36 +4,34 @@ const { headers, placeholders, buttons, errors } = uiConstants;
 import _mock_chats from '../../__mocks__/_mock_chats';
 
 class ChatPage extends Block {
+  selectedChat: any;
   constructor() {
     super({
+      selectedChat: "чат не выбран", 
       validate: {
         login: (value: string) =>
           value.length < 3 && value.length !== 0
             ? `Length of login should not be less 3 letters.`
             : '',
       },
-      onLogin: (event) => {
-        event.preventDefault();
-        const login = this.refs.login.value();
-        const password = this.refs.password.value();
-        console.log({
-          login,
-          password,
-        });
+      onChatSelectHandler: () => {
+        console.log("drilling")
       },
       onCreateAccount: (event) => {
         event.preventDefault();
       },
-   
     });
+  }
+  setSelectedChat(data: any) {
+    this.selectedChat = data;
   }
 
   protected render(): string {
-    console.log(_mock_chats)
     return ` 
         {{#> Layout}}       
             <div class="chat-container">
-                {{{ ChatMainSection  }}}
+                {{{ ChatMainSection  onChatSelect=onChatSelectHandler }}}
+                {{{ ChatMessageSection  }}}
             </div> 
         {{/ Layout}}
         `;

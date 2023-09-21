@@ -9,6 +9,12 @@
   background-color: $on-primary;
   border-top: 3px solid $dark;
   @include small-text;
+  &:hover {
+    background-color: $primary;
+    transition: 0.5s;
+    color: $on-primary;
+    cursor: pointer;
+  }
 }
 
 .chat-card-main-container {

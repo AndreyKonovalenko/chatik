@@ -3,35 +3,63 @@ import uiConstants from '../../utils/ui-constants.ts';
 const { headers, placeholders, buttons, errors } = uiConstants;
 import _mock_chats from '../../__mocks__/_mock_chats';
 
+type TUser ={
+  first_name: string,
+  second_name: string,
+  avatar: string,
+  login: string
+}
+
+type TLast_message = {
+  user: TUser,
+  time: Date,
+  content: string
+}
+
+type TChat = {
+  id: number |string,
+  title: string,
+  avatar: string,
+  unread_count: number,
+  last_message: TLast_message
+}
+
+type TChatProps = {
+  chatState:{
+    selectedChatId: null | string |number,
+    chat: null | TChat
+  },
+  onChatSelectedHandler: (id: string | number) => void
+}
+
 class ChatPage extends Block {
-  selectedChat: any;
-  constructor() {
-    super({
-      selectedChat: "чат не выбран", 
-      validate: {
-        login: (value: string) =>
-          value.length < 3 && value.length !== 0
-            ? `Length of login should not be less 3 letters.`
-            : '',
-      },
-      onChatSelectHandler: () => {
-        console.log("drilling")
-      },
-      onCreateAccount: (event) => {
-        event.preventDefault();
+
+
+  constructor(props:TChatProps) {
+    super({...props,
+      chatState: { selectedChatId: null, chat: null },
+      onChatSelectHandler: (id: string | number) => {
+        this.setSelectedChatId(id);
       },
     });
   }
-  setSelectedChat(data: any) {
-    this.selectedChat = data;
+  public setSelectedChatId(id: string | number ) {
+    this.props.chatState = { ...this.props.chatState, selectedChatId: id}
+    this.props.chatState =  {...this.props.chatState, chat: _mock_chats.find((element:TChat) => element.id === id) }
+  }
+
+  public getChatById(id:number | number) {
+    
+
   }
 
   protected render(): string {
+    console.log(this.props.chatState.selectedChatId)
     return ` 
         {{#> Layout}}       
             <div class="chat-container">
-                {{{ ChatMainSection  onChatSelect=onChatSelectHandler }}}
-                {{{ ChatMessageSection  }}}
+                {{{ ChatMainSection  onChatSelect=onChatSelectHandler chatState=chatState }}}
+                {{{ ChatMessageSection chatState=chatState }}}
             </div> 
         {{/ Layout}}
         `;

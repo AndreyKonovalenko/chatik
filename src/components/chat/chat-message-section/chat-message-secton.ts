@@ -4,7 +4,7 @@ const { headers, placeholders, palette } = uiConstants;
 
 export class ChatMessageSection extends Block {
   constructor(props:any) {
-    super({
+    super({...props,
       form_title: headers.LOGIN,
       validate: {
         login: (value: string) =>
@@ -21,20 +21,21 @@ export class ChatMessageSection extends Block {
           password,
         });
       },
-      onCreateAccount: (event) => {
-        event.preventDefault();
-      },...props
     })
   }
 
   protected render(): string {
+    const {chatState} = this.props;
+    const chatHeaderSection = `
+      <img src="${ chatState.chat && chatState.chat.avatar}" alt="chat bage"/>
+      <p>${chatState.chat && chatState.chat.title}</p>
+    `;
     return ` 
         <div class="chat-message-section">
             <div class="chat-message-section-header">
                 <div class="chat-message-section-bage-container">  
-                    <img src={} alt="chat bage"/>
-                    <p>{}</p>
-                </div>
+                    ${(chatState.chat !== null)? chatHeaderSection : ''}
+                </div> 
                 <div class="chat-message-section-controls">
                     {{{ Icon key="chat-message-sectio-icon-0" type="add_circle" size="42" color='${palette.ON_PRIMARY}' fill=0}}}
                     {{{ Icon key="chat-message-sectio-icon-1" type="settings" size="42" color='${palette.DARK}' fill=0}}}

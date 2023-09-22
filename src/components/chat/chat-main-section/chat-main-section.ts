@@ -5,6 +5,7 @@ const { headers, placeholders, buttons, errors } = uiConstants;
 export class ChatMainSection extends Block {
   constructor(props:any) {
     super({
+      ...props,
       form_title: headers.LOGIN,
       validate: {
         login: (value: string) =>
@@ -21,10 +22,9 @@ export class ChatMainSection extends Block {
           password,
         });
       },
-      onChatSelect: props.onChatSelect, 
       onCreateAccount: (event) => {
         event.preventDefault();
-      },...props
+      }
     })
   }
   
@@ -32,7 +32,7 @@ export class ChatMainSection extends Block {
     return ` 
       <div class="chat-main-section">
         {{{ SearchBar placeholder='${placeholders.SEARCH}' }}}
-        {{{ ChatList controls=true edit=false onChatSelect=onChatSelect }}}
+        {{{ ChatList controls=true edit=false onChatSelect=onChatSelect chatState=chatState }}}
       </div>
     `;
   }

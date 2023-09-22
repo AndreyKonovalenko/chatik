@@ -6,6 +6,7 @@ import _mock_chats from '../../../__mocks__/_mock_chats'
 export class ChatList extends Block {
   constructor(props: any) {
     super({
+      ...props,
       form_title: headers.LOGIN,
       validate: {
         login: (value: string) =>
@@ -22,7 +23,6 @@ export class ChatList extends Block {
           password,
         });
       },
-      onChatSelect: props.onChatSelect,
       onHover: (event) => {
         event.preventDefault();
       },
@@ -30,12 +30,10 @@ export class ChatList extends Block {
         event.preventDefault();
       },
       chats: _mock_chats
-      , ...props
     });
   }
 
   protected render(): string {
-    console.log(typeof this.props.onChatSelect);
     return ` 
         <div class="chat-list-container">
             <div class="chat-list-header">
@@ -51,7 +49,7 @@ export class ChatList extends Block {
             </div>
             <div class="chat-list">
                 <ul>
-                    {{#each chats}}
+                    {{#each chats}}                      
                         {{{ ChatCard
                             id=this.id   
                             title=this.title 
@@ -61,7 +59,8 @@ export class ChatList extends Block {
                             unread=this.unread_count 
                             selected=false
                             archived=false
-                            onChatSelect=onChatSelect
+                            onChatSelect=@root.onChatSelect
+                            chatState=@root.chatState
                         }}}
                     {{/each}}
                 </ul>

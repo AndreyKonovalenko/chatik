@@ -3,30 +3,26 @@ import uiConstants from '../../../utils/ui-constants';
 import { dateFormatter } from '../../../utils/date-formater';
 const { palette } = uiConstants;
 
-// type BProps = {
-//   onClick: () => void;
-// };
+type BProps = {
+  onClick: () => void;
+};
 
 export class ChatCard extends Block {
-  constructor(props: any) {
-    super({
-      onChatSelect: props.onChatSelect
-      , ...props
-    });
-
+  constructor(props: BProps) {
+    super(props);
     this.props.events = {
       click: () => {
-        this.props.onChatSelect();
+        this.props.onChatSelect(this.props.id);
       }
     };
   }
 
   protected render(): string {
-    console.log(typeof this.props.onChatSelect);
-    const {time, title, content, avatar} = this.props
-    console.log(this.props)
+    const {time, title, content, avatar, chatState, id} = this.props
+    const selectedClass = chatState.selectedChatId === id ? "chat-card-container chat-card-selected" : "chat-card-container";
+
     return `
-        <li class={{#if selected}}'chat-card-container chat-card-selected'{{else}}'chat-card-container'{{/if}}>
+        <li class="${selectedClass}" >
         <div class='chat-card-main-container'>
         <img src=${avatar} alt='avatar' />
             <div class='chat-card-text-container'>

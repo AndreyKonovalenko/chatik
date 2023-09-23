@@ -13,13 +13,16 @@ export class ChatCard extends Block {
     this.props.events = {
       click: () => {
         this.props.onChatSelect(this.props.id);
-      }
+      },
     };
   }
 
   protected render(): string {
-    const {time, title, content, avatar, chatState, id} = this.props
-    const selectedClass = chatState.selectedChatId === id ? "chat-card-container chat-card-selected" : "chat-card-container";
+    const { time, title, content, avatar, chatState, id } = this.props;
+    const selectedClass =
+      chatState.selectedChatId === id
+        ? 'chat-card-container chat-card-selected'
+        : 'chat-card-container';
 
     return `
         <li class="${selectedClass}" >
@@ -38,8 +41,12 @@ export class ChatCard extends Block {
         </div>
         {{#if archived}}      
             <div>
-            {{{ Icon key="chat-card-archived-icon-0" type="unarchive" size="36" color='${palette.LIGHT}' fill=0 }}}
-            {{{ Icon key="chat-card-archived-icon-1" type="delete" size="36" color='${palette.LIGHT}' fill=0 }}}
+            {{{ Icon key="chat-card-archived-icon-0" type="unarchive" size="36" color='${
+              palette.LIGHT
+            }' fill=0 }}}
+            {{{ Icon key="chat-card-archived-icon-1" type="delete" size="36" color='${
+              palette.LIGHT
+            }' fill=0 }}}
             </div>
         {{else}}
             <div class='chat-card-info-container'>
@@ -49,7 +56,5 @@ export class ChatCard extends Block {
         {{/if}}
         </li>
         `;
-    }
+  }
 }
-
-

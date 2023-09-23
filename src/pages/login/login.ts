@@ -3,16 +3,23 @@ import uiConstants from '../../utils/ui-constants.ts';
 const { headers, placeholders, buttons, errors } = uiConstants;
 
 class LoginPage extends Block {
-  constructor() {
+  constructor(props: any) {
     super({
-      form_title: headers.LOGIN,
+      ...props,
+      loginState: {
+        login: '',
+        password: '',
+      },
+      onChange: (name: string, value: string): void => {
+        this.setLoginState(name, value);
+      },
       validate: {
         login: (value: string) =>
           value.length < 3 && value.length !== 0
             ? `Length of login should not be less 3 letters.`
             : '',
       },
-      onLogin: (event) => {
+      onLogin: (event: Event) => {
         event.preventDefault();
         const login = this.refs.login.value();
         const password = this.refs.password.value();
@@ -24,31 +31,21 @@ class LoginPage extends Block {
       onCreateAccount: (event) => {
         event.preventDefault();
       },
-      inputs: [
-        {
-          name: 'login',
-          placeholder: placeholders.LOGIN,
-          icon: false,
-          type: 'login',
-        },
-        {
-          name: 'password',
-          placeholder: placeholders.PASSWORD,
-          icon: true,
-          type: 'password',
-        },
-      ],
     });
+  }
+  public setLoginState(name: string, value: string): void {
+    this.props.loginState = { ...this.props.loginState, [name]: value };
   }
 
   protected render(): string {
+    const { loginState } = this.props;
+
     return ` 
         {{#> Layout}}
             <div class="login-form-container">
-                {{#> Form form_title=form_title}}
-                    {{#each  inputs}}
-                        {{{ Input name="this.name" placeholder=this.placeholder type=this.type icon=this.icon }}}
-                    {{/ each}}
+                {{#> Form form_title="${headers.LOGIN}"}}
+                    {{{ InputField name="login" placeholder="${placeholders.LOGIN}" type="text" icon=false ref="login" value='${loginState.login}' onChange=onChange }}}
+                    {{{ InputField name="password" placeholder="${placeholders.PASSWORD}" type="password" icon=true ref="password" value='${loginState.password}' onChange=onChange }}}
                     <div class="login-button-container">
                       {{{ Button type="submit" text='${buttons.LOGIN}' }}}
                     </div>

@@ -8,11 +8,7 @@ export class Icon extends Block {
   constructor(props: IProps) {
     super(props);
     this.props.events = {
-      click:
-        this.props.onClick ||
-        (() => {
-          console.log(this.props.dist);
-        }),
+      click: this.props.onClick,
     };
   }
 

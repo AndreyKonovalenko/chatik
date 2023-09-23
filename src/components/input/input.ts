@@ -1,22 +1,39 @@
-import Block from "../../core/Block";
-import uiConstants from "../../utils/ui-constants";
-const {palette} = uiConstants;
+import Block from '../../core/Block';
+
+export type TInput = {
+  className: string;
+  type: string;
+  placeholder: string;
+  disabled?: boolean;
+  ref: string;
+  name: string;
+  value: string;
+  onBlur: () => void;
+};
 
 export class Input extends Block {
-    protected render(): string {
-        return (`
-        <div class='input-wrapper'>
-        <input
-          class='input'
-          type='{{type}}'
-          value='{{value}}'
-          name="{{name}}"
-          placeholder='{{placeholder}}'
-        />
-        {{#if icon}}
-          {{{ Icon key="input" type="visibility" size="36" color='${palette.LIGHT}' fill=1 }}}
-        {{/if}}
-          <span class="error-text">{{error}}</spna>
-      </div> `);
-    }
+  constructor(props: TInput) {
+    super({
+      ...props,
+      events: {
+        blur: props.onBlur,
+      },
+    });
+  }
+
+  protected render(): string {
+    const { className, type, placeholder, ref, disabled, name, value } = this
+      .props as TInput;
+    return `
+            <input
+                class="${className}"
+                type="${type}"
+                placeholder="${placeholder}"
+                ref="${ref}"
+                ${disabled ? 'disabled' : ''}
+                name="${name}"
+                value="${value}"
+            />
+    `;
+  }
 }

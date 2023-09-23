@@ -3,12 +3,13 @@ import Handlebars from 'handlebars';
 import LoginPage from './pages/login/login';
 import RegisterPage from './pages/register/register';
 import ProfilePage from './pages/profile/profile';
-import ChatPage from './pages/chat/chat'
+import ChatPage from './pages/chat/chat';
 // Components
 import { SideBar } from './components/side-bar/side-bar';
 import { Icon } from './components/icon/icon';
-import { ProfileInput } from './components/profile-input/profile-input';
+import { ProfileInputField } from './components/profile-input-field/profile-input-field';
 import { Input } from './components/input/input';
+import { InputField } from './components/input-field/input-field';
 import { Button } from './components/button/button';
 import { ModalOverLay } from './components/modal/modal-overlay/modal-overlay';
 import { ChatMainSection } from './components/chat/chat-main-section/chat-main-section';
@@ -38,7 +39,8 @@ Handlebars.registerPartial('Modal', Modal);
 registerComponent('Icon', Icon);
 registerComponent('Input', Input);
 registerComponent('Button', Button);
-registerComponent('ProfileInput', ProfileInput);
+registerComponent('InputField', InputField);
+registerComponent('ProfileInputField', ProfileInputField);
 registerComponent('ModalOverLay', ModalOverLay);
 registerComponent('SideBar', SideBar);
 registerComponent('ChatMainSection', ChatMainSection);

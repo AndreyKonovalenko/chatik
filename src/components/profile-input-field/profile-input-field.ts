@@ -1,8 +1,8 @@
-import Block from "../../core/Block";
+import Block from '../../core/Block';
 
-export class ProfileInput extends Block {
-    protected render(): string {
-        return (`
+export class ProfileInputField extends Block {
+  protected render(): string {
+    return `
         <div class='profile-input-container'>
         <p class='profile-field-name'>{{field_name}}</p>
         <input
@@ -15,8 +15,8 @@ export class ProfileInput extends Block {
           value='{{value}}'
           placeholder='{{placeholder}}'
         />
-      </div> `);
-    }
+      </div> `;
+  }
 }
 
-export default ProfileInput;
+export default ProfileInputField;

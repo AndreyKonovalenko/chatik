@@ -1,6 +1,16 @@
 import Block from '../../core/Block';
 //@ts-ignore
 import _mock_chats from '../../__mocks__/_mock_chats';
+//@ts-ignore
+import _mock_messages from '../../__mocks__/_mock_messages';
+
+export type TMessage = {
+  chat_id: number;
+  time: Date;
+  type: string;
+  user_id: string;
+  content: string;
+};
 
 type TUser = {
   first_name: string;
@@ -27,6 +37,8 @@ type TChatProps = {
   chatState: {
     selectedChatId: null | string | number;
     chat: null | TChat;
+    messages: Array<TMessage>;
+    currentUserId: string;
   };
   onChatSelectedHandler: (id: string | number) => void;
 };
@@ -35,7 +47,12 @@ class ChatPage extends Block {
   constructor(props: TChatProps) {
     super({
       ...props,
-      chatState: { selectedChatId: null, chat: null },
+      chatState: {
+        selectedChatId: null,
+        chat: null,
+        messages: _mock_messages,
+        currentUserId: '1',
+      },
       onChatSelectHandler: (id: string | number) => {
         this.setSelectedChatId(id);
       },
@@ -56,7 +73,7 @@ class ChatPage extends Block {
         {{#> Layout}}       
             <div class="chat-container">
                 {{{ ChatMainSection  onChatSelect=onChatSelectHandler chatState=chatState }}}
-                {{{ ChatMessageSection chatState=chatState }}}
+                {{{ ChatMessageSection chatState=chatState chatState=chatState }}}
             </div> 
         {{/ Layout}}
         `;

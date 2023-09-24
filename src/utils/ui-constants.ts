@@ -51,6 +51,8 @@ const uiConstants = {
     PHONE_VALIDATION_FAILED: 'Please enter currect phone number',
     FIRST_NAME_VALIDATION_FAILED: 'Please enger currect first name',
     SECOND_NAME_VALIDATION_FAILED: 'Please enger currect last name',
+    SEARCH_VALIDATION_FAILED: 'Should not be empty',
+    MESSAGE_VALIDATION_FAILED: 'Message should not be empty',
     WRONG_PASSWORD: 'wrong password',
     LOGIN_DOES_NOT_EXIST: 'login does not extist',
     PASSWORDS_DO_NOT_MATCH: 'passwords do not match',

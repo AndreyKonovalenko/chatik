@@ -32,4 +32,12 @@ export const validate = {
       ? errors.SECOND_NAME_VALIDATION_FAILED
       : '';
   },
+  search: (value: string) => {
+    const regExp = /[\S\s]+[\S]+/;
+    return value.match(regExp) === null ? errors.SEARCH_VALIDATION_FAILED : '';
+  },
+  message: (value: string) => {
+    const regExp = /[\S\s]+[\S]+/;
+    return value.match(regExp) === null ? errors.MESSAGE_VALIDATION_FAILED : '';
+  },
 };

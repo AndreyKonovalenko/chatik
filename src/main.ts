@@ -18,7 +18,9 @@ import { ChatList } from './components/chat/chat-list/chat-list';
 import { ChatCard } from './components/chat/chat-card/chat-card';
 import { ChatMessageSection } from './components/chat/chat-message-section/chat-message-secton';
 import { ErrorLine } from './components/error-line/error-line';
-
+import { ChatField } from './components/chat/chat-field/chat-fied';
+import { SendMessageBar } from './components/chat/send-message-bar/send-message-bar';
+import { Message } from './components/chat/message/message';
 //Partials
 import Layout from './components/layout/layout.hbs?raw';
 import Form from './components/form/form.hbs?raw';
@@ -50,6 +52,9 @@ registerComponent('ChatList', ChatList);
 registerComponent('ChatCard', ChatCard);
 registerComponent('ChatMessageSection', ChatMessageSection);
 registerComponent('ErrorLine', ErrorLine);
+registerComponent('ChatField', ChatField);
+registerComponent('SendMessageBar', SendMessageBar);
+registerComponent('Message', Message);
 
 function navigate(page: string) {
   const app = document.getElementById('app');

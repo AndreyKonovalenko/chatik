@@ -3,7 +3,10 @@ import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 
 // Нельзя создавать экземпляр данного класса
-class Block {
+export default class Block<P extends Record<string, unknown> = any> {
+  isValidValue() {
+    throw new Error('Method not implemented.');
+  }
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -13,8 +16,8 @@ class Block {
 
   public id = nanoid(6);
   protected props: any;
-  protected refs: Record<string, Block> = {};
-  public children: Record<string, Block>;
+  protected refs: Record<string, Block<P>> = {};
+  public children: Record<string, Block<P> | Array<Block<P>>>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
   private _meta: { props: any };
@@ -203,5 +206,3 @@ class Block {
     this.getContent()!.style.display = 'none';
   }
 }
-
-export default Block;

@@ -1,0 +1,7 @@
+.error-text {
+  @include small-error-text;
+  padding: 0px #{$baseline * 4}px;
+  position: absolute;
+  left: 0;
+  bottom: #{$baseline}px;
+}

@@ -3,27 +3,42 @@ import uiConstants from '../../utils/ui-constants';
 import { TInput } from '../input/input';
 const { palette } = uiConstants;
 type TInputFied = {
-  onChange: (name: string, value: string) => void;
+  isValidValue: () => void;
 };
 
-export class InputField extends Block {
+export class InputField extends Block<TInputFied | any> {
   constructor(props: TInputFied & TInput) {
     super({
       ...props,
       onBlur: () => {
-        const value = this.getValue();
-        props.onChange(props.name, value);
+        this.validate();
       },
     });
+  }
+  public isValidValue() {
+    if (!this.validate()) {
+      return false;
+    }
+    return this.getValue();
   }
 
   public getValue(): string {
     return this.refs?.[this.props.ref].value();
   }
 
-  protected render(): string {
-    const { ref, type, value, name, placeholder } = this.props as TInput;
+  private validate() {
+    const value = this.getValue();
+    const error = this.props.validate(value);
+    if (error) {
+      this.refs?.errorLine.setProps({ error });
+      return false;
+    }
+    this.refs?.errorLine.setProps({ error: undefined });
+    return true;
+  }
 
+  protected render(): string {
+    const { ref, type, name, placeholder, value } = this.props as TInput;
     return `
         <div class='input-wrapper'>
           {{{
@@ -37,9 +52,9 @@ export class InputField extends Block {
             onBlur=onBlur
           }}}
         {{#if icon}}
-          {{{ Icon key="input" type="visibility" size="36" color='${palette.LIGHT}' fill=1 }}}
+          {{{ Icon key="input" type="visibility" size="36" color='${palette.LIGHT}' fill=1  }}}
         {{/if}}
-          <span class="error-text">{{error}}</spna>
+        {{{ ErrorLine error=error ref="errorLine" }}}
       </div> `;
   }
 }

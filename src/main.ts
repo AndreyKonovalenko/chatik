@@ -17,6 +17,7 @@ import { SearchBar } from './components/chat/search-bar/search-bar';
 import { ChatList } from './components/chat/chat-list/chat-list';
 import { ChatCard } from './components/chat/chat-card/chat-card';
 import { ChatMessageSection } from './components/chat/chat-message-section/chat-message-secton';
+import { ErrorLine } from './components/error-line/error-line';
 
 //Partials
 import Layout from './components/layout/layout.hbs?raw';
@@ -48,6 +49,7 @@ registerComponent('SearchBar', SearchBar);
 registerComponent('ChatList', ChatList);
 registerComponent('ChatCard', ChatCard);
 registerComponent('ChatMessageSection', ChatMessageSection);
+registerComponent('ErrorLine', ErrorLine);
 
 function navigate(page: string) {
   const app = document.getElementById('app');

@@ -49,10 +49,9 @@ class ChatPage extends Block {
     };
   }
 
-  public getChatById(id: number | number) {}
+  public getChatById(id: string | number) {}
 
   protected render(): string {
-    console.log(this.props.chatState.selectedChatId);
     return ` 
         {{#> Layout}}       
             <div class="chat-container">

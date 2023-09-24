@@ -4,17 +4,18 @@ export class ProfileInputField extends Block {
   protected render(): string {
     return `
         <div class='profile-input-container'>
-        <p class='profile-field-name'>{{field_name}}</p>
-        <input
-          class='profile-input'
-          type='{{type}}'
-          name="{{name}}"
-          {{#if disabled}}
-            disabled
-          {{/if}}
-          value='{{value}}'
-          placeholder='{{placeholder}}'
-        />
+        <p class='profile-field-name'>{{field_name}}</p>  
+        {{{
+          Input   
+          className='profile-input'
+          type=type
+          ref=ref
+          name=name
+          placeholder=placeholder
+          onBlur=onBlur
+          value=value
+          disabled=disabled
+        }}}
       </div> `;
   }
 }

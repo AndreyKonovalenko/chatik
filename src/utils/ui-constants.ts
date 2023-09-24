@@ -45,9 +45,8 @@ const uiConstants = {
     ENTER_CHAT_TITLE: 'Enter chat title',
   },
   errors: {
-    LOGIN_VALIDATION_FAILED: 'Length of login should not be less 3 letters',
-    PASSWORD_VALIDATION_FAILED:
-      'Your password is not strong enough to satisfy the actual minimum policy',
+    LOGIN_VALIDATION_FAILED: 'Login should not be less then 3 letters',
+    PASSWORD_VALIDATION_FAILED: 'Your password is not strong enough',
     MAIL_VALIDATION_FAILED: 'Please enter currect email adress',
     PHONE_VALIDATION_FAILED: 'Please enter currect phone number',
     FIRST_NAME_VALIDATION_FAILED: 'Please enger currect first name',

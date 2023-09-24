@@ -8,7 +8,7 @@ export type TInput = {
   ref: string;
   name: string;
   value: string;
-  onBlur: () => void;
+  onBlur?: () => void;
 };
 
 export class Input extends Block {

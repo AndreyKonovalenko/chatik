@@ -22,9 +22,8 @@ class LoginPage extends Block<TLoginPage | any> {
       },
     });
   }
-
   public sendForm() {
-    const login = (this.refs.login as LoginPage).isValidValue();
+    const login = this.refs.login.isValidValue();
     const password = this.refs.password.isValidValue();
     console.log({ login, password });
   }
@@ -34,8 +33,8 @@ class LoginPage extends Block<TLoginPage | any> {
         {{#> Layout}}
             <div class="login-form-container">
                 {{#> Form form_title="${headers.LOGIN}"}}
-                    {{{ InputField name="login" placeholder="${placeholders.LOGIN}" type="text" icon=false ref="login" value='' onChange=onChange validate=validate.login }}}
-                    {{{ InputField name="password" placeholder="${placeholders.PASSWORD}" type="password" icon=true ref="password" value='' onChange=onChange validate=validate.password }}}
+                    {{{ InputField name="login" placeholder="${placeholders.LOGIN}" type="text" icon=false ref="login" value='' validate=validate.login }}}
+                    {{{ InputField name="password" placeholder="${placeholders.PASSWORD}" type="password" icon=true ref="password" value='' validate=validate.password }}}
                     <div class="login-button-container">
                       {{{ Button type="submit" text='${buttons.LOGIN}'onClick=onLogin }}}
                     </div>

@@ -12,7 +12,7 @@ export const validate = {
       ? errors.PASSWORD_VALIDATION_FAILED
       : '';
   },
-  mail: (value: string) => {
+  email: (value: string) => {
     const regExp = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi;
     return value.match(regExp) === null ? errors.MAIL_VALIDATION_FAILED : '';
   },

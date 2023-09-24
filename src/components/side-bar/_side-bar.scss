@@ -1,5 +1,6 @@
 .side-bar-container {
-  width: 64px;
+  min-width: 64px;
+  max-width: 64px;
   background-color: $primary;
   border-radius: $radius;
   display: flex;

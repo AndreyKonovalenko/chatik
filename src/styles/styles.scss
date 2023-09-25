@@ -1,37 +1,33 @@
 @import 'theme';
-
-@import '../pages/login/_login.scss';
-@import '../pages/register/_register.scss';
-@import '../pages/profile/_profile.scss';
-@import '../pages/chat/_chat.scss';
-
+@import '../pages/login/login';
+@import '../pages/register/register';
+@import '../pages/profile/profile';
+@import '../pages/chat/chat';
 @import '../components/form/form';
-@import '../components/layout/_layout.scss';
-@import '../components/input-field/_input-field.scss';
-@import '../components/button/_button.scss';
-@import '../components/side-bar/_side-bar.scss';
-@import '../components/icon/_icon.scss';
-@import '../components/error-card/_error-card.scss';
+@import '../components/layout/layout';
+@import '../components/input-field/input-field';
+@import '../components/button/button';
+@import '../components/side-bar/side-bar';
+@import '../components/icon/icon';
+@import '../components/error-card/error-card';
 @import '../components/error-line/erorr-line';
+@import '../components/profile-input-field/profile-input-field';
+@import '../components/profile-modal/profile-modal';
+@import '../components/modal/modal/modal';
+@import '../components/modal/modal-overlay/modal-overlay';
+@import '../components/chat/search-bar/search-bar';
+@import '../components/chat/send-message-bar/send-message-bar';
+@import '../components/chat/chat-field/chat-field';
+@import '../components/chat/attach-popup/attach-popup';
+@import '../components/chat/chat-main-section/chat-main-section';
+@import '../components/chat/chat-message-section/chat-message-section';
+@import '../components/chat/chat-list/chat-list';
+@import '../components/chat/chat-card/chat-card';
+@import '../components/chat/chat-edit-section/chat-edit-section';
+@import '../components/chat/user-card/user-card';
+@import '../components/chat/chat-modal-card/chat-modal-card';
+@import '../components/chat/message/message';
 
-@import '../components/profile-input-field/_profile-input-field.scss';
-@import '../components/profile-modal/_profile-modal.scss';
-
-@import '../components/modal/modal/_modal.scss';
-@import '../components/modal/modal-overlay/_modal-overlay.scss';
-
-@import '../components/chat/search-bar/_search-bar.scss';
-@import '../components/chat/send-message-bar/_send-message-bar.scss';
-@import '../components/chat/chat-field/_chat-field.scss';
-@import '../components/chat/attach-popup/_attach-popup.scss';
-@import '../components/chat/chat-main-section/_chat-main-section.scss';
-@import '../components/chat/chat-message-section/_chat-message-section.scss';
-@import '../components/chat/chat-list/_chat-list.scss';
-@import '../components/chat/chat-card/_chat-card.scss';
-@import '../components/chat/chat-edit-section/_chat-edit-section.scss';
-@import '../components/chat/user-card/_user-card.scss';
-@import '../components/chat/chat-modal-card/_chat-modal-card.scss';
-@import '../components/chat/message/_message.scss';
 * {
   box-sizing: border-box;
   margin: 0;

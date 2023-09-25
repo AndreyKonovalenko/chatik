@@ -67,7 +67,7 @@ class ChatPage extends Block {
     };
   }
 
-  public getChatById(id: string | number) {}
+  // public getChatById(id: string | number) {}
 
   protected render(): string {
     return ` 

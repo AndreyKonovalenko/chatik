@@ -1,9 +1,12 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-underscore-dangle */
 
-const text =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet",+ "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore';
-
+const text1 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,';
+const text2 = 'sed do eiusmod tempor';
+const text3 = 'incididunt ut labore Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do';
+const text4 = 'eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet, consectetur';
+const text5 = 'adipiscing elit, sed do eiusmod tempor incididunt ut labore';
+const text = text1 + text2 + text3 + text4 + text5;
 const _mock_messages = [
   {
     chat_id: 1,

@@ -12,7 +12,8 @@ export type TMessage = {
   content: string;
 };
 
-type TUser = {
+export type TUser = {
+  id: string;
   first_name: string;
   second_name: string;
   avatar: string;

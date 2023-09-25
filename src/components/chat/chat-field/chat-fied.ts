@@ -1,6 +1,4 @@
 import Block from '../../../core/Block';
-// @ts-ignore
-import _mock_users from '../../../__mocks__/_mock_users';
 
 export class ChatField extends Block {
   constructor(props: any) {
@@ -13,10 +11,11 @@ export class ChatField extends Block {
   }
 
   protected render(): string {
+
     return `
        <div class='chat-field-container'>
           {{#each  messages}}
-            {{{ Message content=this.content time=this.time currentUserId=@root.currentUserId }}}
+            {{{ Message content=this.content time=this.time currentUserId=@root.currentUserId user_id=this.user_id }}}
           {{/each}}
       </div>
   

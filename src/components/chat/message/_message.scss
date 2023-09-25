@@ -1,0 +1,61 @@
+.message-container {
+    max-width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0px #{$baseline * 4}px;
+    background-color: $bg-color;
+    align-self: flex-end;
+    gap: #{$baseline}px;
+    @include small-text;
+    img {
+        width: 36px;
+        height: 36px;
+        border-radius: $radius;
+        object-fit: cover;
+    }
+    
+}
+.message-text-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+.message-date-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    opacity: 0.6;
+}
+
+.message-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border:3px solid $dark;
+    background-color: $on-primary;
+}
+
+.message-content-container {
+    padding: #{$baseline * 2}px;
+    border:3px solid $dark;
+    border-radius: $radius $radius 0 $radius;
+    background-color: $on-primary;
+}
+
+.current-user-message-content-container {
+    @extend .message-content-container;
+    border-color:$light;
+    border-radius: $radius $radius $radius 0;    
+}
+
+.current-user-message-container {
+    @extend .message-container;
+    align-self: flex-start;
+}

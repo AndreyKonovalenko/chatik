@@ -1,9 +1,10 @@
 import Block from '../../core/Block';
 import { TProps } from '../../core/Block';
 
+type TButton = TProps;
 
 export class Button extends Block {
-  constructor(props: TProps) {
+  constructor(props: TButton) {
     super(props);
     this.props.events = {
       click:

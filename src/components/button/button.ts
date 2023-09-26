@@ -1,7 +1,9 @@
 import Block from '../../core/Block';
 import { TProps } from '../../core/Block';
 
-type TButton = TProps;
+type TButton = TProps & {
+  onClick: () => void; 
+};
 
 export class Button extends Block {
   constructor(props: TButton) {

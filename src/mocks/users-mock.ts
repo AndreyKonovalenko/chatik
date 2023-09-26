@@ -1,8 +1,8 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-underscore-dangle */
-const _mock_users = [
+import { TUser } from "../pages/chat/chat";
+
+export const usersMock: Array<TUser> = [
   {
-    id: 1,
+    id: '1',
     first_name: 'Andrey',
     second_name: 'Konovalenko',
     display_name: 'andrew',
@@ -12,7 +12,7 @@ const _mock_users = [
     avatar: 'assets/avatars/avatar.png',
   },
   {
-    id: 2,
+    id: '2',
     first_name: 'Liza',
     second_name: 'Vovk',
     display_name: '@lizunia',
@@ -22,7 +22,7 @@ const _mock_users = [
     avatar: 'assets/avatars/avatar1.png',
   },
   {
-    id: 3,
+    id: '3',
     first_name: 'Mary',
     second_name: 'Cat',
     display_name: 'andrew',
@@ -32,7 +32,7 @@ const _mock_users = [
     avatar: 'assets/avatars/avatar2.png',
   },
   {
-    id: 4,
+    id: "4",
     first_name: 'Nikita',
     second_name: 'The Strong',
     display_name: 'andrew',
@@ -42,4 +42,4 @@ const _mock_users = [
     avatar: 'assets/avatars/avatar3.png',
   },
 ];
-export default _mock_users;
+

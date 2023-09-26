@@ -1,14 +1,13 @@
 import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { headers, palette } = uiConstants;
-//@ts-ignore
-import _mock_chats from '../../../__mocks__/_mock_chats'
+import { chatsMock } from '../../../mocks/chats-mock.ts';
 
 export class ChatList extends Block {
   constructor(props: any) {
     super({
       ...props,
-      chats: _mock_chats
+      chats: chatsMock
     });
   }
 

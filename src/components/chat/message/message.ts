@@ -3,8 +3,7 @@ import { dateFormatter } from '../../../utils/date-formater.ts';
 import { TMessage } from '../../../pages/chat/chat.ts';
 import { TUser } from '../../../pages/chat/chat.ts';
 
-// @ts-ignore
-import _mock_users from '../../../__mocks__/_mock_users';
+import { usersMock } from '../../../mocks/users-mock.ts';
 
 export class Message extends Block {
   constructor(props: TMessage) {
@@ -15,7 +14,7 @@ export class Message extends Block {
 
   protected render(): string {
     const { time, currentUserId, user_id} = this.props;
-    const avatar = _mock_users.find((element:TUser) => element.id == user_id).avatar;
+    const avatar = usersMock.find((element:TUser) => element.id == user_id)?.avatar;
 
     const currentUserMessage =` 
     <div class="current-user-message-container">

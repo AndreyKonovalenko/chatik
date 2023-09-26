@@ -1,3 +1,7 @@
 {
-    "extends": "airbnb"
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2020
+    }    
 }

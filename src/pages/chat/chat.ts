@@ -1,12 +1,10 @@
 import Block from '../../core/Block';
-//@ts-ignore
-import _mock_chats from '../../__mocks__/_mock_chats';
-//@ts-ignore
-import _mock_messages from '../../__mocks__/_mock_messages';
+import { chatsMock } from '../../mocks/chats-mock';
+import { messagesMock } from '../../mocks/messages-mock';
 
 export type TMessage = {
   chat_id: number;
-  time: Date;
+  time: string;
   type: string;
   user_id: string;
   content: string;
@@ -16,17 +14,20 @@ export type TUser = {
   id: string;
   first_name: string;
   second_name: string;
+  display_name?:string;
+  email?:string,
+  phone?:string,
   avatar: string;
   login: string;
 };
 
 type TLast_message = {
   user: TUser;
-  time: Date;
+  time: string;
   content: string;
 };
 
-type TChat = {
+export type TChat = {
   id: number | string;
   title: string;
   avatar: string;
@@ -51,7 +52,7 @@ class ChatPage extends Block {
       chatState: {
         selectedChatId: null,
         chat: null,
-        messages: _mock_messages,
+        messages: messagesMock,
         currentUserId: '1',
       },
       onChatSelectHandler: (id: string | number) => {
@@ -63,7 +64,7 @@ class ChatPage extends Block {
     this.props.chatState = { ...this.props.chatState, selectedChatId: id };
     this.props.chatState = {
       ...this.props.chatState,
-      chat: _mock_chats.find((element: TChat) => element.id === id),
+      chat: chatsMock.find((element: TChat) => element.id === id),
     };
   }
 

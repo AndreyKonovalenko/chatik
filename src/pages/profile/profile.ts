@@ -2,8 +2,7 @@ import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants.ts';
 const { placeholders, buttons, palette } = uiConstants;
 import { setModal } from '../../utils/setModal.ts';
-//@ts-ignore
-import _mock_users from '../../__mocks__/_mock_users';
+import { usersMock } from '../../mocks/users-mock.js';
 import { ProfileModal } from '../../components/profile-modal/profile-modal.ts';
 
 class ProfilePage extends Block {
@@ -25,7 +24,7 @@ class ProfilePage extends Block {
           name: 'first_name',
           field_name: placeholders.FIRST_NAME,
           placeholder: '',
-          value: _mock_users[0].first_name,
+          value: usersMock[0].first_name,
           type: 'text',
           disabled: true,
         },
@@ -33,7 +32,7 @@ class ProfilePage extends Block {
           name: 'second_name',
           field_name: placeholders.LAST_NAME,
           placeholder: '',
-          value: _mock_users[0].second_name,
+          value: usersMock[0].second_name,
           type: 'text',
           disabled: true,
         },
@@ -41,7 +40,7 @@ class ProfilePage extends Block {
           name: 'display_name',
           field_name: placeholders.DISPLAY_NAME,
           placeholder: '',
-          value: _mock_users[0].display_name,
+          value: usersMock[0].display_name,
           type: 'text',
           disabled: true,
         },
@@ -49,7 +48,7 @@ class ProfilePage extends Block {
           name: 'login',
           field_name: placeholders.LOGIN,
           placeholder: '',
-          value: _mock_users[0].login,
+          value: usersMock[0].login,
           type: 'login',
           disabled: true,
         },
@@ -57,7 +56,7 @@ class ProfilePage extends Block {
           name: 'phone',
           field_name: placeholders.PHONE_NUMBER,
           placeholder: '',
-          value: _mock_users[0].phone,
+          value: usersMock[0].phone,
           type: 'text',
           disabled: true,
         },
@@ -65,7 +64,7 @@ class ProfilePage extends Block {
           name: 'email',
           field_name: placeholders.EMAIL,
           placeholder: '',
-          value: _mock_users[0].email,
+          value: usersMock[0].email,
           type: 'email',
           disabled: true,
         },
@@ -84,8 +83,8 @@ class ProfilePage extends Block {
                     </div>
                   </div>
                   <div class="profile-image-container">
-                     <img class="profile-image" src="${_mock_users[0].avatar}" alt="avater" width="200" height="200"/>
-                     <p class="profile-image-card-text">${_mock_users[0].display_name}</p>
+                     <img class="profile-image" src="${usersMock[0].avatar}" alt="avater" width="200" height="200"/>
+                     <p class="profile-image-card-text">${usersMock[0].display_name}</p>
                   </div>
                     {{#each inputs}}
                        {{{ ProfileInputField type=this.type name=this.name placeholder='' value=this.value field_name=this.field_name  disabled=this.disabled }}}

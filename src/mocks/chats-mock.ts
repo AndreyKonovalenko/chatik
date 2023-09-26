@@ -1,5 +1,4 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-underscore-dangle */
+import { TChat } from "../pages/chat/chat";
 
 const text1 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,';
 const text2 = 'sed do eiusmod tempor';
@@ -8,7 +7,7 @@ const text4 = 'eiusmod tempor incididunt ut labore Lorem ipsum dolor sit amet, c
 const text5 = 'adipiscing elit, sed do eiusmod tempor incididunt ut labore';
 const text = text1 + text2 + text3 + text4 + text5;
 
-const _mock_chats = [
+export const chatsMock: Array<TChat>= [
   {
     id: 1,
     title: 'Technology',
@@ -16,6 +15,7 @@ const _mock_chats = [
     unread_count: 23,
     last_message: {
       user: {
+        id: '1',
         first_name: 'Andrey',
         second_name: 'Konovalenko',
         avatar: 'assets/avatars/avatar.png',
@@ -32,6 +32,7 @@ const _mock_chats = [
     unread_count: 15,
     last_message: {
       user: {
+        id: '1',
         first_name: 'Andrey',
         second_name: 'Konovalenko',
         avatar: 'assets/avatars/avatar.png',
@@ -48,6 +49,7 @@ const _mock_chats = [
     unread_count: 15,
     last_message: {
       user: {
+        id: '1',
         first_name: 'Andrey',
         second_name: 'Konovalenko',
         avatar: 'assets/avatars/avatar.png',
@@ -64,6 +66,7 @@ const _mock_chats = [
     unread_count: 15,
     last_message: {
       user: {
+        id: '1',
         first_name: 'Andrey',
         second_name: 'Konovalenko',
         avatar: 'assets/avatars/avatar.png',
@@ -74,5 +77,3 @@ const _mock_chats = [
     },
   },
 ];
-
-export default _mock_chats;

@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .error-card {
   padding: #{$baseline * 4}px;
   width: 360px;
@@ -20,10 +21,14 @@
 }
 
 .error-card-header {
+  
   @include large-text-on-primary;
+  
   font-size: 50px;
 }
+
 .error-card-text {
+  
   @include large-text-on-primary;
 }
 

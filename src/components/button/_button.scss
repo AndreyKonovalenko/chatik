@@ -4,8 +4,10 @@
   background-color: inherit;
   border: none;
   border-radius: $radius;
-  @include medium-text-on-primary;
   font-family: $font-stack;
+  
+  @include medium-text-on-primary;
+  
   &:hover {
     opacity: 0.9;
     transform: scale(0.97);

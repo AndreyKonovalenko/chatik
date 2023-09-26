@@ -1,7 +1,20 @@
 import uiConstants from './ui-constants';
 const { errors } = uiConstants;
 
-export const validate = {
+type TValidator = (value: string) => string
+
+export type TValidate  =  {
+  login: TValidator;
+  password: TValidator;
+  email: TValidator;
+  phone: TValidator;
+  first_name: TValidator;
+  second_name: TValidator;
+  search: TValidator;
+  message: TValidator
+}
+
+export const validate: TValidate = {
   login: (value: string) => {
     const regExp = /^[a-z]([a-z0-9_-]){3,20}$/gi;
     return value.match(regExp) === null ? errors.LOGIN_VALIDATION_FAILED : '';

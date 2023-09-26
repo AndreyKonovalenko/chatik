@@ -3,10 +3,8 @@ import uiConstants from '../../../utils/ui-constants.ts';
 const { palette } = uiConstants;
 
 export class ChatMessageSection extends Block {
-  constructor(props: any) {
-    super({
-      ...props,
-    });
+  constructor() {
+    super();
   }
 
   protected render(): string {

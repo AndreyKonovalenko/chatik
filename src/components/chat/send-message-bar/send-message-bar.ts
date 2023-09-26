@@ -1,9 +1,13 @@
 import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants';
 import { validate } from '../../../utils/validate';
+import { TProps } from '../../../core/Block';
+import { TValidate } from '../../../utils/validate';
+
 const { palette, placeholders } = uiConstants;
 
-type TSendMessageBar = {
+type TSendMessageBar = TProps & {
+  validate: TValidate;
   onSend: () => void;
   onAttach: () => void;
 };

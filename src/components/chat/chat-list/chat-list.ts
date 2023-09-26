@@ -2,9 +2,15 @@ import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { headers, palette } = uiConstants;
 import { chatsMock } from '../../../mocks/chats-mock.ts';
+import { TProps } from '../../../core/Block';
+import { TChat } from '../../../pages/chat/chat.ts';
+
+type TChatList = TProps & {
+  chats: Array<TChat>
+}
 
 export class ChatList extends Block {
-  constructor(props: any) {
+  constructor(props: TChatList) {
     super({
       ...props,
       chats: chatsMock

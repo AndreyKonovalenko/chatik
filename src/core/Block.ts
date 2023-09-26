@@ -2,7 +2,7 @@ import EventBus from './EventBus';
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 
-type TProps = Record<string, any>;
+export type TProps = Record<string, any>;
 
 // Нельзя создавать экземпляр данного класса
 export default class Block {

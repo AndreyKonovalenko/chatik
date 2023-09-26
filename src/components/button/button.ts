@@ -1,12 +1,8 @@
 import Block from '../../core/Block';
 
-type BProps = {
-  onClick: () => void;
-};
-
 export class Button extends Block {
-  constructor(props: BProps) {
-    super(props);
+  constructor() {
+    super();
     this.props.events = {
       click:
         this.props.onClick ||

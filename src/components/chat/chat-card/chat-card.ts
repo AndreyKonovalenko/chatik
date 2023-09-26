@@ -3,13 +3,10 @@ import uiConstants from '../../../utils/ui-constants';
 import { dateFormatter } from '../../../utils/date-formater';
 const { palette } = uiConstants;
 
-type BProps = {
-  onClick: () => void;
-};
 
 export class ChatCard extends Block {
-  constructor(props: BProps) {
-    super(props);
+  constructor() {
+    super();
     this.props.events = {
       click: () => {
         this.props.onChatSelect(this.props.id);

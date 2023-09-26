@@ -8,7 +8,7 @@ type TSendMessageBar = {
   onAttach: () => void;
 };
 
-export class SendMessageBar extends Block<TSendMessageBar | any> {
+export class SendMessageBar extends Block {
   constructor(props: TSendMessageBar) {
     super({
       ...props,

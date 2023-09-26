@@ -6,7 +6,7 @@ import { TUser } from '../../../pages/chat/chat.ts';
 // @ts-ignore
 import _mock_users from '../../../__mocks__/_mock_users';
 
-export class Message extends Block<TMessage | any> {
+export class Message extends Block {
   constructor(props: TMessage) {
     super({
       ...props,

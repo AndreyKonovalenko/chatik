@@ -12,13 +12,13 @@ const _mock_chats = [
   {
     id: 1,
     title: 'Technology',
-    avatar: '../../__mocks__/technology.png',
+    avatar: 'assets/icons/technology.png',
     unread_count: 23,
     last_message: {
       user: {
         first_name: 'Andrey',
         second_name: 'Konovalenko',
-        avatar: '../../__mocks__/avatar.png',
+        avatar: 'assets/avatars/avatar.png',
         login: 'konovalenko.a',
       },
       time: '2023-01-02T14:22:22.000Z',
@@ -28,13 +28,13 @@ const _mock_chats = [
   {
     id: 2,
     title: 'Time and space',
-    avatar: '../../__mocks__/time.png',
+    avatar: 'assets/icons/time.png',
     unread_count: 15,
     last_message: {
       user: {
         first_name: 'Andrey',
         second_name: 'Konovalenko',
-        avatar: '../../__mocks__/avatar.png',
+        avatar: 'assets/avatars/avatar.png',
         login: 'konovalenko.a',
       },
       time: '2023-01-02T14:17:22.000Z',
@@ -44,13 +44,13 @@ const _mock_chats = [
   {
     id: 3,
     title: 'Time and space',
-    avatar: '../../__mocks__/time.png',
+    avatar: 'assets/icons/time.png',
     unread_count: 15,
     last_message: {
       user: {
         first_name: 'Andrey',
         second_name: 'Konovalenko',
-        avatar: '../../__mocks__/avatar.png',
+        avatar: 'assets/avatars/avatar.png',
         login: 'konovalenko.a',
       },
       time: '2023-09-21T05:17:22.000Z',
@@ -60,13 +60,13 @@ const _mock_chats = [
   {
     id: 4,
     title: 'Time and space',
-    avatar: '../../__mocks__/time.png',
+    avatar: 'assets/icons/time.png',
     unread_count: 15,
     last_message: {
       user: {
         first_name: 'Andrey',
         second_name: 'Konovalenko',
-        avatar: '../../__mocks__/avatar.png',
+        avatar: 'assets/avatars/avatar.png',
         login: 'konovalenko.a',
       },
       time: '2023-09-20T18:10:22.000Z',

@@ -6,7 +6,7 @@ type TInputFied = {
   isValidValue: () => void;
 };
 
-export class InputField extends Block<TInputFied | any> {
+export class InputField extends Block {
   constructor(props: TInputFied & TInput) {
     super({
       ...props,

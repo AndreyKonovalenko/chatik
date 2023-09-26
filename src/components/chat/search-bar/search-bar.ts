@@ -7,7 +7,7 @@ type TSearchBar = {
   onBlur: () => void;
 };
 
-export class SearchBar extends Block<TSearchBar | any> {
+export class SearchBar extends Block {
   constructor(props: TSearchBar) {
     super({
       ...props,

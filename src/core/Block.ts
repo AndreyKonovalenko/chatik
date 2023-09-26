@@ -2,8 +2,10 @@ import EventBus from './EventBus';
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 
+type TProps = Record<string, any>;
+
 // Нельзя создавать экземпляр данного класса
-export default class Block<P extends Record<string, unknown> = any> {
+export default class Block {
   isValidValue() {
     throw new Error('Method not implemented.');
   }
@@ -15,12 +17,12 @@ export default class Block<P extends Record<string, unknown> = any> {
   };
 
   public id = nanoid(6);
-  protected props: any;
-  protected refs: Record<string, Block<P>> = {};
-  public children: Record<string, Block<P> | Array<Block<P>>>;
+  protected props: TProps;
+  protected refs: Record<string, Block> = {};
+  public children: Record<string, Block | Array<Block>>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
-  private _meta: { props: any };
+  //private _meta: { props: TProps} | null = null;
 
   /** JSDoc
    * @param {string} tagName
@@ -34,9 +36,9 @@ export default class Block<P extends Record<string, unknown> = any> {
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
-    this._meta = {
-      props,
-    };
+    // this._meta = {
+    //   props
+    // };
 
     this.children = children;
     this.props = this._makePropsProxy(props);
@@ -97,7 +99,7 @@ export default class Block<P extends Record<string, unknown> = any> {
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-    Object.values(this.children).forEach((child) =>
+    Object.values(this.children).forEach((child: any) =>
       child.dispatchComponentDidMount()
     );
   }
@@ -108,8 +110,12 @@ export default class Block<P extends Record<string, unknown> = any> {
     }
   }
 
-  protected componentDidUpdate(oldProps: any, newProps: any) {
-    return true;
+  protected componentDidUpdate(oldProps: TProps, newProps: TProps) {
+    // need add depp props compearing
+    if(newProps !== oldProps) {
+      return true;
+    }
+    return false;
   }
 
   setProps = (nextProps: any) => {

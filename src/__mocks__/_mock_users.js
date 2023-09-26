@@ -9,7 +9,7 @@ const _mock_users = [
     login: 'konovalenko.a',
     email: 'konovalenko.a@test.ru',
     phone: '+7 926 111 00 00',
-    avatar: '../../__mocks__/avatar.png',
+    avatar: 'assets/avatars/avatar.png',
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const _mock_users = [
     login: '@lizunia',
     email: 'konovalenko.a@test.ru',
     phone: '+7 926 111 00 00',
-    avatar: '../../__mocks__/avatar1.png',
+    avatar: 'assets/avatars/avatar1.png',
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const _mock_users = [
     login: '@kitty93',
     email: 'konovalenko.a@test.ru',
     phone: '+7 926 111 00 00',
-    avatar: '../../__mocks__/avatar2.png',
+    avatar: 'assets/avatars/avatar2.png',
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ const _mock_users = [
     login: 'white_wolf',
     email: 'konovalenko.a@test.ru',
     phone: '+7 926 111 00 00',
-    avatar: '../../__mocks__/avatar3.png',
+    avatar: 'assets/avatars/avatar3.png',
   },
 ];
 export default _mock_users;

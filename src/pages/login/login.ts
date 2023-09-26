@@ -8,7 +8,7 @@ type TLoginPage = {
   onCreateAccount: () => void;
 };
 
-class LoginPage extends Block<TLoginPage | any> {
+class LoginPage extends Block {
   constructor(props: TLoginPage) {
     super({
       ...props,

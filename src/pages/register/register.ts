@@ -8,7 +8,7 @@ type TRegisterPage = {
   onHaveAccount: () => void;
 };
 
-class RegisterPage extends Block<TRegisterPage | any> {
+class RegisterPage extends Block {
   constructor(props: TRegisterPage) {
     super({
       ...props,

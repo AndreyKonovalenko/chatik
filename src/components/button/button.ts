@@ -5,14 +5,12 @@ type TButton = TProps;
 
 export class Button extends Block {
   constructor(props: TButton) {
-    super(props);
-    this.props.events = {
-      click:
-        this.props.onClick ||
-        (() => {
-          console.log('hello');
-        }),
-    };
+    super({
+      ...props,
+      events: {
+        click: props.onClick || (() => {})
+      }
+    });
   }
 
   protected render(): string {

@@ -1,4 +1,8 @@
-const getDate = (date: Date) => {
+
+export type TdateFormatter = (date: string) => string;
+
+
+const parseDate = (date: Date) => {
   const newDate = new Date(date);
   const day = new Intl.DateTimeFormat("en-US", { day: "numeric" }).format(
     newDate
@@ -43,9 +47,9 @@ const isToDay = (date: Date) => {
   return result;
 };
 
-export  const  dateFormatter = (date: Date) => {
+export  const  dateFormatter : TdateFormatter = (date)  => {
   const last_message_date = new Date(date);
-  const result = getDate(last_message_date);
+  const result = parseDate(last_message_date);
   if (isToDay(last_message_date)) {
     return result.time;
   }

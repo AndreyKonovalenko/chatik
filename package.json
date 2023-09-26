@@ -19,7 +19,6 @@
     "eslint": "^8.48.0",
     "eslint-config-airbnb": "^19.0.4",
     "node": "^20.5.0",
-    "path": "^0.12.7",
     "sass": "^1.65.1",
     "stylelint": "^15.10.3",
     "stylelint-config-standard": "^34.0.0",

@@ -1,10 +1,11 @@
 import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { palette } = uiConstants;
+import { TProps } from '../../../core/Block';
 
 export class ChatMessageSection extends Block {
-  constructor() {
-    super();
+  constructor(props:TProps) {
+    super(props);
   }
 
   protected render(): string {

@@ -10,12 +10,14 @@
   font-family: $font-stack;
   gap: #{$baseline * 4}px;
 }
+
 .chat-modal-card-header {
   @include large-text-on-primary;
 }
 
 .chat-modal-card-warning {
   @include medium-text-on-primary;
+
   text-align: center;
   line-height: 1.5;
 }

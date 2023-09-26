@@ -9,7 +9,8 @@
     "build": "eslint . && tsc && vite build",
     "preview": "vite preview",
     "eslint": "eslint . ",
-    "stylelint": "stylelint src/**/*.scss"
+    "stylelint": "stylelint **/*.scss",
+    "stylelint-fix": "stylelint **/*.scss --fix"
   },
   "devDependencies": {
     "@types/node": "^20.5.9",

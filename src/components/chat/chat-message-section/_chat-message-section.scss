@@ -23,14 +23,15 @@
 .chat-message-section-bage-container {
   height: 100%;
   display: flex;
-  display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   gap: #{$baseline * 4}px;
+
   p {
     @include medium-text-on-primary;
   }
+
   img {
     width: 60px;
     height: 60px;
@@ -38,9 +39,9 @@
     object-fit: cover;
   }
 }
+
 .chat-message-section-controls {
   height: 100%;
-  display: flex;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

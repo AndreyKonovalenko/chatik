@@ -5,6 +5,7 @@
   justify-content: center;
   align-self: center;
   font-family: $font-stack;
+
   .chat-modal-card-header {
     @include large-text-on-primary;
   }

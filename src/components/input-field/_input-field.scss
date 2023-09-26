@@ -8,7 +8,7 @@
   background-color: $on-primary;
   border-radius: $radius;
   position: relative;
-  padding: 0px #{$baseline * 4}px;
+  padding: 0 #{$baseline * 4}px;
 }
 
 .input {
@@ -17,13 +17,18 @@
   border: none;
   outline: none;
   border-radius: $radius;
+
   &::placeholder {
     @include medium-text-light;
+
     font-family: $font-stack;
   }
+
   &:hover {
     transform: scale(0.99);
   }
+
   @include medium-text-light;
+
   font-family: $font-stack;
 }

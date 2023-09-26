@@ -5,9 +5,10 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0px #{$baseline * 2}px;
+  padding: 0 #{$baseline * 2}px;
   background-color: $on-primary;
   border-top: 3px solid $dark;
+
   @include small-text;
 }
 
@@ -38,7 +39,7 @@
 
 .user-card-login-text {
   font-weight: 400;
-  opacity: 60%;
+  opacity: 0.6;
   max-width: 150px;
 }
 

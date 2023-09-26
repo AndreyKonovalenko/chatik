@@ -17,13 +17,18 @@
   border: none;
   outline: none;
   border-radius: $radius;
+
   &::placeholder {
     @include medium-text-light;
+
     font-family: $font-stack;
   }
+
   &:hover {
     transform: scale(0.99);
   }
+
   @include medium-text-light;
+
   font-family: $font-stack;
 }

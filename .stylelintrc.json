@@ -6,7 +6,6 @@
     "rules": {
       "selector-class-pattern": "[a-z-_]+"
     },
-    "ignoreFiles": [
-      "build/*"
-    ]
+    "ignoreFiles": ["build/*", "node_modules/*"]
+    
   }

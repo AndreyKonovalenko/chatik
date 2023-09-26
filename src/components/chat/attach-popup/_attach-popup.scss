@@ -10,5 +10,5 @@
   position: absolute;
   left: #{$baseline * 4}px;
   bottom: #{$baseline * 4}px;
-  filter: drop-shadow(3px 4px 6px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(3px 4px 6px rgb(0 0 0 / 25%));
 }

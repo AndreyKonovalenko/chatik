@@ -25,18 +25,20 @@
 
 .chat-edit-section-edit-img {
   position: relative;
+
   img {
     width: 115px;
     height: 115px;
     border-radius: $radius;
     object-fit: cover;
   }
+
   .button {
     width: 115px;
     height: 115px;
     border-radius: $radius;
     background-color: $black;
-    opacity: 60%;
+    opacity: 0.6;
     position: absolute;
     top: 0;
     right: 0;
@@ -56,13 +58,18 @@
   border: none;
   outline: none;
   border-bottom: solid $light;
+
   &::placeholder {
     @include medium-text-light;
+
     font-family: $font-stack;
   }
+
   &:hover {
     transform: scale(0.99);
   }
+
   @include medium-text-light;
+
   font-family: $font-stack;
 }

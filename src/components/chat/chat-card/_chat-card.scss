@@ -5,10 +5,12 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0px #{$baseline * 2}px;
+  padding: 0 #{$baseline * 2}px;
   background-color: $on-primary;
   border-top: 3px solid $dark;
+
   @include small-text;
+
   &:hover {
     background-color: $primary;
     transition: 0.5s;
@@ -44,12 +46,11 @@
 
 .chat-card-styled-text {
   font-weight: 400;
-  opacity: 60%;
+  opacity: 0.6;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  line-clamp: 2;
   -webkit-box-orient: vertical;
   max-width: 150px;
 }

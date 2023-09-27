@@ -59,8 +59,6 @@ registerComponent('Message', Message);
 function navigate(page: string) {
   const app = document.getElementById('app');
   const element = document.getElementsByClassName('layout')[0];
-
-  //@ts-ignore
   const Component = pages[page];
   const component = new Component();
   if (element) {
@@ -70,10 +68,10 @@ function navigate(page: string) {
 }
 
 document.addEventListener('DOMContentLoaded', () => navigate('login'));
+document.addEventListener('click', (e: Event) => {
 
-document.addEventListener('click', (e) => {
-  //@ts-ignore
-  const page = e.target.getAttribute('page');
+  
+  const page = (<HTMLDivElement> e.target).getAttribute('page');
   if (page) {
     navigate(page);
     e.preventDefault();

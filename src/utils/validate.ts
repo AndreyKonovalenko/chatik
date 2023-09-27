@@ -30,7 +30,7 @@ export const validate: TValidate = {
     return value.match(regExp) === null ? errors.MAIL_VALIDATION_FAILED : '';
   },
   phone: (value: string) => {
-    const regExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{10,15}$/gi;
+    const regExp = /^((8|\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{10,15}$/gi;
     return value.match(regExp) === null ? errors.PHONE_VALIDATION_FAILED : '';
   },
   first_name: (value: string) => {

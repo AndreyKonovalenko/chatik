@@ -1,28 +1,31 @@
-import EventBus from './EventBus';
-import { nanoid } from 'nanoid';
-import Handlebars from 'handlebars';
+import EventBus from "./EventBus";
+import {nanoid} from 'nanoid';
+import Handlebars from "handlebars";
 
-export type TProps = Record<string, any>;
+type RefType = {
+  [key: string]: Element | Block<object>;
+}
+
+type EventListType = {[key: string]: ((e: Event) => void) | undefined}; 
+
+type EventsType<Refs> = {[key in keyof Refs]?: EventListType} | EventListType;
 
 // Нельзя создавать экземпляр данного класса
-export default class Block {
-  isValidValue() {
-    throw new Error('Method not implemented.');
-  }
+abstract class Block< Props extends object, Refs extends RefType = RefType> {
   static EVENTS = {
-    INIT: 'init',
-    FLOW_CDM: 'flow:component-did-mount',
-    FLOW_CDU: 'flow:component-did-update',
-    FLOW_RENDER: 'flow:render',
+    INIT: "init",
+    FLOW_CDM: "flow:component-did-mount",
+    FLOW_CDU: "flow:component-did-update",
+    FLOW_RENDER: "flow:render"
   };
 
-  public id = nanoid(6);
-  protected props: TProps;
-  protected refs: Record<string, Block> = {};
-  public children: Record<string, Block | Array<Block>>;
+  public id: string = nanoid(6);
+  protected props = {} as Props;
+  protected refs =  {} as Refs;
+  public children: Block<object>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
-  //private _meta: { props: TProps} | null = null;
+  private _meta: { props: Props; };
 
   /** JSDoc
    * @param {string} tagName
@@ -30,15 +33,14 @@ export default class Block {
    *
    * @returns {void}
    */
-
   constructor(propsWithChildren: any = {}) {
     const eventBus = new EventBus();
 
-    const { props, children } = this._getChildrenAndProps(propsWithChildren);
+    const {props, children} = this._getChildrenAndProps(propsWithChildren);
 
-    // this._meta = {
-    //   props
-    // };
+    this._meta = {
+      props
+    };
 
     this.children = children;
     this.props = this._makePropsProxy(props);
@@ -62,15 +64,13 @@ export default class Block {
       }
     });
 
-    return { props, children };
+    return {props, children};
   }
 
   _addEvents() {
-    const { events = {} } = this.props as {
-      events: Record<string, () => void>;
-    };
+    const {events = {}} = this.props as { events: Record<string, () => void> };
 
-    Object.keys(events).forEach((eventName) => {
+    Object.keys(events).forEach(eventName => {
       this._element?.addEventListener(eventName, events[eventName]);
     });
   }
@@ -88,20 +88,20 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  protected init() {}
+  protected init() {
+  }
 
   _componentDidMount() {
     this.componentDidMount();
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+  }
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-    Object.values(this.children).forEach((child: any) =>
-      child.dispatchComponentDidMount()
-    );
+    Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
   }
 
   private _componentDidUpdate(oldProps: any, newProps: any) {
@@ -110,12 +110,8 @@ export default class Block {
     }
   }
 
-  protected componentDidUpdate(oldProps: TProps, newProps: TProps) {
-    // need add depp props compearing
-    if(newProps !== oldProps) {
-      return true;
-    }
-    return false;
+  protected componentDidUpdate(oldProps: any, newProps: any) {
+    return true;
   }
 
   setProps = (nextProps: any) => {
@@ -136,6 +132,7 @@ export default class Block {
       : '';
   }
 
+
   private _render() {
     const fragment = this.compile(this.render(), this.props);
 
@@ -151,7 +148,7 @@ export default class Block {
   }
 
   private compile(template: string, context: any) {
-    const contextAndStubs = { ...context, __refs: this.refs };
+    const contextAndStubs = {...context, __refs: this.refs};
 
     const html = Handlebars.compile(template)(contextAndStubs);
 
@@ -159,7 +156,7 @@ export default class Block {
 
     temp.innerHTML = html;
 
-    contextAndStubs.__children?.forEach(({ embed }: any) => {
+    contextAndStubs.__children?.forEach(({embed}: any) => {
       embed(temp.content);
     });
 
@@ -181,10 +178,10 @@ export default class Block {
     return new Proxy(props, {
       get(target, prop) {
         const value = target[prop];
-        return typeof value === 'function' ? value.bind(target) : value;
+        return typeof value === "function" ? value.bind(target) : value;
       },
       set(target, prop, value) {
-        const oldTarget = { ...target };
+        const oldTarget = {...target}
 
         target[prop] = value;
 
@@ -194,8 +191,8 @@ export default class Block {
         return true;
       },
       deleteProperty() {
-        throw new Error('Нет доступа');
-      },
+        throw new Error("Нет доступа");
+      }
     });
   }
 
@@ -205,10 +202,16 @@ export default class Block {
   }
 
   show() {
-    this.getContent()!.style.display = 'block';
+    this.getContent()!.style.display = "block";
   }
 
   hide() {
-    this.getContent()!.style.display = 'none';
+    this.getContent()!.style.display = "none";
   }
 }
+
+export default Block;
+
+
+
+

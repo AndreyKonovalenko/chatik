@@ -1,78 +1,46 @@
-import EventBus from "./EventBus";
-import {nanoid} from 'nanoid';
-import Handlebars from "handlebars";
+import { EventBus } from './EventBus';
+import { nanoid } from 'nanoid';
+import Handlebars from 'handlebars';
 
-type RefType = {
-  [key: string]: Element | Block<object>;
-}
-
-//type EventListType = {[key in symbol | string]: ((e: Event) => void) | undefined}; 
-
-//type EventsType<Refs> = {[key in keyof Refs]?: EventListType} | EventListType;
-
-// Нельзя создавать экземпляр данного класса
-abstract class Block< Props extends object , Refs extends RefType = RefType> {
+class Block<Props extends Record<string, unknown>> {
   static EVENTS = {
-    INIT: "init",
-    FLOW_CDM: "flow:component-did-mount",
-    FLOW_CDU: "flow:component-did-update",
-    FLOW_RENDER: "flow:render"
+    INIT: 'init',
+    FLOW_CDM: 'flow:component-did-mount',
+    FLOW_CDU: 'flow:component-did-update',
+    FLOW_RENDER: 'flow:render',
   };
 
   public id: string = nanoid(6);
-  protected props = {} as  Props;
-  protected refs = {} as Refs;
-  // public children: Block<object>;
+  protected props = {} as Props;
+  protected refs: Record<string, Block<Props> | Block<Props>[]> = {};
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
-  private _meta: { props:  Props} | null = null;
-
-
-  /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
-   * @returns {void}
-   */
 
   constructor(props: Props) {
     const eventBus = new EventBus();
-
-    // const {props, children} = this._getChildrenAndProps(propsWithChildren);
-
-    this._meta = {
-      props
-    };
-
- //  this.children = children;
-    this.props = this._makePropsProxy(props, this);
-
+    this.props = this._makePropsProxy(props);
     this.eventBus = () => eventBus;
-
     this._registerEvents(eventBus);
-
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  // _getChildrenAndProps(childrenAndProps: any) {
-  //   const props: Record<string, any> = {};
-  //   const children: Record<string, Block> = {};
+  private _addEvents(): void {
+    const { events = {} } = this.props as Props & {
+      events: Record<string, () => void>;
+    };
 
-  //   Object.entries(childrenAndProps).forEach(([key, value]) => {
-  //     if (value instanceof Block) {
-  //       children[key] = value;
-  //     } else {
-  //       props[key] = value;
-  //     }
-  //   });
-
-  //   return {props, children};
-  // }
-
-  _addEvents() {
-    const {events = {}} = this.props as { events: Record<string, () => void> };
-
-    Object.keys(events).forEach(eventName => {
+    Object.keys(events).forEach((eventName) => {
       this._element?.addEventListener(eventName, events[eventName]);
+    });
+  }
+
+  private _removeEvents() {
+    const { events = {} } = this.props as Props & {
+      events: Record<string, () => void>;
+    };
+
+    Object.keys(events).forEach((eventName) => {
+      this._element?.removeEventListener(eventName, events[eventName]);
     });
   }
 
@@ -83,45 +51,39 @@ abstract class Block< Props extends object , Refs extends RefType = RefType> {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  private _init() {
+  private _init(): void {
     this.init();
 
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  protected init() {
-  }
+  protected init(): void {}
 
-  _componentDidMount() {
+  _componentDidMount(): void {
     this.componentDidMount();
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
-
-   // Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
   }
 
-  private _componentDidUpdate(oldProps: Props, newProps: Props) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
+  private _componentDidUpdate(oldProps: Props, newProps: Props): void {
+    const response = this.componentDidUpdate(oldProps, newProps);
+    if (response) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProps: Props, newProps: Props) {
-    if (newProps !== oldProps){
+  protected componentDidUpdate(oldProps?: Props, newProps?: Props): boolean {
+    if (oldProps && newProps) {
       return true;
     }
-    if (newProps === oldProps){
-      return false;
-    }
-    
+    return false;
   }
 
-  setProps = (nextProps: Props) => {
+  public setProps = (nextProps: Props): void => {
     if (!nextProps) {
       return;
     }
@@ -139,13 +101,12 @@ abstract class Block< Props extends object , Refs extends RefType = RefType> {
       : '';
   }
 
-
-  private _render() {
+  private _render(): void {
     const fragment = this.compile(this.render(), this.props);
-
+    this._removeEvents();
     const newElement = fragment.firstElementChild as HTMLElement;
 
-    if (this._element) {
+    if (newElement && this._element) {
       this._element.replaceWith(newElement);
     }
 
@@ -154,8 +115,12 @@ abstract class Block< Props extends object , Refs extends RefType = RefType> {
     this._addEvents();
   }
 
-  private compile(template: string, context: object ) {
-    const contextAndStubs = {...context, __refs: this.refs, __children:[] as Array<{component: unknown,embed(node: DocumentFragment):void}>};
+  private compile(template: string, context: object) {
+    const contextAndStubs = {
+      ...context,
+      __refs: this.refs,
+      __children: [],
+    };
 
     const html = Handlebars.compile(template)(contextAndStubs);
 
@@ -163,7 +128,7 @@ abstract class Block< Props extends object , Refs extends RefType = RefType> {
 
     temp.innerHTML = html;
 
-    contextAndStubs.__children?.forEach(({embed}) => {
+    contextAndStubs.__children?.forEach(({ embed }: any) => {
       embed(temp.content);
     });
 
@@ -174,24 +139,18 @@ abstract class Block< Props extends object , Refs extends RefType = RefType> {
     return '';
   }
 
-  getContent() {
+  public getContent() {
     return this.element;
   }
 
-  
-  _makePropsProxy(props: Props, self: Block<Props, Refs>) {
+  private _makePropsProxy(props: Props) {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
+    const self = this;
 
-   return new Proxy(props, {
-      
-      get(target, prop) {
-        const value = target[prop];
-        return typeof value === "function" ? value.bind(target) : value;
-      },
-      
+    return new Proxy(props, {
       set(target, prop, value) {
-        const oldTarget = {...target}
-        target[prop] = value;
+        const oldTarget = { ...target };
+        target[prop as keyof Props] = value;
 
         // Запускаем обновление компоненты
         // Плохой cloneDeep, в следующей итерации нужно заставлять добавлять cloneDeep им самим
@@ -199,13 +158,16 @@ abstract class Block< Props extends object , Refs extends RefType = RefType> {
         return true;
       },
 
+      get(target, prop: string) {
+        const value = target[prop];
+        return typeof value === 'function' ? value.bind(target) : value;
+      },
 
       deleteProperty() {
-        throw new Error("Нет доступа");
-      }
+        throw new Error('Нет доступа');
+      },
     });
   }
-
 
   _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
@@ -213,15 +175,12 @@ abstract class Block< Props extends object , Refs extends RefType = RefType> {
   }
 
   show() {
-    this.getContent()!.style.display = "block";
+    this.getContent()!.style.display = 'block';
   }
 
   hide() {
-    this.getContent()!.style.display = "none";
+    this.getContent()!.style.display = 'none';
   }
 }
 
 export default Block;
-
-
-

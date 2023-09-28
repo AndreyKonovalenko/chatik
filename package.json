@@ -6,8 +6,9 @@
   "scripts": {
     "start": "tsc && vite build && node ./server.js",
     "dev": "vite",
-    "build": "eslint . && tsc && vite build",
+    "build": "npm run prebuild && vite build",
     "preview": "vite preview",
+    "prebuild": "tsc -noEmit",
     "eslint": "eslint . ",
     "stylelint": "stylelint **/*.scss",
     "stylelint-fix": "stylelint **/*.scss --fix"

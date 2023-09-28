@@ -1,6 +1,7 @@
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants';
 import { TValidate } from '../../utils/validate';
+import { ErrorLine } from '../error-line/error-line';
 const { palette } = uiConstants;
 
 type TInputField = {
@@ -11,10 +12,9 @@ type TInputField = {
   name: string;
   placeholder: string;
   value: string;
-  ref: any;
 };
 
-export class InputField extends Block<TInputField> {
+export class InputField extends Block<TInputField | any> {
   constructor(props: TInputField) {
     super({
       ...props,
@@ -31,17 +31,17 @@ export class InputField extends Block<TInputField> {
   }
 
   public getValue(): string {
-    return this.refs?.[this.props.ref].value();
+    return (this.refs?.[this.props.ref] as InputField).value();
   }
 
   private validate() {
     const value = this.getValue();
     const error = this.props.validate(value);
     if (error) {
-      this.refs?.errorLine.setProps({ error });
+      (this.refs?.errorLine as ErrorLine).setProps({ error });
       return false;
     }
-    this.refs?.errorLine.setProps({ error: undefined });
+    (this.refs?.errorLine as ErrorLine).setProps({ error: undefined });
     return true;
   }
 

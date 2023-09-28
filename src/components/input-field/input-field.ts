@@ -1,13 +1,26 @@
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants';
-import { TInput } from '../input/input';
+import { TValidate } from '../../utils/validate';
 const { palette } = uiConstants;
-type TInputFied = {
+
+type TInputField = {
+  validate: (value: string) => TValidate
   isValidValue: () => void;
+  onBlur: () => void,
+  ref: Refs, 
+  type: string,
+  name: string,
+  placeholder: string,
+  value: string 
 };
 
-export class InputField extends Block {
-  constructor(props: TInputFied & TInput) {
+type Refs = {
+  [key in string]: Element | Block<object>
+}
+
+
+export class InputField extends Block<TInputField, Refs> {
+  constructor(props: TInputField) {
     super({
       ...props,
       onBlur: () => {
@@ -38,7 +51,7 @@ export class InputField extends Block {
   }
 
   protected render(): string {
-    const { ref, type, name, placeholder, value } = this.props as TInput;
+    const { ref, type, name, placeholder, value } = this.props;
     return `
         <div class='input-wrapper'>
           {{{

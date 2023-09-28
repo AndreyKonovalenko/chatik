@@ -5,13 +5,16 @@ import Handlebars from "handlebars";
 type RefType = {
   [key: string]: Element | Block<object>;
 }
+type TContext =  {
+  __children?: Array<{component : unknown, embed(node: DocumentFragment): void}>;
+}
 
-type EventListType = {[key: string]: ((e: Event) => void) | undefined}; 
+//type EventListType = {[key in symbol | string]: ((e: Event) => void) | undefined}; 
 
-type EventsType<Refs> = {[key in keyof Refs]?: EventListType} | EventListType;
+//type EventsType<Refs> = {[key in keyof Refs]?: EventListType} | EventListType;
 
 // Нельзя создавать экземпляр данного класса
-abstract class Block< Props extends object, Refs extends RefType = RefType> {
+abstract class Block< Props extends object , Refs extends RefType = RefType> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -20,30 +23,31 @@ abstract class Block< Props extends object, Refs extends RefType = RefType> {
   };
 
   public id: string = nanoid(6);
-  protected props = {} as Props;
-  protected refs =  {} as Refs;
-  public children: Block<object>;
+  protected props = {} as  Props;
+  protected refs = {} as Refs;
+  // public children: Block<object>;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
-  private _meta: { props: Props; };
+  private _meta: { props:  Props} | null = null;
+
 
   /** JSDoc
    * @param {string} tagName
    * @param {Object} props
-   *
    * @returns {void}
    */
-  constructor(propsWithChildren: any = {}) {
+
+  constructor(props: Props) {
     const eventBus = new EventBus();
 
-    const {props, children} = this._getChildrenAndProps(propsWithChildren);
+    // const {props, children} = this._getChildrenAndProps(propsWithChildren);
 
     this._meta = {
       props
     };
 
-    this.children = children;
-    this.props = this._makePropsProxy(props);
+ //  this.children = children;
+    this.props = this._makePropsProxy(props, this);
 
     this.eventBus = () => eventBus;
 
@@ -52,20 +56,20 @@ abstract class Block< Props extends object, Refs extends RefType = RefType> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(childrenAndProps: any) {
-    const props: Record<string, any> = {};
-    const children: Record<string, Block> = {};
+  // _getChildrenAndProps(childrenAndProps: any) {
+  //   const props: Record<string, any> = {};
+  //   const children: Record<string, Block> = {};
 
-    Object.entries(childrenAndProps).forEach(([key, value]) => {
-      if (value instanceof Block) {
-        children[key] = value;
-      } else {
-        props[key] = value;
-      }
-    });
+  //   Object.entries(childrenAndProps).forEach(([key, value]) => {
+  //     if (value instanceof Block) {
+  //       children[key] = value;
+  //     } else {
+  //       props[key] = value;
+  //     }
+  //   });
 
-    return {props, children};
-  }
+  //   return {props, children};
+  // }
 
   _addEvents() {
     const {events = {}} = this.props as { events: Record<string, () => void> };
@@ -101,20 +105,26 @@ abstract class Block< Props extends object, Refs extends RefType = RefType> {
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-    Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
+   // Object.values(this.children).forEach(child => child.dispatchComponentDidMount());
   }
 
-  private _componentDidUpdate(oldProps: any, newProps: any) {
+  private _componentDidUpdate(oldProps: Props, newProps: Props) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProps: any, newProps: any) {
-    return true;
+  protected componentDidUpdate(oldProps: Props, newProps: Props) {
+    if (newProps !== oldProps){
+      return true;
+    }
+    if (newProps === oldProps){
+      return false;
+    }
+    
   }
 
-  setProps = (nextProps: any) => {
+  setProps = (nextProps: Props) => {
     if (!nextProps) {
       return;
     }
@@ -147,7 +157,7 @@ abstract class Block< Props extends object, Refs extends RefType = RefType> {
     this._addEvents();
   }
 
-  private compile(template: string, context: any) {
+  private compile(template: string, context: TContext) {
     const contextAndStubs = {...context, __refs: this.refs};
 
     const html = Handlebars.compile(template)(contextAndStubs);
@@ -156,7 +166,7 @@ abstract class Block< Props extends object, Refs extends RefType = RefType> {
 
     temp.innerHTML = html;
 
-    contextAndStubs.__children?.forEach(({embed}: any) => {
+    contextAndStubs.__children?.forEach(({embed}) => {
       embed(temp.content);
     });
 
@@ -171,18 +181,19 @@ abstract class Block< Props extends object, Refs extends RefType = RefType> {
     return this.element;
   }
 
-  _makePropsProxy(props: any) {
+  
+  _makePropsProxy(props, self: Block<Props, Refs>) {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
-    const self = this;
 
-    return new Proxy(props, {
+   return new Proxy(props, {
+      
       get(target, prop) {
         const value = target[prop];
         return typeof value === "function" ? value.bind(target) : value;
       },
+      
       set(target, prop, value) {
         const oldTarget = {...target}
-
         target[prop] = value;
 
         // Запускаем обновление компоненты
@@ -190,11 +201,14 @@ abstract class Block< Props extends object, Refs extends RefType = RefType> {
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
+
+
       deleteProperty() {
         throw new Error("Нет доступа");
       }
     });
   }
+
 
   _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
@@ -211,7 +225,6 @@ abstract class Block< Props extends object, Refs extends RefType = RefType> {
 }
 
 export default Block;
-
 
 
 

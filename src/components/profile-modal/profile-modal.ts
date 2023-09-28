@@ -1,10 +1,24 @@
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants.ts';
-import { validate } from '../../utils/validate.ts';
+import { TValidate, validate } from '../../utils/validate.ts';
+import { InputField } from '../input-field/input-field.ts';
 const { headers, placeholders, buttons } = uiConstants;
 
-export class ProfileModal extends Block {
-  constructor(props: any) {
+
+type TProfileModal = { 
+  validate: TValidate
+  onSave: (e: Event)=> void;
+  onCreateAccount: (e: Event) => void
+}
+
+type Ref = {
+  oldPassword: InputField;
+  newPassword: InputField;
+  repeat_password: InputField
+}
+
+export class ProfileModal extends Block<TProfileModal, Ref> {
+  constructor(props: TProfileModal) {
     super({
       ...props,
       validate: validate,

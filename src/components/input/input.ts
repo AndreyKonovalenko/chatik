@@ -8,10 +8,11 @@ export type TInput = {
   ref: string;
   name: string;
   value: string;
+  events?: object;
   onBlur?: () => void;
 };
 
-export class Input extends Block {
+export class Input extends Block<TInput> {
   constructor(props: TInput) {
     super({
       ...props,
@@ -21,9 +22,9 @@ export class Input extends Block {
     });
   }
 
-  protected render(): string {
-    const { className, type, placeholder, ref, disabled, name, value } = this
-      .props as TInput;
+  protected render() {
+    const { className, type, placeholder, ref, disabled, name, value } =
+      this.props;
     return `
             <input
                 class="${className}"

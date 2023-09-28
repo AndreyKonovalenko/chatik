@@ -4,22 +4,17 @@ import { TValidate } from '../../utils/validate';
 const { palette } = uiConstants;
 
 type TInputField = {
-  validate: (value: string) => TValidate
+  validate: (value: string) => TValidate;
   isValidValue: () => void;
-  onBlur: () => void,
-  ref: Refs, 
-  type: string,
-  name: string,
-  placeholder: string,
-  value: string 
+  onBlur: () => void;
+  type: string;
+  name: string;
+  placeholder: string;
+  value: string;
+  ref: any;
 };
 
-type Refs = {
-  [key in string]: Element | Block<object>
-}
-
-
-export class InputField extends Block<TInputField, Refs> {
+export class InputField extends Block<TInputField> {
   constructor(props: TInputField) {
     super({
       ...props,

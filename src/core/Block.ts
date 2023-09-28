@@ -5,9 +5,6 @@ import Handlebars from "handlebars";
 type RefType = {
   [key: string]: Element | Block<object>;
 }
-type TContext =  {
-  __children?: Array<{component : unknown, embed(node: DocumentFragment): void}>;
-}
 
 //type EventListType = {[key in symbol | string]: ((e: Event) => void) | undefined}; 
 
@@ -157,8 +154,8 @@ abstract class Block< Props extends object , Refs extends RefType = RefType> {
     this._addEvents();
   }
 
-  private compile(template: string, context: TContext) {
-    const contextAndStubs = {...context, __refs: this.refs};
+  private compile(template: string, context: object ) {
+    const contextAndStubs = {...context, __refs: this.refs, __children:[] as Array<{component: unknown,embed(node: DocumentFragment):void}>};
 
     const html = Handlebars.compile(template)(contextAndStubs);
 
@@ -182,7 +179,7 @@ abstract class Block< Props extends object , Refs extends RefType = RefType> {
   }
 
   
-  _makePropsProxy(props, self: Block<Props, Refs>) {
+  _makePropsProxy(props: Props, self: Block<Props, Refs>) {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
 
    return new Proxy(props, {

@@ -4,14 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "tsc && vite build && node ./server.js",
     "dev": "vite",
-    "build": "npm run prebuild && vite build",
+    "build": "eslint . && tsc && vite build",
     "preview": "vite preview",
-    "prebuild": "tsc -noEmit",
-    "eslint": "eslint . ",
-    "stylelint": "stylelint **/*.scss",
-    "stylelint-fix": "stylelint **/*.scss --fix"
+    "start": "tsc && vite build &&  node ./server.js",
+    "stylelint": "stylelint src/**/*.pcss",
+    "eslint": "eslint . "
   },
   "devDependencies": {
     "@types/node": "^20.5.9",

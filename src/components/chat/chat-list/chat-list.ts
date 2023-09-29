@@ -4,17 +4,17 @@ const { headers, palette } = uiConstants;
 import { chatsMock } from '../../../mocks/chats-mock.ts';
 import { TChat } from '../../../pages/chat/chat.ts';
 
-type TChatList =  {
+type TChatList = {
   chats: Array<TChat>;
   controls: boolean;
-  edit: boolean
-}
+  edit: boolean;
+};
 
 export class ChatList extends Block<TChatList> {
   constructor(props: TChatList) {
     super({
       ...props,
-      chats: chatsMock
+      chats: chatsMock,
     });
   }
 
@@ -24,11 +24,15 @@ export class ChatList extends Block<TChatList> {
             <div class="chat-list-header">
                 <p>${headers.CHAT_LIST}</p>
                 <div class="chat-list-controls">
-                  {{#if ${ this.props.controls && 'controls'} }}
-                    {{{ Icon key="chat-list-settings-0" type="add_circle" size="36" color='${palette.LIGHT}' fill=0 }}}
+                  {{#if ${this.props.controls && 'controls'} }}
+                    {{{ Icon key="chat-list-settings-0" type="add_circle" size="36" color='${
+                      palette.LIGHT
+                    }' fill=0 }}}
                   {{/if}}
-                  {{#if ${ this.props.edit && 'edit'} }}
-                    {{{ Icon key="chat-list-settings-1" type="edit" size="36" color='${palette.LIGHT}' fill=0 }}}
+                  {{#if ${this.props.edit && 'edit'} }}
+                    {{{ Icon key="chat-list-settings-1" type="edit" size="36" color='${
+                      palette.LIGHT
+                    }' fill=0 }}}
                   {{/if}}
                 </div>
             </div>
@@ -54,4 +58,3 @@ export class ChatList extends Block<TChatList> {
         `;
   }
 }
-

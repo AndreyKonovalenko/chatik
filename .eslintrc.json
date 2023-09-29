@@ -3,25 +3,12 @@
     "browser": true,
     "es2021": true
   },
-  "extends": "airbnb",
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint"],
-  "rules": {
-    "max-len": [2, 180],
-    "no-console": ["error", { "allow": ["warn", "table", "error", "info"] }],
-    "func-names": "off",
-    "no-unused-vars": "off",
-    "no-use-before-define": "off"
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "paths": ["src"]
-      }
-    }
-  }
+  "rules": {}
 }

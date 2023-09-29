@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "eslint . && tsc && vite build",
+    "dev": "vite --port 3000",
+    "prebuild": "tsc --noEmit",
+    "build": "npm run prebuild && vite build",
     "preview": "vite preview",
-    "start": "tsc && vite build &&  node ./server.js",
-    "stylelint": "stylelint src/**/*.pcss",
-    "eslint": "eslint . "
+    "start": "npm run build && node server.ts",
+    "lint": "npx eslint '**/*.{js,ts}' --fix && npx stylelint '**/*.scss' && npx tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "^20.5.9",
@@ -23,7 +23,7 @@
     "stylelint-config-standard": "^34.0.0",
     "stylelint-config-standard-scss": "^11.0.0",
     "stylelint-selector-bem-pattern": "^3.0.1",
-    "typescript": "^5.2.2",
+    "typescript": "^5.1.3",
     "vite": "^4.4.5",
     "vite-plugin-handlebars": "^1.6.0"
   },

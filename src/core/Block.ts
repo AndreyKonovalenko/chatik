@@ -11,17 +11,22 @@ class Block<Props extends Record<string, unknown>> {
   };
 
   public id: string = nanoid(6);
-  protected props = {} as Props;
+  protected props: Props;
   protected refs: Record<string, Block<Props> | Block<Props>[]> = {};
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
   public children: Record<string, Block<Props> | Block<Props>[]> = {};
+  protected _meta: { props: Props } | null = null;
 
   constructor(propsWithChildren = {}) {
     const eventBus = new EventBus();
     const { props, children } = this._getChildrenAndProps(
       propsWithChildren as Props
     );
+    this._meta = {
+      props,
+    };
+
     this.props = this._makePropsProxy(props, this);
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);

@@ -2,7 +2,7 @@
 
 Chatik is web chat application similar to WhatsApp web version.
 
-[View Live](https://64e9eddf04ddee2d24bdcf27--clinquant-souffle-ad0372.netlify.app/)
+[View Live](https://clinquant-souffle-ad0372.netlify.app/)
 
 ## stack
 

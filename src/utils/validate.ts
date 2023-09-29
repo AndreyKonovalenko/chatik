@@ -1,7 +1,7 @@
 import uiConstants from './ui-constants';
 const { errors } = uiConstants;
 
-type TValidator = (value: string) => string
+type TValidator = (value: string) => string | null
 
 export type TValidate  =  {
   login: TValidator;

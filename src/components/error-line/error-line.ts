@@ -1,6 +1,10 @@
 import Block from '../../core/Block';
 
-export class ErrorLine extends Block<any> {
+type TErrorLine ={
+  error: string | undefined;
+}
+
+export class ErrorLine extends Block<TErrorLine> {
   protected render(): string {
     return `
       <span class="error-text">{{error}}</span>

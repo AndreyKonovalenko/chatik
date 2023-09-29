@@ -1,3 +1,4 @@
+import { InputField } from '../../components/input-field/input-field.ts';
 import Block from '../../core/Block.ts';
 import uiConstants from '../../utils/ui-constants.ts';
 import { validate } from '../../utils/validate.ts';
@@ -8,7 +9,7 @@ type TRegisterPage = {
   onHaveAccount: () => void;
 };
 
-class RegisterPage extends Block {
+class RegisterPage extends Block<TRegisterPage> {
   constructor(props: TRegisterPage) {
     super({
       ...props,
@@ -23,13 +24,13 @@ class RegisterPage extends Block {
     });
   }
   public sendForm() {
-    const email = this.refs.email.isValidValue();
-    const login = this.refs.login.isValidValue();
-    const first_name = this.refs.first_name.isValidValue();
-    const second_name = this.refs.second_name.isValidValue();
-    const phone = this.refs.phone.isValidValue();
-    const password = this.refs.password.isValidValue();
-    const repeat_password = this.refs.repeat_password.isValidValue();
+    const email = (this.refs.email as unknown as InputField).isValidValue();
+    const login = (this.refs.login as unknown as InputField).isValidValue();
+    const first_name = (this.refs.first_name as unknown as InputField).isValidValue();
+    const second_name = (this.refs.second_name as unknown as InputField).isValidValue();
+    const phone = (this.refs.phone as unknown as InputField).isValidValue();
+    const password = (this.refs.password as unknown as InputField).isValidValue();
+    const repeat_password = (this.refs.repeat_password as unknown as InputField).isValidValue();
     console.log({
       email,
       login,

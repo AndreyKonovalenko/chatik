@@ -1,8 +1,13 @@
 import Block from '../../../core/Block';
 
-export class ModalOverLay extends Block {
-  constructor() {
-    super();
+type TModalOverLay = {
+  events: object;
+
+}
+
+export class ModalOverLay extends Block<TModalOverLay> {
+  constructor(props: TModalOverLay) {
+    super(props);
     this.props.events = {
       click: () => {
         const overlay = document.getElementsByClassName('modal-overlay')[0];

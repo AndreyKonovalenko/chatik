@@ -1,11 +1,11 @@
 import Block from '../../core/Block';
-import { TProps } from '../../core/Block';
 
-type TButton = TProps & {
+type TButton =  {
   onClick: () => void; 
+  events: object;
 };
 
-export class Button extends Block {
+export class Button extends Block<TButton> {
   constructor(props: TButton) {
     super({
       ...props,

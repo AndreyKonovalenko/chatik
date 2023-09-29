@@ -1,13 +1,17 @@
 import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants';
 import { validate } from '../../../utils/validate';
+import { TValidate } from '../../../utils/validate';
+import { InputField } from '../../input-field/input-field';
 const { palette, placeholders } = uiConstants;
 
 type TSearchBar = {
   onBlur: () => void;
-};
+  validate: TValidate;
+  onSearch: (e: Event)=> void;
+}; 
 
-export class SearchBar extends Block {
+export class SearchBar extends Block<TSearchBar> {
   constructor(props: TSearchBar) {
     super({
       ...props,
@@ -16,13 +20,10 @@ export class SearchBar extends Block {
         event.preventDefault();
         this.sendForm();
       },
-      onCreateAccount: (event: Event) => {
-        event.preventDefault();
-      },
     });
   }
   public sendForm() {
-    const search = this.refs.search.isValidValue();
+    const search = (this.refs.search as unknown as InputField ).isValidValue();
     console.log({ search });
   }
   protected render(): string {

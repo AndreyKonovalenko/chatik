@@ -1,3 +1,4 @@
+import Block from './core/Block';
 import Handlebars from 'handlebars';
 // Pages
 import LoginPage from './pages/login/login';
@@ -28,7 +29,11 @@ import Modal from './components/modal/modal/modal.hbs?raw';
 
 import { registerComponent } from './core/registerComponent';
 
-const pages = {
+type TPages = {
+  [key: string]:  unknown
+}
+
+const pages: TPages = {
   login: LoginPage,
   register: RegisterPage,
   profile: ProfilePage,
@@ -39,28 +44,28 @@ Handlebars.registerPartial('Layout', Layout);
 Handlebars.registerPartial('Form', Form);
 Handlebars.registerPartial('Modal', Modal);
 
-registerComponent('Icon', Icon);
-registerComponent('Input', Input);
-registerComponent('Button', Button);
-registerComponent('InputField', InputField);
-registerComponent('ProfileInputField', ProfileInputField);
-registerComponent('ModalOverLay', ModalOverLay);
-registerComponent('SideBar', SideBar);
-registerComponent('ChatMainSection', ChatMainSection);
-registerComponent('SearchBar', SearchBar);
-registerComponent('ChatList', ChatList);
-registerComponent('ChatCard', ChatCard);
-registerComponent('ChatMessageSection', ChatMessageSection);
-registerComponent('ErrorLine', ErrorLine);
-registerComponent('ChatField', ChatField);
-registerComponent('SendMessageBar', SendMessageBar);
-registerComponent('Message', Message);
+registerComponent('Icon', Icon as typeof Block);
+registerComponent('Input', Input  as typeof Block);
+registerComponent('Button', Button as typeof Block);
+registerComponent('InputField', InputField as typeof Block);
+registerComponent('ProfileInputField', ProfileInputField as typeof Block);
+registerComponent('ModalOverLay', ModalOverLay as typeof Block);
+registerComponent('SideBar', SideBar as typeof Block);
+registerComponent('ChatMainSection', ChatMainSection as typeof Block);
+registerComponent('SearchBar', SearchBar as typeof Block);
+registerComponent('ChatList', ChatList as typeof Block);
+registerComponent('ChatCard', ChatCard as typeof Block);
+registerComponent('ChatMessageSection', ChatMessageSection as typeof Block);
+registerComponent('ErrorLine', ErrorLine as typeof Block);
+registerComponent('ChatField', ChatField as typeof Block);
+registerComponent('SendMessageBar', SendMessageBar as typeof Block);
+registerComponent('Message', Message as typeof Block);
 
 function navigate(page: string) {
   const app = document.getElementById('app');
   const element = document.getElementsByClassName('layout')[0];
-  const Component = pages[page];
-  const component = new Component();
+  const Component = pages[page as keyof TPages] as typeof Block;
+  const component = new Component({});
   if (element) {
     element.remove();
   }

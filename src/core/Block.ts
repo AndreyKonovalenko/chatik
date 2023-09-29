@@ -11,17 +11,35 @@ class Block<Props extends Record<string, unknown>> {
   };
 
   public id: string = nanoid(6);
-  protected props = {} as Props;
+  protected props  = {} as Props;
   protected refs: Record<string, Block<Props> | Block<Props>[]> = {};
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
+  public children: Record<string, Block<Props> | Block<Props>[]> = {};
 
-  constructor(props: Props) {
+  constructor(propsWithChildren = {}) {
     const eventBus = new EventBus();
-    this.props = this._makePropsProxy(props);
+    const { props, children } = this._getChildrenAndProps(propsWithChildren as Props);
+    this.props = this._makePropsProxy(props, this);
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
+    this.children = children
+  }
+
+  private _getChildrenAndProps(childrenAndProps: Props) : {props: Props, children: Record<string, Block<Props> | Block<Props>[]>} {
+    const props: Record<string, unknown> = {};
+    const children: Record<string, Block<Props> | Block<Props>[]> = {};
+
+    for (const [key, value] of Object.entries(childrenAndProps)) {
+      if ((value instanceof Block || Array.isArray(value))
+      && ((value as []).every((item : HTMLElement | HTMLInputElement) => item instanceof Block))) {
+        children[key] = value;
+      } else {
+        props[key] = value;
+      }
+    }
+    return { props: props as Props, children };
   }
 
   private _addEvents(): void {
@@ -119,7 +137,7 @@ class Block<Props extends Record<string, unknown>> {
     const contextAndStubs = {
       ...context,
       __refs: this.refs,
-      __children: [],
+      __children: [] as Array<{component: unknown, embed(node: DocumentFragment):void}>,
     };
 
     const html = Handlebars.compile(template)(contextAndStubs);
@@ -128,7 +146,7 @@ class Block<Props extends Record<string, unknown>> {
 
     temp.innerHTML = html;
 
-    contextAndStubs.__children?.forEach(({ embed }: any) => {
+    contextAndStubs.__children?.forEach(({ embed }) => {
       embed(temp.content);
     });
 
@@ -143,9 +161,8 @@ class Block<Props extends Record<string, unknown>> {
     return this.element;
   }
 
-  private _makePropsProxy(props: Props) {
+  private _makePropsProxy(props: Props, self: Block<Props>) {
     // Ещё один способ передачи this, но он больше не применяется с приходом ES6+
-    const self = this;
 
     return new Proxy(props, {
       set(target, prop, value) {

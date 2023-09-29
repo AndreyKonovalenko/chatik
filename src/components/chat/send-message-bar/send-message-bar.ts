@@ -1,18 +1,18 @@
 import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants';
 import { validate } from '../../../utils/validate';
-import { TProps } from '../../../core/Block';
 import { TValidate } from '../../../utils/validate';
+import { InputField } from '../../input-field/input-field';
 
 const { palette, placeholders } = uiConstants;
 
-type TSendMessageBar = TProps & {
+type TSendMessageBar = {
   validate: TValidate;
-  onSend: () => void;
-  onAttach: () => void;
+  onSend: (e: Event) => void;
+  onAttach: (e: Event) => void;
 };
 
-export class SendMessageBar extends Block {
+export class SendMessageBar extends Block<TSendMessageBar> {
   constructor(props: TSendMessageBar) {
     super({
       ...props,
@@ -27,7 +27,7 @@ export class SendMessageBar extends Block {
     });
   }
   public sendForm() {
-    const message = this.refs.message.isValidValue();
+    const message = (this.refs.message as unknown as InputField).isValidValue();
     console.log({ message });
   }
   protected render(): string {

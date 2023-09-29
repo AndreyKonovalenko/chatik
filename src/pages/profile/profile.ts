@@ -5,15 +5,23 @@ import { setModal } from '../../utils/setModal.ts';
 import { usersMock } from '../../mocks/users-mock.js';
 import { ProfileModal } from '../../components/profile-modal/profile-modal.ts';
 
-class ProfilePage extends Block {
+type TProfileInput ={ 
+  name: string,
+  field_name: string;
+  placehodler: string;
+  value: string;
+  type: string;
+  disabled: boolean
+}
+
+type TProfilePage = {
+  onChangePssword: (e: Event) => void;
+  input: TProfileInput[];
+}
+
+class ProfilePage extends Block<TProfilePage> {
   constructor() {
     super({
-      validate: {
-        login: (value: string) =>
-          value.length < 3 && value.length !== 0
-            ? `Length of login should not be less 3 letters.`
-            : '',
-      },
       onChangePassword: (event: Event) => {
         event.preventDefault();
         setModal(ProfileModal);

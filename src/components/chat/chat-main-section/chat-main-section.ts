@@ -2,20 +2,14 @@ import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { placeholders } = uiConstants;
 
+
 type TChatMainSectionProps = {
   onSearch: (event: Event) => void;
 };
 
-export class ChatMainSection extends Block {
+export class ChatMainSection extends Block<TChatMainSectionProps> {
   constructor(props: TChatMainSectionProps) {
-    super({
-      ...props,
-      onSearch: (event: Event) => {
-        event.preventDefault();
-        const search = this.refs.search.value();
-        console.log(search);
-      },
-    });
+    super(props);
   }
 
   protected render(): string {

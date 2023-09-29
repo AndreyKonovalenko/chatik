@@ -2,15 +2,14 @@ import Block from '../../../core/Block';
 import { dateFormatter } from '../../../utils/date-formatter.ts';
 import {TUser } from '../../../pages/chat/chat.ts';
 import { usersMock } from '../../../mocks/users-mock.ts';
-import { TProps } from '../../../core/Block';
 
-type TMessageComponent = TProps & {
+type TMessageComponent =  {
   time: string;
   currentUserId: string;
   user_id: string; 
 }
 
-export class Message extends Block {
+export class Message extends Block<TMessageComponent> {
   constructor(props: TMessageComponent) {
     super(props);
   }

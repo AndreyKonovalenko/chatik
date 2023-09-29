@@ -1,6 +1,7 @@
 import Block from '../../core/Block';
+import { TInput } from '../input/input';
 
-export class ProfileInputField extends Block {
+export class ProfileInputField extends Block<TInput> {
   protected render(): string {
     return `
         <div class='profile-input-container'>

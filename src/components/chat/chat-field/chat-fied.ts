@@ -1,14 +1,14 @@
 import Block from '../../../core/Block';
 
 import { TMessage } from '../../../pages/chat/chat';
-import { TProps } from '../../../core/Block';
+import { TChatProps } from '../../../pages/chat/chat';
 
-type TChatFieldProps = TProps & {
+type TChatFieldProps =  TChatProps &{
   messages: Array<TMessage>;
   currentUserId: string
 }
 
-export class ChatField extends Block {
+export class ChatField extends Block<TChatFieldProps> {
   constructor(props: TChatFieldProps) {
     super({
       ...props,

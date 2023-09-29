@@ -2,14 +2,15 @@ import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { headers, palette } = uiConstants;
 import { chatsMock } from '../../../mocks/chats-mock.ts';
-import { TProps } from '../../../core/Block';
 import { TChat } from '../../../pages/chat/chat.ts';
 
-type TChatList = TProps & {
-  chats: Array<TChat>
+type TChatList =  {
+  chats: Array<TChat>;
+  controls: boolean;
+  edit: boolean
 }
 
-export class ChatList extends Block {
+export class ChatList extends Block<TChatList> {
   constructor(props: TChatList) {
     super({
       ...props,

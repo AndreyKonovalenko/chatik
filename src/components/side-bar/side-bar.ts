@@ -1,8 +1,10 @@
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants';
+import { TIcon } from '../icon/icon';
 const { palette } = uiConstants;
 
-export class SideBar extends Block {
+
+export class SideBar extends Block<TIcon> {
   protected render(): string {
     return `
         <div class='side-bar-container'>   

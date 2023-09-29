@@ -1,20 +1,21 @@
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants';
-import { TValidate } from '../../utils/validate';
 import { ErrorLine } from '../error-line/error-line';
 const { palette } = uiConstants;
 
 type TInputField = {
-  validate: (value: string) => TValidate;
+  validate: (value: string) => string;
   isValidValue: () => void;
   onBlur: () => void;
   type: string;
   name: string;
   placeholder: string;
   value: string;
-};
+  ref: string;
 
-export class InputField extends Block<TInputField | any> {
+}
+
+export class InputField extends Block<TInputField> {
   constructor(props: TInputField) {
     super({
       ...props,
@@ -38,10 +39,10 @@ export class InputField extends Block<TInputField | any> {
     const value = this.getValue();
     const error = this.props.validate(value);
     if (error) {
-      (this.refs?.errorLine as ErrorLine).setProps({ error });
+      (this.refs?.errorLine as unknown as ErrorLine).setProps({ error });
       return false;
     }
-    (this.refs?.errorLine as ErrorLine).setProps({ error: undefined });
+    (this.refs?.errorLine as unknown as ErrorLine).setProps({ error: undefined });
     return true;
   }
 

@@ -35,17 +35,17 @@ export type TChat = {
   last_message: TLast_message;
 };
 
-type TChatProps = {
+export type TChatProps = {
   chatState: {
     selectedChatId: null | string | number;
-    chat: null | TChat;
+    chat: TChat | undefined;
     messages: Array<TMessage>;
     currentUserId: string;
   };
   onChatSelectedHandler: (id: string | number) => void;
 };
 
-class ChatPage extends Block {
+class ChatPage extends Block<TChatProps> {
   constructor(props: TChatProps) {
     super({
       ...props,

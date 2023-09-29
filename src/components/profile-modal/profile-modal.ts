@@ -11,13 +11,9 @@ type TProfileModal = {
   onCreateAccount: (e: Event) => void
 }
 
-type Ref = {
-  oldPassword: InputField;
-  newPassword: InputField;
-  repeat_password: InputField
-}
 
-export class ProfileModal extends Block<TProfileModal, Ref> {
+
+export class ProfileModal extends Block<TProfileModal> {
   constructor(props: TProfileModal) {
     super({
       ...props,
@@ -32,9 +28,9 @@ export class ProfileModal extends Block<TProfileModal, Ref> {
     });
   }
   public sendForm() {
-    const oldPassword = this.refs.oldPassword.isValidValue();
-    const newPassword = this.refs.newPassword.isValidValue();
-    const repeat_password = this.refs.repeat_password.isValidValue();
+    const oldPassword = (this.refs.oldPassword as unknown as InputField).isValidValue();
+    const newPassword = (this.refs.newPassword as unknown as InputField).isValidValue();
+    const repeat_password = (this.refs.repeat_password as unknown as InputField).isValidValue();
     console.log({ oldPassword, newPassword, repeat_password });
   }
 

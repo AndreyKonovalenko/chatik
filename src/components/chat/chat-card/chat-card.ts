@@ -1,11 +1,22 @@
 import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants';
 import { dateFormatter } from '../../../utils/date-formatter';
+import { TChatProps } from '../../../pages/chat/chat';
 const { palette } = uiConstants;
-import { TProps } from '../../../core/Block';
 
-export class ChatCard extends Block {
-  constructor(props: TProps) {
+
+type TChatCard = TChatProps & {
+  events: object;
+  onChatSelect: (id: string) => void;
+  time: string;
+  title: string;
+  content: string;
+  avatar: string;
+  id: string;
+}
+
+export class ChatCard extends Block<TChatCard> {
+  constructor(props: TChatCard) {
     super(props);
     this.props.events = {
       click: () => {

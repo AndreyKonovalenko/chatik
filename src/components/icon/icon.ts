@@ -1,11 +1,12 @@
 import Block from '../../core/Block';
 
-type IProps = {
+export type TIcon = {
   onClick: () => void;
+  events: object;
 };
 
-export class Icon extends Block {
-  constructor(props: IProps) {
+export class Icon extends Block<TIcon> {
+  constructor(props: TIcon) {
     super(props);
     this.props.events = {
       click: this.props.onClick,

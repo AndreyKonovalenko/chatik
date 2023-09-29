@@ -1,3 +1,4 @@
+import { InputField } from '../../components/input-field/input-field.ts';
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants.ts';
 import { validate } from '../../utils/validate.ts';
@@ -8,7 +9,7 @@ type TLoginPage = {
   onCreateAccount: () => void;
 };
 
-class LoginPage extends Block {
+class LoginPage extends Block<TLoginPage> {
   constructor(props: TLoginPage) {
     super({
       ...props,
@@ -23,8 +24,8 @@ class LoginPage extends Block {
     });
   }
   public sendForm() {
-    const login = this.refs.login.isValidValue();
-    const password = this.refs.password.isValidValue();
+    const login = (this.refs.login as unknown as InputField).isValidValue();
+    const password = (this.refs.password as unknown as InputField).isValidValue();
     console.log({ login, password });
   }
 

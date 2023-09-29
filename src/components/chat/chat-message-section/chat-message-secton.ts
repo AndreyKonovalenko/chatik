@@ -1,19 +1,21 @@
 import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { palette } = uiConstants;
-import { TProps } from '../../../core/Block';
+import { TChatProps } from '../../../pages/chat/chat.ts';
 
-export class ChatMessageSection extends Block {
-  constructor(props:TProps) {
+type TChatMessageSection = TChatProps;
+
+export class ChatMessageSection extends Block<TChatMessageSection> {
+  constructor(props:TChatMessageSection) {
     super(props);
   }
-
   protected render(): string {
     const { chatState } = this.props;
     const chatHeaderSection = `
       <img src="${chatState.chat && chatState.chat.avatar}" alt="chat bage"/>
       <p>${chatState.chat && chatState.chat.title}</p>
     `;
+
     return ` 
         <div class="chat-message-section">
             <div class="chat-message-section-header">

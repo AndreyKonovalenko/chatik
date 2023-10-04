@@ -2,14 +2,16 @@
 
 Chatik is web chat application similar to WhatsApp web version.
 
-[View Live](https://64e9eddf04ddee2d24bdcf27--clinquant-souffle-ad0372.netlify.app/)
+[View Live](https://clinquant-souffle-ad0372.netlify.app/)
 
 ## stack
 
 - UI:
   - Hendlebars;
-- Bould tool:
-  - Vite;
+  - SASS 1.65.1;
+  - Typescript 5.2.2
+- Build tool:
+  - Vite 4.4.5;
 - Hosting:
   - Netlify.
   <!-- - state management:
@@ -43,5 +45,9 @@ npm install
 ```
 
 ```
-npm run dev
+npm run dev - for development server
+```
+
+```
+npm run start - for build and start servert
 ```

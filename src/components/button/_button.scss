@@ -1,0 +1,16 @@
+.button {
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border: none;
+  border-radius: $radius;
+  font-family: $font-stack;
+  
+  @include medium-text-on-primary;
+  
+  &:hover {
+    opacity: 0.9;
+    transform: scale(0.97);
+    cursor: pointer;
+  }
+}

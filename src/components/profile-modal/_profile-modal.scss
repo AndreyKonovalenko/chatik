@@ -1,0 +1,19 @@
+.profile-modal-container {
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-self: center;
+  font-family: $font-stack;
+
+  .chat-modal-card-header {
+    @include large-text-on-primary;
+  }
+}
+
+.profile-modal-button-container {
+  width: 80px;
+  height: 46px;
+  background-color: $dark;
+  border-radius: $radius;
+}

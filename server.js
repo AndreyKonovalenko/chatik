@@ -1,4 +1,5 @@
 import express from 'express';
+import console from 'console';
 const PORT = 3000;
 const app = express();
 

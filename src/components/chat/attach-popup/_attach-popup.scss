@@ -1,0 +1,14 @@
+.attach-popup-container {
+  height: 140px;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: $radius;
+  background-color: $light;
+  position: absolute;
+  left: #{$baseline * 4}px;
+  bottom: #{$baseline * 4}px;
+  filter: drop-shadow(3px 4px 6px rgb(0 0 0 / 25%));
+}

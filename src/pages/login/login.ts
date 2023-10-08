@@ -1,4 +1,5 @@
 import { InputField } from '../../components/input-field/input-field.ts';
+import queryStringify from '../../utils/queryStringify.ts';
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants.ts';
 import { validate } from '../../utils/validate.ts';
@@ -7,6 +8,16 @@ const { headers, placeholders, buttons } = uiConstants;
 type TLoginPage = {
   onLogin: () => void;
   onCreateAccount: () => void;
+};
+
+const obj = {
+  key: 1,
+  key2: 'test',
+  key3: false,
+  key4: true,
+  key5: [1, 2, 3],
+  key6: { a: 1 },
+  key7: { b: { d: 2 } },
 };
 
 class LoginPage extends Block<TLoginPage> {
@@ -25,11 +36,14 @@ class LoginPage extends Block<TLoginPage> {
   }
   public sendForm() {
     const login = (this.refs.login as unknown as InputField).isValidValue();
-    const password = (this.refs.password as unknown as InputField).isValidValue();
+    const password = (
+      this.refs.password as unknown as InputField
+    ).isValidValue();
     console.log({ login, password });
   }
 
   protected render(): string {
+    console.log(queryStringify(obj));
     return ` 
         {{#> Layout}}
             <div class="login-form-container">

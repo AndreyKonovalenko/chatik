@@ -43,7 +43,7 @@ class LoginPage extends Block<TLoginPage> {
   }
 
   protected render(): string {
-    console.log(queryStringify(obj));
+    console.log(window.store)
     return ` 
         {{#> Layout}}
             <div class="login-form-container">

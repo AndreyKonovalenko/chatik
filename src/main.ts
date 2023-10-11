@@ -1,5 +1,6 @@
 import Block from './core/Block';
 import Handlebars from 'handlebars';
+import Store from './core/Store';
 // Pages
 import LoginPage from './pages/login/login';
 import RegisterPage from './pages/register/register';
@@ -61,6 +62,25 @@ registerComponent('ChatField', ChatField as typeof Block);
 registerComponent('SendMessageBar', SendMessageBar as typeof Block);
 registerComponent('Message', Message as typeof Block);
 
+type TAppState = {
+  test: boolean
+}
+
+declare global {
+  interface Window {
+    store: Store<TAppState>;
+  }
+  type Nullable<T> = T | null;
+
+}
+
+const initState: TAppState = {
+  test: false
+}
+
+window.store = new Store<TAppState>(initState);
+
+
 function navigate(page: string) {
   const app = document.getElementById('app');
   const element = document.getElementsByClassName('layout')[0];
@@ -72,11 +92,16 @@ function navigate(page: string) {
   app?.append(component.getContent()!);
 }
 
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => navigate('login'));
 document.addEventListener('click', (e: Event) => {
 
-  
-  const page = (<HTMLDivElement> e.target).getAttribute('page');
+
+
+const page = (<HTMLDivElement> e.target).getAttribute('page');
   if (page) {
     navigate(page);
     e.preventDefault();

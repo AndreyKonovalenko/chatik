@@ -1,5 +1,6 @@
 import { InputField } from '../../components/input-field/input-field.ts';
-import queryStringify from '../../utils/queryStringify.ts';
+import store from '../../core/Store.ts';
+//import queryStringify from '../../utils/queryStringify.ts';
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants.ts';
 import { validate } from '../../utils/validate.ts';
@@ -10,15 +11,15 @@ type TLoginPage = {
   onCreateAccount: () => void;
 };
 
-const obj = {
-  key: 1,
-  key2: 'test',
-  key3: false,
-  key4: true,
-  key5: [1, 2, 3],
-  key6: { a: 1 },
-  key7: { b: { d: 2 } },
-};
+// const obj = {
+//   key: 1,
+//   key2: 'test',
+//   key3: false,
+//   key4: true,
+//   key5: [1, 2, 3],
+//   key6: { a: 1 },
+//   key7: { b: { d: 2 } },
+// };
 
 class LoginPage extends Block<TLoginPage> {
   constructor(props: TLoginPage) {
@@ -43,7 +44,7 @@ class LoginPage extends Block<TLoginPage> {
   }
 
   protected render(): string {
-    console.log(window.store)
+
     return ` 
         {{#> Layout}}
             <div class="login-form-container">

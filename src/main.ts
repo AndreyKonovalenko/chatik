@@ -1,6 +1,6 @@
 import Block from './core/Block';
 import Handlebars from 'handlebars';
-import Store from './core/Store';
+ import store from './core/Store';
 // Pages
 import LoginPage from './pages/login/login';
 import RegisterPage from './pages/register/register';
@@ -62,24 +62,35 @@ registerComponent('ChatField', ChatField as typeof Block);
 registerComponent('SendMessageBar', SendMessageBar as typeof Block);
 registerComponent('Message', Message as typeof Block);
 
-type TAppState = {
-  test: boolean
+// type TAppState = {
+//   test: boolean
+// }
+
+// declare global {
+//   interface Window {
+//     store: Store<TAppState>;
+//   }
+//   type Nullable<T> = T | null;
+
+// }
+
+// const initState: TAppState = {
+//   test: false
+// }
+
+// window.store = new Store<TAppState>(initState);
+
+type TdefaultState = {
+  archived: boolean,
+  editMode: boolean
 }
 
-declare global {
-  interface Window {
-    store: Store<TAppState>;
-  }
-  type Nullable<T> = T | null;
-
+const defaultState: TdefaultState = {
+  archived: false,
+  editMode: false,
 }
 
-const initState: TAppState = {
-  test: false
-}
-
-window.store = new Store<TAppState>(initState);
-
+store.set(defaultState)
 
 function navigate(page: string) {
   const app = document.getElementById('app');

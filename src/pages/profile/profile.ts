@@ -4,6 +4,7 @@ const { placeholders, buttons, palette } = uiConstants;
 import { setModal } from '../../utils/setModal.ts';
 import { usersMock } from '../../mocks/users-mock.js';
 import { ProfileModal } from '../../components/profile-modal/profile-modal.ts';
+import Store from '../../core/Store.ts'; 
 
 type TProfileInput ={ 
   name: string,
@@ -25,6 +26,11 @@ class ProfilePage extends Block<TProfilePage> {
       onChangePassword: (event: Event) => {
         event.preventDefault();
         setModal(ProfileModal);
+      },
+      onEditProfile: (event: Event ) =>{
+        event.preventDefault();
+        console.log(Store.getState())
+        console.log("edit profile")
       },
 
       inputs: [
@@ -87,7 +93,7 @@ class ProfilePage extends Block<TProfilePage> {
                 {{#> Form}}
                   <div class="profile-icon-container">
                     <div class="profile-icon-container-item">
-                      {{{ Icon key="profile-form-icon" type="edit" size="36" color="${palette.ON_PRIMARY}" fill=0}}}
+                      {{{ Icon key="profile-form-icon" type="edit" size="36" color="${palette.ON_PRIMARY}" fill=0 onClick=onEditProfile }}}
                     </div>
                   </div>
                   <div class="profile-image-container">

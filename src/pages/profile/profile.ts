@@ -4,7 +4,7 @@ const { placeholders, buttons, palette } = uiConstants;
 import { setModal } from '../../utils/setModal.ts';
 import { usersMock } from '../../mocks/users-mock.js';
 import { ProfileModal } from '../../components/profile-modal/profile-modal.ts';
-import Store from '../../core/Store.ts'; 
+import store from '../../core/Store.ts'; 
 
 type TProfileInput ={ 
   name: string,
@@ -29,7 +29,7 @@ class ProfilePage extends Block<TProfilePage> {
       },
       onEditProfile: (event: Event ) =>{
         event.preventDefault();
-        console.log(Store.getState())
+        console.log(store.getState())
         console.log("edit profile")
       },
 

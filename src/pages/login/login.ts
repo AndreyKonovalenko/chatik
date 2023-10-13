@@ -1,5 +1,5 @@
 import { InputField } from '../../components/input-field/input-field.ts';
-import store from '../../core/Store.ts';
+//import store from '../../core/Store.ts';
 //import queryStringify from '../../utils/queryStringify.ts';
 import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants.ts';

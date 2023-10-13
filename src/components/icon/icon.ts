@@ -27,5 +27,3 @@ export class Icon extends Block<TIcon> {
         `;
   }
 }
-
-export default Icon;

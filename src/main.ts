@@ -48,7 +48,7 @@ Handlebars.registerPartial('Form', Form);
 Handlebars.registerPartial('Modal', Modal);
 
 registerComponent('Icon', Icon as typeof Block);
-registerComponent('Input', Input  as typeof Block);
+registerComponent('Input', Input as typeof Block);
 registerComponent('Button', Button as typeof Block);
 registerComponent('InputField', InputField as typeof Block);
 registerComponent('ProfileInputField', ProfileInputField as typeof Block);
@@ -63,8 +63,7 @@ registerComponent('ErrorLine', ErrorLine as typeof Block);
 registerComponent('ChatField', ChatField as typeof Block);
 registerComponent('SendMessageBar', SendMessageBar as typeof Block);
 registerComponent('Message', Message as typeof Block);
-registerComponent('Logo', Logo as typeof Block)
-
+registerComponent('Logo', Logo as typeof Block);
 
 enum Routes {
   Index = '/',
@@ -72,7 +71,6 @@ enum Routes {
   Profile = '/profile',
   Chat = '/chat',
 }
-
 
 // type TAppState = {
 //   test: boolean
@@ -93,16 +91,16 @@ enum Routes {
 // window.store = new Store<TAppState>(initState);
 
 type TdefaultState = {
-  archived: boolean,
-  editMode: boolean
-}
+  archived: boolean;
+  editMode: boolean;
+};
 
 const defaultState: TdefaultState = {
   archived: false,
   editMode: false,
-}
+};
 
-store.set(defaultState)
+store.set(defaultState);
 
 // function navigate(page: string) {
 //   const app = document.getElementById('app');
@@ -115,11 +113,8 @@ store.set(defaultState)
 //   app?.append(component.getContent()!);
 // }
 
-
 // document.addEventListener('DOMContentLoaded', () => navigate('login'));
 // document.addEventListener('click', (e: Event) => {
-
-
 
 // const page = (<HTMLDivElement> e.target).getAttribute('page');
 //   if (page) {
@@ -129,23 +124,20 @@ store.set(defaultState)
 //   }
 // });
 
-
 window.addEventListener('DOMContentLoaded', () => {
-  Router
-    .use(Routes.Index, LoginPage as typeof Block)
+  Router.use(Routes.Index, LoginPage as typeof Block)
     .use(Routes.Register, RegisterPage as typeof Block)
     .use(Routes.Profile, ProfilePage as typeof Block)
-    .use(Routes.Chat, ChatPage as typeof Block)
-
- // let isProtectedRoute = true;
-
-  switch (window.location.pathname) {
-    case Routes.Index:
-    case Routes.Register:
-      break;
-  }
+    .use(Routes.Chat, ChatPage as typeof Block);
   Router.start();
 
+  // let isProtectedRoute = true;
+
+  // switch (window.location.pathname) {
+  //   case Routes.Index:
+  //   case Routes.Register:
+  //     break;
+  // }
   // try {
   //   await AuthController.fetchUser();
 
@@ -161,5 +153,4 @@ window.addEventListener('DOMContentLoaded', () => {
   //     Router.go(Routes.Index);
   //   }
   // }
-
 });

@@ -4,7 +4,8 @@ const { placeholders, buttons, palette } = uiConstants;
 import { setModal } from '../../utils/setModal.ts';
 import { usersMock } from '../../mocks/users-mock.js';
 import { ProfileModal } from '../../components/profile-modal/profile-modal.ts';
-import store from '../../core/Store.ts'; 
+import store from '../../services/Store.ts'; 
+import { getProfileState } from '../../services/ProfileStateSelector.ts';
 
 type TProfileInput ={ 
   name: string,
@@ -12,10 +13,11 @@ type TProfileInput ={
   placehodler: string;
   value: string;
   type: string;
-  disabled: boolean
+  disabled: boolean;
 }
 
 type TProfilePage = {
+  editMode: boolean;
   onChangePssword: (e: Event) => void;
   input: TProfileInput[];
 }
@@ -32,7 +34,7 @@ class ProfilePage extends Block<TProfilePage> {
         console.log(store.getState())
         console.log("edit profile")
       },
-
+      editMode: getProfileState(),
       inputs: [
         {
           name: 'first_name',
@@ -87,6 +89,7 @@ class ProfilePage extends Block<TProfilePage> {
   }
 
   protected render(): string {
+    console.log(this.props.editMode)
     return `( 
         {{#> Layout}}
             <div class="login-form-container">

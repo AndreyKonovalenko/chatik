@@ -1,4 +1,4 @@
-import { EventBus } from "./EventBus";
+import { EventBus } from "../core/EventBus";
 
 // export enum StoreEvents {
 //     Updated = 'Updated'
@@ -39,9 +39,7 @@ type Indexed = {
 }
 
 class Store extends EventBus {
-private state: Indexed = {
-  text: 'test'
-};
+private state: Indexed = {};
 
 public getState() {
   return this.state;

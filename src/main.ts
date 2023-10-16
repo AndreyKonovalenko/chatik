@@ -1,6 +1,6 @@
 import Block from './core/Block';
 import Handlebars from 'handlebars';
-import store from './core/Store';
+import store from './services/Store';
 // Pages
 import LoginPage from './pages/login/login';
 import RegisterPage from './pages/register/register';
@@ -90,14 +90,18 @@ enum Routes {
 
 // window.store = new Store<TAppState>(initState);
 
-type TdefaultState = {
-  archived: boolean;
-  editMode: boolean;
+type TProflie = { 
+  editMode: boolean
+}
+
+export type TAppState =  {
+  profile: TProflie
 };
 
-const defaultState: TdefaultState = {
-  archived: false,
-  editMode: false,
+const defaultState: TAppState = {
+  profile: {
+    editMode: false
+  }
 };
 
 store.set(defaultState);

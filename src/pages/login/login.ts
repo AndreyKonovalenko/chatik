@@ -11,15 +11,6 @@ type TLoginPage = {
   onCreateAccount: () => void;
 };
 
-// const obj = {
-//   key: 1,
-//   key2: 'test',
-//   key3: false,
-//   key4: true,
-//   key5: [1, 2, 3],
-//   key6: { a: 1 },
-//   key7: { b: { d: 2 } },
-// };
 
 class LoginPage extends Block<TLoginPage> {
   constructor(props: TLoginPage) {

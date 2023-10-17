@@ -4,8 +4,10 @@ const { placeholders, buttons, palette } = uiConstants;
 import { setModal } from '../../utils/setModal.ts';
 import { usersMock } from '../../mocks/users-mock.js';
 import { ProfileModal } from '../../components/profile-modal/profile-modal.ts';
-import store from '../../services/Store.ts'; 
-import { getProfileState } from '../../services/ProfileStateSelector.ts';
+import store, {StoreEvents} from '../../services/Store.ts'; 
+import { validate } from '../../utils/validate.ts';
+import ProfileInputField from '../../components/profile-input-field/profile-input-field.ts';
+import { getProfileState } from '../../services/profileStateSelector.ts';
 
 type TProfileInput ={ 
   name: string,
@@ -31,10 +33,15 @@ class ProfilePage extends Block<TProfilePage> {
       },
       onEditProfile: (event: Event ) =>{
         event.preventDefault();
-        console.log(store.getState())
-        console.log("edit profile")
+        const state = {...store.getState()};
+        store.set({...state, profile: {...state.profile, editMode: !state.profile.editMode}})
       },
-      editMode: getProfileState(),
+      onSave: (event: Event) => {
+        event.preventDefault()
+        this.sendForm()
+      },
+      editMode: false,
+      validate: validate,
       inputs: [
         {
           name: 'first_name',
@@ -86,10 +93,33 @@ class ProfilePage extends Block<TProfilePage> {
         },
       ],
     });
+    store.on(StoreEvents.Updated, () => {
+      this.props.editMode = getProfileState();
+    })
+  }
+
+
+  public sendForm() {
+    const first_name = (
+      this.refs.password as unknown as ProfileInputField
+    ).isValidValue();
+    console.log({ first_name });
   }
 
   protected render(): string {
-    console.log(this.props.editMode)
+    console.log(this.props.editMode);
+
+    const saveButton = `
+    <div class="profile-button-container">
+      {{{ Button type="submit" text='${buttons.SAVE}' onClick=onSave }}}
+    </div>
+    `
+       const changePassowrd = `
+    <div class="profile-button-container">
+      {{{ Button type="submit" text='${buttons.CHANGE_PASSWORD}' onClick=onChangePassword }}}
+    </div>
+    `;
+
     return `( 
         {{#> Layout}}
             <div class="login-form-container">
@@ -103,12 +133,8 @@ class ProfilePage extends Block<TProfilePage> {
                      <img class="profile-image" src="${usersMock[0].avatar}" alt="avater" width="200" height="200"/>
                      <p class="profile-image-card-text">${usersMock[0].display_name}</p>
                   </div>
-                    {{#each inputs}}
-                       {{{ ProfileInputField type=this.type name=this.name placeholder='' value=this.value field_name=this.field_name  disabled=this.disabled }}}
-                    {{/ each}}
-                    <div class="profile-button-container">
-                      {{{ Button type="submit" text='${buttons.CHANGE_PASSWORD}' onClick=onChangePassword }}}
-                    </div>
+                    {{{ ProfileInputField type='text' ref='first_name' name='first_name' placeholder="" value="${usersMock[0].first_name}" field_name="${placeholders.FIRST_NAME}"  disabled=${this.props.editMode ? false: true} validate=validate.login }}}
+                    ${!this.props.editMode ? changePassowrd : saveButton}
                 {{/ Form}}
             <div>
         {{/ Layout}}

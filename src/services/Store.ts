@@ -1,57 +1,47 @@
 import { EventBus } from "../core/EventBus";
 
-// export enum StoreEvents {
-//     Updated = 'Updated'
-// }
-
-// export default class Store<State extends Record<string, any>> extends EventBus {
-//   private state: State = {} as State;
-
-//   constructor(defaultState: State) {
-//     super();
-
-//     this.state = defaultState;
-//     this.set(defaultState);
-//   }
-
-//   public getState() {
-//     return this.state;
-//   }
-
-//   public set(nextState: Partial<State>) {
-//     const prevState = { ...this.state };
-
-//     this.state = { ...this.state, ...nextState };
-
-//     this.emit(StoreEvents.Updated, prevState, nextState);
-//   }
-// }
-
-
-//import { EventBus } from "./EventBus";
-
 export enum StoreEvents {
   Updated = 'Updated'
 }
 
-type Indexed = {
-[kay in string]: unknown 
-}
+// type Indexed = {
+// [kay in string]: unknown 
+// }
 
-class Store extends EventBus {
-private state: Indexed = {};
-
-public getState() {
-  return this.state;
-}
-  public set(nextState: Indexed){
-    const prevState: Indexed = {...this.state};
-    this.state = {...this.getState, ...nextState}
+class Store<State extends Record<string, unknown>> extends EventBus {
+  private state: State = {} as State;
+  constructor(defaultState: State) {
+    super();
+    this.state = defaultState;
+    this.set(defaultState);
+    console.log(this.state)
+  }
+  public getState() {
+    return this.state;
+  }
+  public set(nextState: Partial<State>){
+    const prevState = {...this.state};
+    this.state = {...this.state, ...nextState}
     this.emit(StoreEvents.Updated, prevState, nextState);
   }
 } 
 
-const store = new Store;
+type TProflie = { 
+  editMode: boolean
+}
+
+export type TAppState =  {
+  profile: TProflie
+};
+
+const defaultState: TAppState = {
+  profile: {
+    editMode: false
+  }
+};
+
+
+const store = new Store<TAppState>(defaultState);
 
 export default store;
 

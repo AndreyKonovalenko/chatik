@@ -101,7 +101,7 @@ class ProfilePage extends Block<TProfilePage> {
 
   public sendForm() {
     const first_name = (
-      this.refs.password as unknown as ProfileInputField
+      this.refs.first_name as unknown as ProfileInputField
     ).isValidValue();
     console.log({ first_name });
   }
@@ -133,7 +133,7 @@ class ProfilePage extends Block<TProfilePage> {
                      <img class="profile-image" src="${usersMock[0].avatar}" alt="avater" width="200" height="200"/>
                      <p class="profile-image-card-text">${usersMock[0].display_name}</p>
                   </div>
-                    {{{ ProfileInputField type='text' ref='first_name' name='first_name' placeholder="" value="${usersMock[0].first_name}" field_name="${placeholders.FIRST_NAME}"  disabled=${this.props.editMode ? false: true} validate=validate.login }}}
+                    {{{ ProfileInputField type='text' ref='first_name' name='first_name' placeholder="" value="${usersMock[0].first_name}" field_name="${placeholders.FIRST_NAME}"  disabled=${this.props.editMode ? false: true} validate=validate.first_name }}}
                     ${!this.props.editMode ? changePassowrd : saveButton}
                 {{/ Form}}
             <div>

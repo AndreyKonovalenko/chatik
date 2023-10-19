@@ -14,7 +14,6 @@ class Store<State extends Record<string, unknown>> extends EventBus {
     super();
     this.state = defaultState;
     this.set(defaultState);
-    console.log(this.state)
   }
   public getState() {
     return this.state;

@@ -43,38 +43,7 @@ class ProfilePage extends Block<TProfilePage> {
       editMode: false,
       validate: validate,
       inputs: [
-        {
-          name: 'first_name',
-          field_name: placeholders.FIRST_NAME,
-          placeholder: '',
-          value: usersMock[0].first_name,
-          type: 'text',
-          disabled: true,
-        },
-        {
-          name: 'second_name',
-          field_name: placeholders.LAST_NAME,
-          placeholder: '',
-          value: usersMock[0].second_name,
-          type: 'text',
-          disabled: true,
-        },
-        {
-          name: 'display_name',
-          field_name: placeholders.DISPLAY_NAME,
-          placeholder: '',
-          value: usersMock[0].display_name,
-          type: 'text',
-          disabled: true,
-        },
-        {
-          name: 'login',
-          field_name: placeholders.LOGIN,
-          placeholder: '',
-          value: usersMock[0].login,
-          type: 'login',
-          disabled: true,
-        },
+
         {
           name: 'phone',
           field_name: placeholders.PHONE_NUMBER,
@@ -98,17 +67,26 @@ class ProfilePage extends Block<TProfilePage> {
     })
   }
 
-
   public sendForm() {
     const first_name = (
       this.refs.first_name as unknown as ProfileInputField
     ).isValidValue();
-    console.log({ first_name });
+    const second_name = (
+      this.refs.second_name as unknown as ProfileInputField
+    ).isValidValue();
+    const display_name = (
+      this.refs.display_name as unknown as ProfileInputField
+    ).getValue();
+    const login = (
+      this.refs.login as unknown as ProfileInputField
+      ).isValidValue();
+    const phone = (
+      this.refs.phone as unknown as ProfileInputField).isValidValue()
+    const email = (this.refs.email as unknown as ProfileInputField).isValidValue()
+    console.log({ first_name, second_name, display_name, login, phone, email});
   }
 
   protected render(): string {
-    console.log(this.props.editMode);
-
     const saveButton = `
     <div class="profile-button-container">
       {{{ Button type="submit" text='${buttons.SAVE}' onClick=onSave }}}
@@ -126,7 +104,7 @@ class ProfilePage extends Block<TProfilePage> {
                 {{#> Form}}
                   <div class="profile-icon-container">
                     <div class="profile-icon-container-item">
-                      {{{ Icon key="profile-form-icon" type="edit" size="36" color="${palette.ON_PRIMARY}" fill=0 onClick=onEditProfile }}}
+                      {{{ Icon key="profile-form-icon" type="edit" size="36" color="${this.props.editMode? palette.DARK : palette.ON_PRIMARY}" fill=0 onClick=onEditProfile }}}
                     </div>
                   </div>
                   <div class="profile-image-container">
@@ -134,6 +112,11 @@ class ProfilePage extends Block<TProfilePage> {
                      <p class="profile-image-card-text">${usersMock[0].display_name}</p>
                   </div>
                     {{{ ProfileInputField type='text' ref='first_name' name='first_name' placeholder="" value="${usersMock[0].first_name}" field_name="${placeholders.FIRST_NAME}"  disabled=${this.props.editMode ? false: true} validate=validate.first_name }}}
+                    {{{ ProfileInputField type='text' ref='second_name' name='second_name' placeholder="" value="${usersMock[0].second_name}" field_name="${placeholders.LAST_NAME}"  disabled=${this.props.editMode ? false: true} validate=validate.second_name }}}
+                    {{{ ProfileInputField type='text' ref='display_name' name='display_name' placeholder="" value="${usersMock[0].display_name}" field_name="${placeholders.DISPLAY_NAME}"  disabled=${this.props.editMode ? false: true} }}}
+                    {{{ ProfileInputField type='text' ref='login' name='login' placeholder="" value="${usersMock[0].login}" field_name="${placeholders.LOGIN}"  disabled=${this.props.editMode ? false: true} validate=validate.login }}}
+                    {{{ ProfileInputField type='text' ref='phone' name='phone' placeholder="" value="${usersMock[0].phone}" field_name="${placeholders.PHONE_NUMBER}"  disabled=${this.props.editMode ? false: true} validate=validate.phone }}}
+                    {{{ ProfileInputField type='text' ref='email' name='email' placeholder="" value="${usersMock[0].email}" field_name="${placeholders.EMAIL}"  disabled=${this.props.editMode ? false: true} validate=validate.email }}}
                     ${!this.props.editMode ? changePassowrd : saveButton}
                 {{/ Form}}
             <div>

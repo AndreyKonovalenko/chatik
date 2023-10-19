@@ -1,4 +1,4 @@
-type StringIndexed = Record<string, any>;
+type StringIndexed = Record<string, unknown>;
 
 function queryStringify(data: StringIndexed): string {
   if (typeof data !== 'object' || data === null || Array.isArray(data)) {
@@ -7,7 +7,7 @@ function queryStringify(data: StringIndexed): string {
   console.log(data);
   const params: string[] = [];
 
-  function processValue(key: string, value: any): void {
+  function processValue(key: string, value: unknown): void {
     if (value === null || value === undefined) {
       return;
     }

@@ -36,7 +36,6 @@ export class ProfileInputField extends Block<TProfileInputField> {
   private validate() {
     const value = this.getValue();
     const error = this.props.validate(value);
-    console.log(error)
     if (error) {
       (this.refs?.errorLine as unknown as ErrorLine).setProps({ error });
       return false;

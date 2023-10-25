@@ -71,6 +71,12 @@ const uiConstants = {
   settings: {
     edit_mode: true,
   },
+  routes: {
+    INDEX: '/',
+    REGISTER: '/register',
+    PROFILE: '/profile',
+    CHAT: '/chat',
+  },
 };
 
 export default uiConstants;

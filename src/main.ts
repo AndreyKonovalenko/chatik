@@ -30,7 +30,10 @@ import Form from './components/form/form.hbs?raw';
 import Modal from './components/modal/modal/modal.hbs?raw';
 
 import { registerComponent } from './core/registerComponent';
+import uiConstants from './utils/ui-constants';
 import Router from './core/Router';
+
+const { routes } = uiConstants;
 
 // type TPages = {
 //   [key: string]:  unknown
@@ -65,13 +68,6 @@ registerComponent('SendMessageBar', SendMessageBar as typeof Block);
 registerComponent('Message', Message as typeof Block);
 registerComponent('Logo', Logo as typeof Block);
 
-enum Routes {
-  Index = '/',
-  Register = '/register',
-  Profile = '/profile',
-  Chat = '/chat',
-}
-
 // type TAppState = {
 //   test: boolean
 // }
@@ -89,8 +85,6 @@ enum Routes {
 // }
 
 // window.store = new Store<TAppState>(initState);
-
-
 
 // function navigate(page: string) {
 //   const app = document.getElementById('app');
@@ -115,10 +109,10 @@ enum Routes {
 // });
 
 window.addEventListener('DOMContentLoaded', () => {
-  Router.use(Routes.Index, LoginPage as typeof Block)
-    .use(Routes.Register, RegisterPage as typeof Block)
-    .use(Routes.Profile, ProfilePage as typeof Block)
-    .use(Routes.Chat, ChatPage as typeof Block);
+  Router.use(routes.INDEX, LoginPage as typeof Block)
+    .use(routes.REGISTER, RegisterPage as typeof Block)
+    .use(routes.PROFILE, ProfilePage as typeof Block)
+    .use(routes.CHAT, ChatPage as typeof Block);
   Router.start();
 
   // let isProtectedRoute = true;

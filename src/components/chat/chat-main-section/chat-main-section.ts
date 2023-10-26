@@ -2,7 +2,6 @@ import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { placeholders } = uiConstants;
 
-
 type TChatMainSectionProps = {
   onSearch: (event: Event) => void;
 };

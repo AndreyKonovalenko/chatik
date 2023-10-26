@@ -24,6 +24,7 @@ import { ChatField } from './components/chat/chat-field/chat-fied';
 import { SendMessageBar } from './components/chat/send-message-bar/send-message-bar';
 import { Message } from './components/chat/message/message';
 import { Logo } from './components/logo/logo';
+import { ChatEditSection } from './components/chat/chat-edit-section/chat-edit-section';
 //Partials
 import Layout from './components/layout/layout.hbs?raw';
 import Form from './components/form/form.hbs?raw';
@@ -67,6 +68,7 @@ registerComponent('ChatField', ChatField as typeof Block);
 registerComponent('SendMessageBar', SendMessageBar as typeof Block);
 registerComponent('Message', Message as typeof Block);
 registerComponent('Logo', Logo as typeof Block);
+registerComponent('ChatEditSection', ChatEditSection as typeof Block);
 
 // type TAppState = {
 //   test: boolean

@@ -1,12 +1,8 @@
-import { EventBus } from "../core/EventBus";
+import { EventBus } from '../core/EventBus';
 
 export enum StoreEvents {
-  Updated = 'Updated'
+  Updated = 'Updated',
 }
-
-// type Indexed = {
-// [kay in string]: unknown 
-// }
 
 class Store<State extends Record<string, unknown>> extends EventBus {
   private state: State = {} as State;
@@ -18,32 +14,35 @@ class Store<State extends Record<string, unknown>> extends EventBus {
   public getState() {
     return this.state;
   }
-  public set(nextState: Partial<State>){
-    const prevState = {...this.state};
-    this.state = {...this.state, ...nextState}
+  public set(nextState: Partial<State>) {
+    const prevState = { ...this.state };
+    this.state = { ...this.state, ...nextState };
     this.emit(StoreEvents.Updated, prevState, nextState);
   }
-} 
-
-type TProflie = { 
-  editMode: boolean
 }
 
-export type TAppState =  {
-  profile: TProflie
+export type TProflieState = {
+  editMode: boolean;
+};
+
+export type TChatState = {
+  editMode: boolean;
+};
+
+export type TAppState = {
+  profile: TProflieState;
+  chat: TChatState;
 };
 
 const defaultState: TAppState = {
   profile: {
-    editMode: false
-  }
+    editMode: false,
+  },
+  chat: {
+    editMode: false,
+  },
 };
-
 
 const store = new Store<TAppState>(defaultState);
 
 export default store;
-
-
-
-

@@ -1,6 +1,8 @@
 import Block from '../../core/Block';
 import { chatsMock } from '../../mocks/chats-mock';
 import { messagesMock } from '../../mocks/messages-mock';
+import store, { StoreEvents, TChatState } from '../../services/Store';
+import { getChatState } from '../../services/stateSelectors';
 
 export type TMessage = {
   chat_id: number;
@@ -14,9 +16,9 @@ export type TUser = {
   id: string;
   first_name: string;
   second_name: string;
-  display_name?:string;
-  email?:string,
-  phone?:string,
+  display_name?: string;
+  email?: string;
+  phone?: string;
   avatar: string;
   login: string;
 };
@@ -35,7 +37,7 @@ export type TChat = {
   last_message: TLast_message;
 };
 
-export type TChatProps = {
+export type TChatProps = TChatState & {
   chatState: {
     selectedChatId: null | string | number;
     chat: TChat | undefined;
@@ -55,9 +57,14 @@ class ChatPage extends Block<TChatProps> {
         messages: messagesMock,
         currentUserId: '1',
       },
+      editMode: false,
       onChatSelectHandler: (id: string | number) => {
         this.setSelectedChatId(id);
       },
+    });
+    store.on(StoreEvents.Updated, () => {
+      const { editMode } = getChatState();
+      this.props.editMode = editMode;
     });
   }
   public setSelectedChatId(id: string | number) {
@@ -71,11 +78,13 @@ class ChatPage extends Block<TChatProps> {
   // public getChatById(id: string | number) {}
 
   protected render(): string {
+    const chatEditSection = `{{{ ChatEditSection }}}`;
     return ` 
         {{#> Layout}}       
             <div class="chat-container">
                 {{{ ChatMainSection  onChatSelect=onChatSelectHandler chatState=chatState }}}
-                {{{ ChatMessageSection chatState=chatState chatState=chatState }}}
+                {{{ ChatMessageSection chatState=chatState chatState=chatState editMode=editMode }}}
+                ${this.props.editMode ? chatEditSection : null}
             </div> 
         {{/ Layout}}
         `;

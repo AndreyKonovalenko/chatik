@@ -6,7 +6,7 @@ import { ProfileModal } from '../../components/profile-modal/profile-modal.ts';
 import store, { StoreEvents } from '../../services/Store.ts';
 import { validate } from '../../utils/validate.ts';
 import ProfileInputField from '../../components/profile-input-field/profile-input-field.ts';
-import { getProfileState } from '../../services/ProfileStateSelector.ts';
+import { getProfileState } from '../../services/stateSelectors.ts';
 
 const { placeholders, buttons, palette } = uiConstants;
 
@@ -44,7 +44,6 @@ class ProfilePage extends Block<TProfilePage> {
         event.preventDefault();
         this.sendForm();
       },
-      editMode: false,
       validate: validate,
       inputs: [
         {
@@ -66,7 +65,8 @@ class ProfilePage extends Block<TProfilePage> {
       ],
     });
     store.on(StoreEvents.Updated, () => {
-      this.props.editMode = getProfileState();
+      const { editMode } = getProfileState();
+      this.props.editMode = editMode;
     });
   }
 

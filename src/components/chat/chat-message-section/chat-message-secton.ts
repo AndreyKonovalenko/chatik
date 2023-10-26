@@ -2,15 +2,27 @@ import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { palette } = uiConstants;
 import { TChatProps } from '../../../pages/chat/chat.ts';
+import store, { TChatState } from '../../../services/Store.ts';
 
-type TChatMessageSection = TChatProps;
+type TChatMessageSection = TChatProps & TChatState;
 
 export class ChatMessageSection extends Block<TChatMessageSection> {
-  constructor(props:TChatMessageSection) {
-    super(props);
+  constructor(props: TChatMessageSection) {
+    super({
+      ...props,
+      onEditChat: (event: Event) => {
+        event.preventDefault();
+        const state = { ...store.getState() };
+        store.set({
+          ...state,
+          chat: { ...state.chat, editMode: !state.chat.editMode },
+        });
+      },
+    });
   }
   protected render(): string {
-    const { chatState } = this.props;
+    const { chatState, editMode } = this.props;
+    console.log(this.props);
     const chatHeaderSection = `
       <img src="${chatState.chat && chatState.chat.avatar}" alt="chat bage"/>
       <p>${chatState.chat && chatState.chat.title}</p>
@@ -27,8 +39,8 @@ export class ChatMessageSection extends Block<TChatMessageSection> {
                       palette.ON_PRIMARY
                     }' fill=0}}}
                     {{{ Icon key="chat-message-sectio-icon-1" type="settings" size="42" color='${
-                      palette.DARK
-                    }' fill=0}}}
+                      editMode ? palette.DARK : palette.ON_PRIMARY
+                    }' onClick=onEditChat oncfill=0}}}
                 </div> 
             </div>
             {{{ ChatField chatState=chatState }}}

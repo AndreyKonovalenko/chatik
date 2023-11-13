@@ -1,4 +1,5 @@
 import { EventBus } from '../core/EventBus';
+import { TChat, TMessage } from '../pages/chat/chat';
 
 export enum StoreEvents {
   Updated = 'Updated',
@@ -27,6 +28,10 @@ export type TProflieState = {
 
 export type TChatState = {
   editMode: boolean;
+  chats: Array<TChat> | null;
+  selectedChatId: null | string | number;
+  messages: Array<TMessage>| null;
+  currentUserId: string;
 };
 
 export type TAppState = {
@@ -40,6 +45,10 @@ const defaultState: TAppState = {
   },
   chat: {
     editMode: false,
+    chats: null,
+    selectedChatId: null,
+    messages: null,
+    currentUserId: '1',
   },
 };
 

@@ -20,17 +20,20 @@ export class ChatCard extends Block<TChatCard> {
     super(props);
     this.props.events = {
       click: () => {
-        this.props.onChatSelect(this.props.id);
+        console.log(this.props.id)
+        // this.props.onChatSelect(this.props.id);
       },
     };
   }
 
   protected render(): string {
     const { time, title, content, avatar, chatState, id } = this.props;
-    const selectedClass =
-      chatState.selectedChatId === id
-        ? 'chat-card-container chat-card-selected'
-        : 'chat-card-container';
+    // const selectedClass =
+    //   chatState.selectedChatId === id
+    //     ? 'chat-card-container chat-card-selected'
+    //     : 'chat-card-container';
+
+    const selectedClass = 'chat-card-container chat-card-selected';
 
     return `
         <li class="${selectedClass}" >

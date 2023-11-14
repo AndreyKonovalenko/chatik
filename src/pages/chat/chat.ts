@@ -1,6 +1,6 @@
 import Block from '../../core/Block';
 import { chatsMock } from '../../mocks/chats-mock';
-import { messagesMock } from '../../mocks/messages-mock';
+//import { messagesMock } from '../../mocks/messages-mock';
 import store, { StoreEvents, TChatState } from '../../services/Store';
 import { getChatState } from '../../services/stateSelectors';
 
@@ -51,29 +51,39 @@ class ChatPage extends Block<TChatProps> {
   constructor(props: TChatProps) {
     super({
       ...props,
-      chatState: {
-        selectedChatId: null,
-        chat: null,
-        messages: messagesMock,
-        currentUserId: '1',
-      },
+      // chatState: {
+      //   selectedChatId: null,
+      //   chat: null,
+      //   messages: messagesMock,
+      //   currentUserId: '1',
+      // },
       editMode: false,
-      onChatSelectHandler: (id: string | number) => {
-        this.setSelectedChatId(id);
-      },
+      // onChatSelectHandler: (id: string | number) => {
+      //   this.setSelectedChatId(id);
+      // },
     });
     store.on(StoreEvents.Updated, () => {
       const { editMode } = getChatState();
       this.props.editMode = editMode;
     });
   }
-  public setSelectedChatId(id: string | number) {
-    this.props.chatState = { ...this.props.chatState, selectedChatId: id };
-    this.props.chatState = {
-      ...this.props.chatState,
-      chat: chatsMock.find((element: TChat) => element.id === id),
-    };
-  }
+  // public setSelectedChatId(id: string | number) {
+  //   console.log()
+  //   // this.props.chatState = { ...this.props.chatState, selectedChatId: id };
+  //   // this.props.chatState = {
+  //   //   ...this.props.chatState,
+  //   //   chat: chatsMock.find((element: TChat) => element.id === id),
+  //   // };
+  // }
+
+  // action GET CHATS
+  public getChats() {
+    const state = { ...store.getState() };
+    store.set({
+      ...state,
+      chat: { ...state.chat, chats: chatsMock}
+  })
+}
 
   // public getChatById(id: string | number) {}
 
@@ -82,14 +92,16 @@ class ChatPage extends Block<TChatProps> {
     return ` 
         {{#> Layout}}       
             <div class="chat-container">
-                {{{ ChatMainSection  onChatSelect=onChatSelectHandler chatState=chatState }}}
-                {{{ ChatMessageSection chatState=chatState chatState=chatState editMode=editMode }}}
+                {{{ ChatMainSection  }}}
+              
                 ${this.props.editMode ? chatEditSection : null}
             </div> 
         {{/ Layout}}
         `;
   }
 }
+
+  // {{{ ChatMessageSection chatState=chatState chatState=chatState editMode=editMode }}}
 
 export default ChatPage;
 

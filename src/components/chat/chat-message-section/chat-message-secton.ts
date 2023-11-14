@@ -2,7 +2,8 @@ import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { palette } = uiConstants;
 import { TChatProps } from '../../../pages/chat/chat.ts';
-import store, { TChatState } from '../../../services/Store.ts';
+import store, {StoreEvents, TChatState} from '../../../services/Store.ts';
+import { getChatState } from '../../../services/stateSelectors.ts';
 
 type TChatMessageSection = TChatProps & TChatState;
 
@@ -18,6 +19,10 @@ export class ChatMessageSection extends Block<TChatMessageSection> {
           chat: { ...state.chat, editMode: !state.chat.editMode },
         });
       },
+    });
+    store.on(StoreEvents.Updated, () => {
+      const { editMode } = getChatState();
+      this.props.editMode = editMode;
     });
   }
   protected render(): string {

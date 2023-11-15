@@ -16,3 +16,7 @@ export const getSelectedChatId  = (): string | number| null => {
   const data : TAppState = {...store.getState()};
   return data.chat.selectedChatId;
 }
+export const getChatEditModeState  = (): boolean => {
+  const data : TAppState = {...store.getState()};
+  return data.chat.editMode;
+}

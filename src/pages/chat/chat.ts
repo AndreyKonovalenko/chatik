@@ -2,7 +2,7 @@ import Block from '../../core/Block';
 import { chatsMock } from '../../mocks/chats-mock';
 //import { messagesMock } from '../../mocks/messages-mock';
 import store, { StoreEvents, TChatState } from '../../services/Store';
-import { getChatState } from '../../services/stateSelectors';
+import { getChatState, getChatEditModeState } from '../../services/stateSelectors';
 
 export type TMessage = {
   chat_id: number;
@@ -57,7 +57,7 @@ class ChatPage extends Block<TChatProps> {
       //   messages: messagesMock,
       //   currentUserId: '1',
       // },
-      editMode: false,
+      editMode: getChatEditModeState(),
       // onChatSelectHandler: (id: string | number) => {
       //   this.setSelectedChatId(id);
       // },

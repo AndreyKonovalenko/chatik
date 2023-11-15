@@ -2,6 +2,8 @@ import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants';
 import { dateFormatter } from '../../../utils/date-formatter';
 import { TChatProps } from '../../../pages/chat/chat';
+import store, {StoreEvents} from '../../../services/Store';
+import { getChatState, getSelectedChatId } from '../../../services/stateSelectors';
 const { palette } = uiConstants;
 
 
@@ -17,23 +19,35 @@ type TChatCard = TChatProps & {
 
 export class ChatCard extends Block<TChatCard> {
   constructor(props: TChatCard) {
-    super(props);
-    this.props.events = {
-      click: () => {
-        console.log(this.props.id)
-        // this.props.onChatSelect(this.props.id);
-      },
-    };
+    super({...props,
+     events: {
+        click: () => {
+          this.setSelectedChatId(this.props.id)
+        },
+
+     },
+     selectedChatId: getSelectedChatId()
+    });
+    store.on(StoreEvents.Updated, () => {
+      const { selectedChatId} = getChatState();
+      this.props.selectedChatId = selectedChatId;
+    })
+  }
+
+   public setSelectedChatId(id: string | number | null) {
+    const state = { ...store.getState() };
+    store.set({
+      ...state,
+      chat: { ...state.chat, selectedChatId: id },
+    });
   }
 
   protected render(): string {
-    const { time, title, content, avatar, chatState, id } = this.props;
-    // const selectedClass =
-    //   chatState.selectedChatId === id
-    //     ? 'chat-card-container chat-card-selected'
-    //     : 'chat-card-container';
-
-    const selectedClass = 'chat-card-container chat-card-selected';
+    const { time, title, content, avatar,  id } = this.props;
+    const selectedClass =
+      this.props.selectedChatId === id
+        ? 'chat-card-container chat-card-selected'
+        : 'chat-card-container';
 
     return `
         <li class="${selectedClass}" >

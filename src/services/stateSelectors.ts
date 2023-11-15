@@ -11,3 +11,8 @@ export const getChatState = (): TChatState => {
   const data: TAppState = { ...store.getState() };
   return data.chat;
 };
+
+export const getSelectedChatId  = (): string | number| null => {
+  const data : TAppState = {...store.getState()};
+  return data.chat.selectedChatId;
+}

@@ -38,12 +38,7 @@ export type TChat = {
 };
 
 export type TChatProps = TChatState & {
-  chatState: {
-    selectedChatId: null | string | number;
-    chat: TChat | undefined;
-    messages: Array<TMessage>;
-    currentUserId: string;
-  };
+  editMode: boolean;
   onChatSelectedHandler: (id: string | number) => void;
 };
 
@@ -51,16 +46,7 @@ class ChatPage extends Block<TChatProps> {
   constructor(props: TChatProps) {
     super({
       ...props,
-      // chatState: {
-      //   selectedChatId: null,
-      //   chat: null,
-      //   messages: messagesMock,
-      //   currentUserId: '1',
-      // },
       editMode: getChatEditModeState(),
-      // onChatSelectHandler: (id: string | number) => {
-      //   this.setSelectedChatId(id);
-      // },
     });
     store.on(StoreEvents.Updated, () => {
       const { editMode } = getChatState();
@@ -93,15 +79,13 @@ class ChatPage extends Block<TChatProps> {
         {{#> Layout}}       
             <div class="chat-container">
                 {{{ ChatMainSection  }}}
-              
+                {{{ ChatMessageSection }}}
                 ${this.props.editMode ? chatEditSection : null}
             </div> 
         {{/ Layout}}
         `;
   }
 }
-
-  // {{{ ChatMessageSection chatState=chatState chatState=chatState editMode=editMode }}}
 
 export default ChatPage;
 

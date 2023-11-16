@@ -48,7 +48,7 @@ const defaultState: TAppState = {
     chats: null,
     selectedChatId: null,
     messages: null,
-    currentUserId: '1',
+    currentUserId: "1",
   },
 };
 

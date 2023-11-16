@@ -1,32 +1,40 @@
 import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { palette } = uiConstants;
-import { TChatProps } from '../../../pages/chat/chat.ts';
-import store, {StoreEvents, TChatState} from '../../../services/Store.ts';
-import { getChatState } from '../../../services/stateSelectors.ts';
+import { TChat } from '../../../pages/chat/chat.ts';
+import store, {StoreEvents} from '../../../services/Store.ts';
+import { getChatState, getChatEditModeState } from '../../../services/stateSelectors.ts';
 
-type TChatMessageSection = TChatProps & TChatState;
+type TChatMessageSection = {
+  onEditChat: void
+  editMode: boolean;
+  selectedChat: TChat | null;
+};
 
 export class ChatMessageSection extends Block<TChatMessageSection> {
   constructor(props: TChatMessageSection) {
     super({
       ...props,
-      onEditChat: (event: Event) => {
-        event.preventDefault();
+      onEditChat: () => {
         const state = { ...store.getState() };
         store.set({
           ...state,
           chat: { ...state.chat, editMode: !state.chat.editMode },
         });
       },
+      selectedChat: null,
+      editMode: getChatEditModeState()
     });
     store.on(StoreEvents.Updated, () => {
-      const { editMode } = getChatState();
-      this.props.editMode = editMode;
+      const {  chats, selectedChatId } = getChatState();
+      this.props.editMode = getChatEditModeState();
+      if( chats !== null && chats !== undefined) {
+        this.props.selectedChat = chats?.find((element)=> element.id === selectedChatId)
+      }
+    
     });
   }
   protected render(): string {
-    const { chatState, editMode } = this.props;
     console.log(this.props);
     const chatHeaderSection = `
       <img src="${chatState.chat && chatState.chat.avatar}" alt="chat bage"/>

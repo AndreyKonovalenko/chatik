@@ -62,14 +62,14 @@ class ChatPage extends Block<TChatProps> {
   //   // };
   // }
 
-  // action GET CHATS
-  public getChats() {
-    const state = { ...store.getState() };
-    store.set({
-      ...state,
-      chat: { ...state.chat, chats: chatsMock}
-  })
-}
+  // // action GET CHATS
+  // public getChats() {
+  //   const state = { ...store.getState() };
+  //   store.set({
+  //     ...state,
+  //     chat: { ...state.chat, chats: chatsMock}
+  // })
+// }
 
   // public getChatById(id: string | number) {}
 

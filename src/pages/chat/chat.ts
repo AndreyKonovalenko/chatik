@@ -52,7 +52,17 @@ class ChatPage extends Block<TChatProps> {
       const { editMode } = getChatState();
       this.props.editMode = editMode;
     });
+
+    getChats();
+    // getChat controller
+   function  getChats() {
+        const state = { ...store.getState() };
+        store.set({
+          ...state,
+          chat: { ...state.chat, chats: chatsMock}
+      })
   }
+}
   // public setSelectedChatId(id: string | number) {
   //   console.log()
   //   // this.props.chatState = { ...this.props.chatState, selectedChatId: id };

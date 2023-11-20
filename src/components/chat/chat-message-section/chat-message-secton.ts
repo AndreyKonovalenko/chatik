@@ -22,7 +22,7 @@ export class ChatMessageSection extends Block<TChatMessageSection> {
           chat: { ...state.chat, editMode: !state.chat.editMode },
         });
       },
-      selectedChat: undefined,
+      selectedChat: setSelectedChat(),
       editMode: getChatEditModeState()
     });
 
@@ -33,14 +33,19 @@ export class ChatMessageSection extends Block<TChatMessageSection> {
     
     });
 
-  }
-  public setSelectedChat() {
-    const {chats, selectedChatId} = getChatState();
-    if( chats !== null && chats !== undefined) {
-      return chats?.find((element)=> element.id === selectedChatId)
+   function setSelectedChat() {
+      const {chats, selectedChatId} = getChatState();
+      console.log('Hello', chats, selectedChatId)
+      if( chats !== null && chats !== undefined) {
+        console.log(chats?.find((element)=> element.id === selectedChatId))
+        return chats?.find((element)=> element.id === selectedChatId)
+        
+      }
+      return undefined
     }
-    return undefined
+  
   }
+
 
 
   protected render(): string {
@@ -71,3 +76,7 @@ export class ChatMessageSection extends Block<TChatMessageSection> {
         `;
   }
 }
+function setSelectedChat() {
+  throw new Error('Function not implemented.');
+}
+

@@ -25,12 +25,10 @@ export class ChatMessageSection extends Block<TChatMessageSection> {
       selectedChat: setSelectedChat(),
       editMode: getChatEditModeState()
     });
-
     
     store.on(StoreEvents.Updated, () => {
       this.props.editMode = getChatEditModeState();
   
-    
     });
 
    function setSelectedChat() {
@@ -46,11 +44,8 @@ export class ChatMessageSection extends Block<TChatMessageSection> {
   
   }
 
-
-
-  protected render(): string {
+ protected render(): string {
     const {selectedChat, editMode} = this.props;
-    console.log(selectedChat)
     const chatHeaderSection = `
       <img src="${selectedChat?.avatar}" alt="chat bage"/>
       <p>${selectedChat?.title}</p>
@@ -71,12 +66,9 @@ export class ChatMessageSection extends Block<TChatMessageSection> {
                     }' onClick=onEditChat oncfill=0}}}
                 </div> 
             </div>
+            {{{ ChatField}}}
             {{{ SendMessageBar }}}
         </div>
         `;
   }
 }
-function setSelectedChat() {
-  throw new Error('Function not implemented.');
-}
-

@@ -1,8 +1,8 @@
 import Block from '../../core/Block';
 import { chatsMock } from '../../mocks/chats-mock';
 //import { messagesMock } from '../../mocks/messages-mock';
-import store, { StoreEvents, TChatState } from '../../services/Store';
-import { getChatState, getChatEditModeState } from '../../services/stateSelectors';
+import store, { TChatState, TAppState } from '../../services/Store';
+import { connect } from '../../services/connect';
 
 export type TMessage = {
   chat_id: number;
@@ -42,16 +42,13 @@ export type TChatProps = TChatState & {
   onChatSelectedHandler: (id: string | number) => void;
 };
 
+type TChatStateEditModeChunk = {
+  editMode: boolean
+}
+
 class ChatPage extends Block<TChatProps> {
   constructor(props: TChatProps) {
-    super({
-      ...props,
-      editMode: getChatEditModeState(),
-    });
-    store.on(StoreEvents.Updated, () => {
-      const { editMode } = getChatState();
-      this.props.editMode = editMode;
-    });
+    super(props);
 
     getChats();
     // getChat controller
@@ -97,7 +94,13 @@ class ChatPage extends Block<TChatProps> {
   }
 }
 
-export default ChatPage;
+const mapStateToProps = (state: TAppState): TChatStateEditModeChunk => {
+  return {
+    editMode: state.chat.editMode
+  }
+}
+
+export default connect(ChatPage, mapStateToProps);
 
 // {{#> components/layout/layout}}
 //     <div class="chat-container">

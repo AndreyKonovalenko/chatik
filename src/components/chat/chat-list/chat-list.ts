@@ -1,27 +1,27 @@
 import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { headers, palette } = uiConstants;
-import { TChat } from '../../../pages/chat/chat.ts';
-import { getChats } from '../../../services/stateSelectors.ts';
-
-
+import { TChat } from '../../../pages/chat/chat.ts'
+import { connect } from '../../../services/connect.ts';
+import { TAppState } from '../../../services/Store.ts';
 
 type TChatList = {
-  chats: Array<TChat>;
+  chats: Array<TChat> | null;
   controls: boolean;
   edit: boolean;
 };
 
-export class ChatList extends Block<TChatList> {
+type TChatsStateChunk = {
+  chats: Array<TChat> | null
+}
+
+class ChatList extends Block<TChatList> {
   constructor(props: TChatList) {
-    super({
-      ...props,
-      chats: getChats(),
-    });
+    super(props);
   }
 
   protected render(): string {
-    return ` 
+     return ` 
         <div class="chat-list-container">
             <div class="chat-list-header">
                 <p>${headers.CHAT_LIST}</p>
@@ -60,3 +60,14 @@ export class ChatList extends Block<TChatList> {
         `;
   }
 }
+
+
+const  mapStateToProps = (state: TAppState): TChatsStateChunk  =>  {
+  return {
+     chats: state.chat.chats
+  }; 
+}
+
+
+export default connect(ChatList, mapStateToProps)
+

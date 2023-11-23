@@ -28,7 +28,7 @@ class Store<State extends Record<string, unknown>> extends EventBus {
     super();
     this.state = defaultState;
     this.set(defaultState);
-  }
+  } 
   public getState() {
     return this.state;
   }
@@ -52,6 +52,6 @@ const defaultState: TAppState = {
   },
 };
 
-const store = new Store<TAppState>(defaultState);
+const store = new Store(defaultState);
 
 export default store;

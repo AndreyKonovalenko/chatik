@@ -2,8 +2,11 @@ import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { palette } = uiConstants;
 import { TChat } from '../../../pages/chat/chat.ts';
-import store, {StoreEvents} from '../../../services/Store.ts';
-import { getChatState, getChatEditModeState } from '../../../services/stateSelectors.ts';
+import store, {TAppState} from '../../../services/Store.ts';
+import { connect } from '../../../services/connect.ts';
+import { getChatState } from '../../../services/stateSelectors.ts';
+
+
 
 type TChatMessageSection = {
   onEditChat: void
@@ -11,7 +14,11 @@ type TChatMessageSection = {
   selectedChat: TChat | undefined;
 };
 
-export class ChatMessageSection extends Block<TChatMessageSection> {
+type TEditModeChatStateChunk = {
+  editMode: boolean
+}
+
+ class ChatMessageSection extends Block<TChatMessageSection> {
   constructor(props: TChatMessageSection) {
     super({
       ...props,
@@ -23,13 +30,8 @@ export class ChatMessageSection extends Block<TChatMessageSection> {
         });
       },
       selectedChat: setSelectedChat(),
-      editMode: getChatEditModeState()
     });
     
-    store.on(StoreEvents.Updated, () => {
-      this.props.editMode = getChatEditModeState();
-  
-    });
 
    function setSelectedChat() {
       const {chats, selectedChatId} = getChatState();
@@ -72,3 +74,11 @@ export class ChatMessageSection extends Block<TChatMessageSection> {
         `;
   }
 }
+
+const mapStateToProps = (state: TAppState): TEditModeChatStateChunk=> {
+  return {
+    editMode: state.chat.editMode
+  }
+}
+
+export default connect(ChatMessageSection, mapStateToProps);

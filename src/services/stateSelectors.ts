@@ -1,4 +1,4 @@
-import { TChat, TMessage } from '../pages/chat/chat';
+import { TMessage } from '../pages/chat/chat';
 import store from './Store';
 import { TAppState } from './Store';
 import { TProflieState, TChatState } from './Store';
@@ -20,15 +20,6 @@ export const getChatState = (): TChatState => {
 export const getSelectedChatId  = (): string | number| null => {
   const data : TAppState = {...store.getState()};
   return data.chat.selectedChatId;
-}
-export const getChatEditModeState  = (): boolean => {
-  const data : TAppState = {...store.getState()};
-  return data.chat.editMode;
-}
-
-export const getChats =  (): Array<TChat> | null => {
-  const data: TAppState = {...store.getState()};
-  return data.chat.chats;
 }
 
 export const getChatCurrentUserId = (): string => {

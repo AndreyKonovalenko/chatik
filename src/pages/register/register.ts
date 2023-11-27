@@ -2,7 +2,10 @@ import { InputField } from '../../components/input-field/input-field.ts';
 import Block from '../../core/Block.ts';
 import uiConstants from '../../utils/ui-constants.ts';
 import { validate } from '../../utils/validate.ts';
+import AuthAPI from '../../api/auth-api.ts';
 const { headers, placeholders, buttons } = uiConstants;
+
+const authAPI = new AuthAPI()
 
 type TRegisterPage = {
   onRegister: () => void;
@@ -40,6 +43,16 @@ class RegisterPage extends Block<TRegisterPage> {
       password,
       repeat_password,
     });
+    authAPI.create({
+      email,
+      login,
+      first_name,
+      second_name,
+      phone,
+      password,
+      repeat_password,
+    });
+
   }
 
   protected render(): string {

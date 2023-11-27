@@ -73,10 +73,11 @@ const uiConstants = {
   },
   routes: {
     INDEX: '/',
-    REGISTER: '/register',
-    PROFILE: '/profile',
-    CHAT: '/chat',
+    REGISTER: '/sing-up',
+    PROFILE: '/settings',
+    CHAT: '/messenger',
   },
+  BASE_URL: 'https://ya-praktikum.tech/api/v2'
 };
 
 export default uiConstants;

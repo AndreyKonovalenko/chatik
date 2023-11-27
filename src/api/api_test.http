@@ -1,0 +1,23 @@
+
+POST https://ya-praktikum.tech/api/v2/auth/signup
+Content-Type: application/json
+
+{
+    
+  "first_name": "Andrey",
+  "second_name": "Konovalenko",
+  "login": "konovalenkoa",
+  "email": "konovalenko.a@test.ru",
+  "password": "Znamenka7",
+  "phone": "+79261110000"
+
+}
+
+
+
+# "id": 1348935
+
+###
+
+GET https://ya-praktikum.tech/api/v2/user/1348935
+

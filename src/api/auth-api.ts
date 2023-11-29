@@ -25,6 +25,6 @@ const authAPIInstance = new HTTPTransport('/auth');
 
 export default class AuthAPI {
     create(data: TCreateUser){
-        return authAPIInstance.post(`/signup`, {data});
+        return authAPIInstance.post(`/signup`, { data,  headers:{"Content-Type": "application/json"}});
     }
 }

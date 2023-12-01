@@ -1,32 +1,22 @@
 import AuthAPI from '../../api/auth-api.ts';
-import { TCreateUser } from '../../api/auth-api.ts';
+import { TSignInUserData, TSignUpUserData } from '../../api/auth-api.ts';
 
 const authAPI = new AuthAPI()
 
 
-// export const getUser = async() => {
-//     const responseUser = await authAPI.me();
-//     if (apiHasError(responseUser)) {
-//         throw Error(responseUser.reason)
-//     }
+export const getUser = async() => {
+    const response = await authAPI.getUser();
+    // if (apiHasError(responseUser)) {
+    //     throw Error(responseUser.reason)
+    // }
 
-//     return transformUser(responseUser as UserDTO);
-// }
-
-// export const signin = async (data: LoginRequestData) => {
-//     const response = await authAPI.login(data);
-//     if (apiHasError(response)) {
-//         throw Error(response.reason)
-//     }
-
-//     const me = await getUser();
-
-// }
+    console.log(response)
+}
 
 
-export const signup = async (data: TCreateUser) => {
+export const signup = async (data: TSignUpUserData) => {
     console.log(data)
-    const response = await authAPI.create(data);
+    const response = await authAPI.singup(data);
     // if (apiHasError(response)) {
     //     throw Error(response.reason)
     // }
@@ -34,4 +24,17 @@ export const signup = async (data: TCreateUser) => {
 
     // const me = await getUser();
 
+}
+
+export const signin = async (data: TSignInUserData) => {
+    console.log(data)
+    const response = await authAPI.signin(data);
+    // if (apiHasError(response)) {
+    //     throw Error(response.reason)
+    // }
+
+    console.log(response)
+
+    // window.store.set({user: me});
+    // navigate('emails')
 }

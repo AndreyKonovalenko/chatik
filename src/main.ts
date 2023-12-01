@@ -36,16 +36,6 @@ import Router from './core/Router';
 
 const { routes } = uiConstants;
 
-// type TPages = {
-//   [key: string]:  unknown
-// }
-
-// const pages: TPages = {
-//   login: LoginPage,
-//   register: RegisterPage,
-//   profile: ProfilePage,
-//   chat: ChatPage,
-// };
 
 Handlebars.registerPartial('Layout', Layout);
 Handlebars.registerPartial('Form', Form);
@@ -70,45 +60,6 @@ registerComponent('Message', Message as typeof Block);
 registerComponent('Logo', Logo as typeof Block);
 registerComponent('ChatEditSection', ChatEditSection as typeof Block);
 
-// type TAppState = {
-//   test: boolean
-// }
-
-// declare global {
-//   interface Window {
-//     store: Store<TAppState>;
-//   }
-//   type Nullable<T> = T | null;
-
-// }
-
-// const initState: TAppState = {
-//   test: false
-// }
-
-// window.store = new Store<TAppState>(initState);
-
-// function navigate(page: string) {
-//   const app = document.getElementById('app');
-//   const element = document.getElementsByClassName('layout')[0];
-//   const Component = pages[page as keyof TPages] as typeof Block;
-//   const component = new Component({});
-//   if (element) {
-//     element.remove();
-//   }
-//   app?.append(component.getContent()!);
-// }
-
-// document.addEventListener('DOMContentLoaded', () => navigate('login'));
-// document.addEventListener('click', (e: Event) => {
-
-// const page = (<HTMLDivElement> e.target).getAttribute('page');
-//   if (page) {
-//     navigate(page);
-//     e.preventDefault();
-//     e.stopImmediatePropagation();
-//   }
-// });
 
 window.addEventListener('DOMContentLoaded', () => {
   Router.use(routes.INDEX, LoginPage as typeof Block)
@@ -117,26 +68,26 @@ window.addEventListener('DOMContentLoaded', () => {
     .use(routes.CHAT, ChatPage as typeof Block);
   Router.start();
 
-  // let isProtectedRoute = true;
+  let isProtectedRoute = true;
 
-  // switch (window.location.pathname) {
-  //   case Routes.Index:
-  //   case Routes.Register:
-  //     break;
-  // }
-  // try {
-  //   await AuthController.fetchUser();
+  switch (window.location.pathname) {
+    case Routes.Index:
+    case Routes.Register:
+      break;
+  }
+  try {
+    await AuthController.fetchUser();
 
-  //   Router.start();
+    Router.start();
 
-  //   if (!isProtectedRoute) {
-  //     Router.go(Routes.Profile)
-  //   }
-  // } catch (e) {
-  //   Router.start();
+    if (!isProtectedRoute) {
+      Router.go(Routes.Profile)
+    }
+  } catch (e) {
+    Router.start();
 
-  //   if (isProtectedRoute) {
-  //     Router.go(Routes.Index);
-  //   }
-  // }
+    if (isProtectedRoute) {
+      Router.go(Routes.Index);
+    }
+  }
 });

@@ -30,6 +30,13 @@ class Route {
     private readonly query: string
   ) {}
 
+
+  navigate(pathname: string) {
+    if (this.match(pathname)) {
+      this.render();
+    }
+  }
+
   leave() {
     this.block = null;
   }

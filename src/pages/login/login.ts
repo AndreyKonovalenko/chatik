@@ -2,9 +2,11 @@ import { InputField } from '../../components/input-field/input-field.ts';
 //import store from '../../core/Store.ts';
 //import queryStringify from '../../utils/queryStringify.ts';
 import Block from '../../core/Block';
+import { signin } from '../../services/controllers/auth-controller.ts';
 import uiConstants from '../../utils/ui-constants.ts';
 import { validate } from '../../utils/validate.ts';
 const { headers, placeholders, buttons } = uiConstants;
+
 
 type TLoginPage = {
   onLogin: () => void;
@@ -31,7 +33,8 @@ class LoginPage extends Block<TLoginPage> {
     const password = (
       this.refs.password as unknown as InputField
     ).isValidValue();
-    console.log({ login, password });
+    if(login&&password)
+    signin({ login, password });
   }
 
   protected render(): string {

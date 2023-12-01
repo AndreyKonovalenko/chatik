@@ -12,7 +12,7 @@ export type TUser = {
     email: string;
 };
 
-export type TCreateUser = Omit<TUser, 'avatar' | 'display_name' | 'id'>  & {
+export type TSignUpUserData = Omit<TUser, 'avatar' | 'display_name' | 'id'>  & {
     password: string
 }
 
@@ -20,11 +20,21 @@ export type TSignUpResponse = {
     id: number
 }
 
-
+export type TSignInUserData = {
+    login: string;
+    password: string;
+}
+    
 const authAPIInstance = new HTTPTransport('/auth');
 
 export default class AuthAPI {
-    create(data: TCreateUser){
+    singup(data: TSignUpUserData) {
         return authAPIInstance.post(`/signup`, { data,  headers:{"Content-Type": "application/json"}});
+    }
+    signin(data: TSignInUserData) {
+        return authAPIInstance.post(`/signin`, { data,  headers:{"Content-Type": "application/json"}});
+    }
+    getUser() {
+        return authAPIInstance.get(`/user`);
     }
 }

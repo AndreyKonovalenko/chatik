@@ -65,29 +65,37 @@ window.addEventListener('DOMContentLoaded', () => {
   Router.use(routes.INDEX, LoginPage as typeof Block)
     .use(routes.REGISTER, RegisterPage as typeof Block)
     .use(routes.PROFILE, ProfilePage as typeof Block)
-    .use(routes.CHAT, ChatPage as typeof Block);
-  Router.start();
+    .use(routes.CHAT, ChatPage as typeof Block)
+    .start();
 
-  let isProtectedRoute = true;
+ const isProtectedRoute = true;
 
-  switch (window.location.pathname) {
-    case Routes.Index:
-    case Routes.Register:
-      break;
-  }
-  try {
-    await AuthController.fetchUser();
-
-    Router.start();
-
-    if (!isProtectedRoute) {
-      Router.go(Routes.Profile)
+ if(isProtectedRoute) {
+   switch (window.location.pathname) {
+      case routes.INDEX: Router.go(routes.CHAT);
     }
-  } catch (e) {
-    Router.start();
+ }
 
-    if (isProtectedRoute) {
-      Router.go(Routes.Index);
-    }
-  }
+  // let isProtectedRoute = true;
+
+  // switch (window.location.pathname) {
+  //   case Routes.Index:
+  //   case Routes.Register:
+  //     break;
+  // }
+  // try {
+  //   await AuthController.fetchUser();
+
+  //   Router.start();
+
+  //   if (!isProtectedRoute) {
+  //     Router.go(Routes.Profile)
+  //   }
+  // } catch (e) {
+  //   Router.start();
+
+  //   if (isProtectedRoute) {
+  //     Router.go(Routes.Index);
+  //   }
+  // }
 });

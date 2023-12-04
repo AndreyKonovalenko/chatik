@@ -16,9 +16,9 @@ import { Button } from './components/button/button';
 import { ModalOverLay } from './components/modal/modal-overlay/modal-overlay';
 import { ChatMainSection } from './components/chat/chat-main-section/chat-main-section';
 import { SearchBar } from './components/chat/search-bar/search-bar';
-import  ChatList  from './components/chat/chat-list/chat-list';
+import ChatList from './components/chat/chat-list/chat-list';
 import { ChatCard } from './components/chat/chat-card/chat-card';
-import  ChatMessageSection  from './components/chat/chat-message-section/chat-message-secton';
+import ChatMessageSection from './components/chat/chat-message-section/chat-message-secton';
 import { ErrorLine } from './components/error-line/error-line';
 import { ChatField } from './components/chat/chat-field/chat-fied';
 import { SendMessageBar } from './components/chat/send-message-bar/send-message-bar';
@@ -33,9 +33,9 @@ import Modal from './components/modal/modal/modal.hbs?raw';
 import { registerComponent } from './core/registerComponent';
 import uiConstants from './utils/ui-constants';
 import Router from './core/Router';
+import { ProtectedRoute } from './services/protected-route';
 
 const { routes } = uiConstants;
-
 
 Handlebars.registerPartial('Layout', Layout);
 Handlebars.registerPartial('Form', Form);
@@ -60,42 +60,17 @@ registerComponent('Message', Message as typeof Block);
 registerComponent('Logo', Logo as typeof Block);
 registerComponent('ChatEditSection', ChatEditSection as typeof Block);
 
-
 window.addEventListener('DOMContentLoaded', () => {
   Router.use(routes.INDEX, LoginPage as typeof Block)
     .use(routes.REGISTER, RegisterPage as typeof Block)
     .use(routes.PROFILE, ProfilePage as typeof Block)
-    .use(routes.CHAT, ChatPage as typeof Block)
-    .start();
+    .use(routes.CHAT, ChatPage as typeof Block);
 
- const isProtectedRoute = true;
+  const isProtectedRoute = false;
 
- if(isProtectedRoute) {
-   switch (window.location.pathname) {
-      case routes.INDEX: Router.go(routes.CHAT);
-    }
- }
-
-  // let isProtectedRoute = true;
-
-  // switch (window.location.pathname) {
-  //   case Routes.Index:
-  //   case Routes.Register:
-  //     break;
-  // }
-  // try {
-  //   await AuthController.fetchUser();
-
-  //   Router.start();
-
-  //   if (!isProtectedRoute) {
-  //     Router.go(Routes.Profile)
-  //   }
-  // } catch (e) {
-  //   Router.start();
-
-  //   if (isProtectedRoute) {
-  //     Router.go(Routes.Index);
-  //   }
-  // }
+  if (isProtectedRoute) {
+    Router.go(routes.CHAT);
+  } else {
+    Router.go(routes.INDEX);
+  }
 });

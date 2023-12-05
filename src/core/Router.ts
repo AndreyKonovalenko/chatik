@@ -1,4 +1,5 @@
 import Block from './Block';
+import store from '../services/Store';
 
 type TBlockProps = {
   getContent: void;
@@ -10,8 +11,18 @@ function isEqual(lhs: string, rhs: string) {
   return lhs === rhs;
 }
 
-function render(query: string, block: Block<TBlockProps>) {
+function render(
+  query: string,
+  block: Block<TBlockProps>,
+  protectedRoute: boolean | undefined
+) {
+  const { isAuthenticated } = store.getState();
+  console.log(protectedRoute);
+  if (protectedRoute && !isAuthenticated) {
+    throw new Error('you are not authenticated');
+  }
   const root = document.querySelector(query);
+
   if (root === null) {
     throw new Error(`root not found by selector "${query}"`);
   }
@@ -27,7 +38,8 @@ class Route {
   constructor(
     private pathname: string,
     private readonly blockClass: typeof Block,
-    private readonly query: string
+    private readonly query: string,
+    private protectedRoute: boolean
   ) {}
 
   leave() {
@@ -41,21 +53,19 @@ class Route {
   render() {
     if (!this.block) {
       this.block = new this.blockClass({});
-
-      render(this.query, this.block);
+      console.log('renderd this', this.block);
+      render(this.query, this.block, this.protectedRoute);
       return;
     }
   }
 }
-
-
 
 class Router {
   private static __instance: Router;
   private routes: Route[] = [];
   private currentRoute: Route | null = null;
   private history = window.history;
-  
+
   constructor(private readonly rootQuery: string) {
     if (Router.__instance) {
       return Router.__instance;
@@ -64,9 +74,8 @@ class Router {
     Router.__instance = this;
   }
 
-
-  public use(pathname: string, block: typeof Block) {
-    const route = new Route(pathname, block, this.rootQuery);
+  public use(pathname: string, block: typeof Block, protectedRote: boolean) {
+    const route = new Route(pathname, block, this.rootQuery, protectedRote);
     this.routes.push(route);
 
     return this;
@@ -77,7 +86,6 @@ class Router {
       const target = event.currentTarget as Window;
       this._onRoute(target.location.pathname);
     };
-   
 
     this._onRoute(window.location.pathname);
   }
@@ -100,6 +108,7 @@ class Router {
 
   public go(pathname: string) {
     this.history.pushState({}, '', pathname);
+    console.log(this.currentRoute);
     this._onRoute(pathname);
   }
 

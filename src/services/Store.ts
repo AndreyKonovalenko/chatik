@@ -13,11 +13,12 @@ export type TChatState = {
   editMode: boolean;
   chats: Array<TChat> | null;
   selectedChatId: null | string | number;
-  messages: Array<TMessage>| null;
+  messages: Array<TMessage> | null;
   currentUserId: string;
 };
 
 export type TAppState = {
+  isAuthenticated: boolean;
   profile: TProflieState;
   chat: TChatState;
 };
@@ -28,7 +29,7 @@ class Store<State extends Record<string, unknown>> extends EventBus {
     super();
     this.state = defaultState;
     this.set(defaultState);
-  } 
+  }
   public getState() {
     return this.state;
   }
@@ -40,6 +41,7 @@ class Store<State extends Record<string, unknown>> extends EventBus {
 }
 
 const defaultState: TAppState = {
+  isAuthenticated: false,
   profile: {
     editMode: false,
   },
@@ -48,7 +50,7 @@ const defaultState: TAppState = {
     chats: null,
     selectedChatId: null,
     messages: null,
-    currentUserId: "1",
+    currentUserId: '1',
   },
 };
 

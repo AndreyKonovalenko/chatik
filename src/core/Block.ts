@@ -95,7 +95,9 @@ class Block<Props extends Record<string, unknown>> {
     this.componentDidMount();
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+  }
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);

@@ -64,12 +64,7 @@ window.addEventListener('DOMContentLoaded', () => {
   Router.use(routes.INDEX, LoginPage as typeof Block)
     .use(routes.REGISTER, RegisterPage as typeof Block)
     .use(routes.PROFILE, ProfilePage as typeof Block)
-    .use(routes.CHAT, ChatPage as typeof Block);
-  const isProtectedRoute = false;
+    .use(routes.CHAT, ChatPage as typeof Block)
+    .start();
 
-  if (isProtectedRoute) {
-    Router.go(routes.CHAT);
-  } else {
-    Router.go(routes.INDEX);
-  }
 });

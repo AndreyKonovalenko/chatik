@@ -48,21 +48,22 @@ class Route {
   }
 }
 
+
+
 class Router {
   private static __instance: Router;
   private routes: Route[] = [];
   private currentRoute: Route | null = null;
   private history = window.history;
-
+  
   constructor(private readonly rootQuery: string) {
     if (Router.__instance) {
       return Router.__instance;
     }
-
     this.routes = [];
-
     Router.__instance = this;
   }
+
 
   public use(pathname: string, block: typeof Block) {
     const route = new Route(pathname, block, this.rootQuery);
@@ -74,9 +75,9 @@ class Router {
   public start() {
     window.onpopstate = (event: PopStateEvent) => {
       const target = event.currentTarget as Window;
-
       this._onRoute(target.location.pathname);
     };
+   
 
     this._onRoute(window.location.pathname);
   }
@@ -99,7 +100,6 @@ class Router {
 
   public go(pathname: string) {
     this.history.pushState({}, '', pathname);
-
     this._onRoute(pathname);
   }
 

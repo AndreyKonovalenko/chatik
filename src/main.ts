@@ -33,9 +33,7 @@ import Modal from './components/modal/modal/modal.hbs?raw';
 import { registerComponent } from './core/registerComponent';
 import uiConstants from './utils/ui-constants';
 import Router from './core/Router';
-import { ProtectedRoute } from './core/protectedRoute';
-
-const { routes } = uiConstants;
+const { routes, PROTECTED_ROUTE } = uiConstants;
 
 Handlebars.registerPartial('Layout', Layout);
 Handlebars.registerPartial('Form', Form);
@@ -61,10 +59,9 @@ registerComponent('Logo', Logo as typeof Block);
 registerComponent('ChatEditSection', ChatEditSection as typeof Block);
 
 window.addEventListener('DOMContentLoaded', () => {
-  Router.use(routes.INDEX, LoginPage as typeof Block, false)
-    .use(routes.REGISTER, RegisterPage as typeof Block, false)
-    .use(routes.PROFILE, ProfilePage as typeof Block, true)
-    .use(routes.CHAT, ChatPage as typeof Block, false)
+  Router.use(routes.INDEX, LoginPage as typeof Block)
+    .use(routes.REGISTER, RegisterPage as typeof Block )
+    .use(routes.PROFILE, ProfilePage as typeof Block, PROTECTED_ROUTE)
+    .use(routes.CHAT, ChatPage as typeof Block)
     .start();
 });
-console.log(Router);

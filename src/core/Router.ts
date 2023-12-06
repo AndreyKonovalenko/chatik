@@ -1,64 +1,5 @@
 import Block from './Block';
-import store from '../services/Store';
-
-type TBlockProps = {
-  getContent: void;
-};
-
-// add utils isEquel
-
-function isEqual(lhs: string, rhs: string) {
-  return lhs === rhs;
-}
-
-function render(
-  query: string,
-  block: Block<TBlockProps>,
-  protectedRoute: boolean | undefined
-) {
-  const { isAuthenticated } = store.getState();
-  console.log(protectedRoute);
-  if (protectedRoute && !isAuthenticated) {
-    throw new Error('you are not authenticated');
-  }
-  const root = document.querySelector(query);
-
-  if (root === null) {
-    throw new Error(`root not found by selector "${query}"`);
-  }
-
-  root.innerHTML = '';
-  root.append(block.getContent()!);
-  return root;
-}
-
-class Route {
-  private block: Block<TBlockProps> | null = null;
-
-  constructor(
-    private pathname: string,
-    private readonly blockClass: typeof Block,
-    private readonly query: string,
-    private protectedRoute: boolean
-  ) {}
-
-  leave() {
-    this.block = null;
-  }
-
-  match(pathname: string) {
-    return isEqual(pathname, this.pathname);
-  }
-
-  render() {
-    if (!this.block) {
-      this.block = new this.blockClass({});
-      console.log('renderd this', this.block);
-      render(this.query, this.block, this.protectedRoute);
-      return;
-    }
-  }
-}
+import { Route } from './Route';
 
 class Router {
   private static __instance: Router;
@@ -74,7 +15,7 @@ class Router {
     Router.__instance = this;
   }
 
-  public use(pathname: string, block: typeof Block, protectedRote: boolean) {
+  public use(pathname: string, block: typeof Block, protectedRote?: string) {
     const route = new Route(pathname, block, this.rootQuery, protectedRote);
     this.routes.push(route);
 

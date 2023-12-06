@@ -77,7 +77,8 @@ const uiConstants = {
     PROFILE: '/settings',
     CHAT: '/messenger',
   },
-  BASE_URL: 'https://ya-praktikum.tech/api/v2'
+  BASE_URL: 'https://ya-praktikum.tech/api/v2',
+  PROTECTED_ROUTE: "PROTECTED_ROUTE"
 };
 
 export default uiConstants;

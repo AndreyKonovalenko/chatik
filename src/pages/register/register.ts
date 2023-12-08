@@ -1,9 +1,10 @@
 import { InputField } from '../../components/input-field/input-field.ts';
 import Block from '../../core/Block.ts';
 import uiConstants from '../../utils/ui-constants.ts';
+import Router from '../../core/Router.ts';
 import { validate } from '../../utils/validate.ts';
 import { signup } from '../../services/controllers/auth-controller.ts';
-const { headers, placeholders, buttons } = uiConstants;
+const { headers, placeholders, buttons, routes } = uiConstants;
 
 type TRegisterPage = {
   onRegister: () => void;
@@ -21,6 +22,7 @@ class RegisterPage extends Block<TRegisterPage> {
       },
       onHaveAccount: (event: Event) => {
         event.preventDefault();
+        Router.go(routes.INDEX)
       },
     });
   }

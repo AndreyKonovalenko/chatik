@@ -6,6 +6,7 @@ const { palette } = uiConstants;
 type TInputField = {
   validate: (value: string) => string;
   isValidValue: () => void;
+  setIsVisible: () => void;
   onBlur: () => void;
   type: string;
   name: string;
@@ -19,9 +20,14 @@ export class InputField extends Block<TInputField> {
   constructor(props: TInputField) {
     super({
       ...props,
+      isVisible: false,
       onBlur: () => {
         this.validate();
       },
+      onClick: () => {
+        this.setIsVisible()
+      },
+    
     });
   }
   public isValidValue() {
@@ -33,6 +39,13 @@ export class InputField extends Block<TInputField> {
 
   public getValue(): string {
     return (this.refs?.[this.props.ref] as InputField).value();
+  }
+
+  public setIsVisible() {
+    const tempValue = (this.refs?.[this.props.ref] as InputField).value();
+    const type = (this.refs?.[this.props.ref] as InputField).props.type;
+    (this.refs?.[this.props.ref] as InputField).props.value = tempValue;
+    (this.refs?.[this.props.ref] as InputField).props.type = type === 'password'? 'text': "password";
   }
 
   private validate() {
@@ -47,11 +60,11 @@ export class InputField extends Block<TInputField> {
   }
 
   protected render(): string {
-    const { ref, type, name, placeholder, value } = this.props;
+    const { ref, name, placeholder, value, type} = this.props;
     return `
         <div class='input-wrapper'>
           {{{
-            Input   
+            Input
             className='input'
             type="${type}"
             value="${value}"
@@ -61,7 +74,7 @@ export class InputField extends Block<TInputField> {
             onBlur=onBlur
           }}}
         {{#if icon}}
-          {{{ Icon key="input" type="visibility" size="36" color='${palette.LIGHT}' fill=1  }}}
+          {{{ Icon key="input" type="visibility" size="36" color='${palette.LIGHT}' onClick=onClick fill=1  }}}
         {{/if}}
         {{{ ErrorLine error=error ref="errorLine" }}}
       </div> `;

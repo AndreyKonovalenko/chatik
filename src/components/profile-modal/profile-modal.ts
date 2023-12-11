@@ -11,8 +11,6 @@ type TProfileModal = {
   onCreateAccount: (e: Event) => void
 }
 
-
-
 export class ProfileModal extends Block<TProfileModal> {
   constructor(props: TProfileModal) {
     super({

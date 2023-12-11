@@ -1,5 +1,6 @@
 import { EventBus } from '../core/EventBus';
 import { TChat, TMessage } from '../pages/chat/chat';
+import { TUser } from '../api/auth-api';
 
 export enum StoreEvents {
   Updated = 'Updated',
@@ -18,7 +19,7 @@ export type TChatState = {
 };
 
 export type TAppState = {
-  isAuthenticated: boolean;
+  user: TUser | null;
   profile: TProflieState;
   chat: TChatState;
 };
@@ -41,7 +42,7 @@ class Store<State extends Record<string, unknown>> extends EventBus {
 }
 
 const defaultState: TAppState = {
-  isAuthenticated: false,
+  user: null,
   profile: {
     editMode: false,
   },

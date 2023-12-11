@@ -14,9 +14,9 @@ export function render(
     block: Block<TBlockProps>,
     protectedRoute?: string
   ) {
-    const { isAuthenticated } = store.getState();
+    const { user } = store.getState();
    
-    if (protectedRoute === PROTECTED_ROUTE && !isAuthenticated) {
+    if (protectedRoute === PROTECTED_ROUTE && !user) {
         Router.go(routes.INDEX);
         throw new Error('you are not authenticated');
     }

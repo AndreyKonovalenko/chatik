@@ -19,7 +19,10 @@ export type TChatState = {
 };
 
 export type TAppState = {
-  user: TUser | null;
+  userSlice:{
+    user: TUser | null;
+    loading: boolean;
+  }; 
   profile: TProflieState;
   chat: TChatState;
 };
@@ -42,7 +45,7 @@ class Store<State extends Record<string, unknown>> extends EventBus {
 }
 
 const defaultState: TAppState = {
-  user: null,
+  userSlice: {user: null, loading: false},
   profile: {
     editMode: false,
   },

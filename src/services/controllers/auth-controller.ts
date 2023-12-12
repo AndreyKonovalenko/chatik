@@ -13,12 +13,12 @@ export const getUser = async() => {
     
     const response: IResponse = await authAPI.getUser();
     const data = JSON.parse(response.response);
-        if (data.reason) {
-             throw Error(data.reason)
-        }
+    console.log('user', data);
+    if (data.reason) {
+        throw Error(data.reason)
+    }
     return data;
 }
-
 
 export const signup = async (data: TSignUpUserData) => {
     console.log(data)
@@ -34,14 +34,19 @@ export const signup = async (data: TSignUpUserData) => {
 
 export const signin = async (data: TSignInUserData) => {
    const response =  await authAPI.signin(data);
-   const responseData  = JSON.parse(response.response);
-   if(responseData === "OK"){
+   console.log('Singin response', response)
+   if(response.response === "OK"){
+    console.log('run getUser')
     const user  =  await getUser();
-    state.set({...state, user: user})
+    state.set({...state, userSlice:{ ...user, user}})
    } else {
-    console.log(responseData)
+    console.log(response)
    }
     
     // window.store.set({user: me});
     // navigate('emails')
+}
+
+export const logout = async () => {
+    await authAPI.logout();
 }

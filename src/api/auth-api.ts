@@ -37,4 +37,7 @@ export default class AuthAPI {
     getUser() {
         return authAPIInstance.get(`/user`);
     }
+    logout() {
+        return authAPIInstance.post('/logout')
+    }
 }

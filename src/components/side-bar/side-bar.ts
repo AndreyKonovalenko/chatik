@@ -2,7 +2,9 @@ import Block from '../../core/Block';
 import uiConstants from '../../utils/ui-constants';
 import { TIcon } from '../icon/icon';
 import Router from '../../core/Router';
+import { logout } from '../../services/controllers/auth-controller';
 const { palette, routes } = uiConstants;
+
 
 type TSideBar = TIcon & {
   toProfile: void;
@@ -24,6 +26,10 @@ export class SideBar extends Block<TIcon> {
         event.preventDefault();
         Router.go(routes.CHAT);
       },
+      logout: (event: Event) => {
+        event.preventDefault();
+        logout();
+      }
     });
   }
 
@@ -50,7 +56,7 @@ export class SideBar extends Block<TIcon> {
           </div>
           {{{ Icon key="side-bar-3" type="logout" size="46" color="${
             palette.ON_PRIMARY
-          }" fill=0 dist='logout' }}}
+          }" fill=0 dist='logout' onClick=logout }}}
         </div>
       </div> `;
   }

@@ -35,9 +35,9 @@ export default class AuthAPI {
         return authAPIInstance.post(`/signin`, { data,  headers:{"Content-Type": "application/json"}});
     }
     getUser() {
-        return authAPIInstance.get(`/user`);
+        return authAPIInstance.get("/user", {headers: {mode: 'cors', credentials: 'include', "Content-Type": "application/json"}});
     }
     logout() {
-        return authAPIInstance.post('/logout')
+        return authAPIInstance.post("/logout")
     }
 }

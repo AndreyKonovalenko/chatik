@@ -60,6 +60,7 @@ class HTTPTransport {
             xhr.timeout = timeout;
             const isGet = method === METHODS.GET;
             xhr.open(method || METHODS.GET, isGet ? `${url}${data}` : url,);
+            xhr.withCredentials = true;
 
             if (headers) {
                 Object.keys(headers).forEach(key => xhr.setRequestHeader(key, headers[key]));

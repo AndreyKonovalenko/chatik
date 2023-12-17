@@ -1,8 +1,7 @@
 import Block from '../../core/Block';
 import { chatsMock } from '../../mocks/chats-mock';
-//import { messagesMock } from '../../mocks/messages-mock';
-import store, { TChatState, TAppState } from '../../services/Store';
-import { connect } from '../../services/connect';
+import store, { TAppState, TChatState } from '../../services/store';
+import { connect } from '../../core/connect';
 
 export type TMessage = {
   chat_id: number;
@@ -43,8 +42,8 @@ export type TChatProps = TChatState & {
 };
 
 type TChatStateEditModeChunk = {
-  editMode: boolean
-}
+  editMode: boolean;
+};
 
 class ChatPage extends Block<TChatProps> {
   constructor(props: TChatProps) {
@@ -52,14 +51,14 @@ class ChatPage extends Block<TChatProps> {
 
     getChats();
     // getChat controller
-   function  getChats() {
-        const state = { ...store.getState() };
-        store.set({
-          ...state,
-          chat: { ...state.chat, chats: chatsMock}
-      })
+    function getChats() {
+      const state = { ...store.getState() };
+      store.set({
+        ...state,
+        chat: { ...state.chat, chats: chatsMock },
+      });
+    }
   }
-}
   // public setSelectedChatId(id: string | number) {
   //   console.log()
   //   // this.props.chatState = { ...this.props.chatState, selectedChatId: id };
@@ -76,7 +75,7 @@ class ChatPage extends Block<TChatProps> {
   //     ...state,
   //     chat: { ...state.chat, chats: chatsMock}
   // })
-// }
+  // }
 
   // public getChatById(id: string | number) {}
 
@@ -96,9 +95,9 @@ class ChatPage extends Block<TChatProps> {
 
 const mapStateToProps = (state: TAppState): TChatStateEditModeChunk => {
   return {
-    editMode: state.chat.editMode
-  }
-}
+    editMode: state.chat.editMode,
+  };
+};
 
 export default connect(ChatPage, mapStateToProps);
 

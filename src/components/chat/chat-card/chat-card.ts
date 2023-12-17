@@ -2,10 +2,13 @@ import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants';
 import { dateFormatter } from '../../../utils/date-formatter';
 import { TChatProps } from '../../../pages/chat/chat';
-import store, {StoreEvents} from '../../../services/Store';
-import { getChatState, getSelectedChatId } from '../../../services/stateSelectors';
+import store from '../../../services/store';
+import { StoreEvents } from '../../../core/MyRedux';
+import {
+  getChatState,
+  getSelectedChatId,
+} from '../../../services/stateSelectors';
 const { palette } = uiConstants;
-
 
 type TChatCard = TChatProps & {
   events: object;
@@ -15,26 +18,26 @@ type TChatCard = TChatProps & {
   content: string;
   avatar: string;
   id: string;
-}
+};
 
 export class ChatCard extends Block<TChatCard> {
   constructor(props: TChatCard) {
-    super({...props,
-     events: {
+    super({
+      ...props,
+      events: {
         click: () => {
-          this.setSelectedChatId(this.props.id)
+          this.setSelectedChatId(this.props.id);
         },
-
-     },
-     selectedChatId: getSelectedChatId()
+      },
+      selectedChatId: getSelectedChatId(),
     });
     store.on(StoreEvents.Updated, () => {
-      const { selectedChatId} = getChatState();
+      const { selectedChatId } = getChatState();
       this.props.selectedChatId = selectedChatId;
-    })
+    });
   }
 
-   public setSelectedChatId(id: string | number | null) {
+  public setSelectedChatId(id: string | number | null) {
     const state = { ...store.getState() };
     store.set({
       ...state,
@@ -43,7 +46,7 @@ export class ChatCard extends Block<TChatCard> {
   }
 
   protected render(): string {
-    const { time, title, content, avatar,  id } = this.props;
+    const { time, title, content, avatar, id } = this.props;
     const selectedClass =
       this.props.selectedChatId === id
         ? 'chat-card-container chat-card-selected'

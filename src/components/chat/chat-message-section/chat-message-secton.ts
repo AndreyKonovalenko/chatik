@@ -2,23 +2,21 @@ import Block from '../../../core/Block';
 import uiConstants from '../../../utils/ui-constants.ts';
 const { palette } = uiConstants;
 import { TChat } from '../../../pages/chat/chat.ts';
-import store, {TAppState} from '../../../services/Store.ts';
-import { connect } from '../../../services/connect.ts';
+import { connect } from '../../../core/connect.ts';
 import { getChatState } from '../../../services/stateSelectors.ts';
-
-
+import store, { TAppState } from '../../../services/store.ts';
 
 type TChatMessageSection = {
-  onEditChat: void
+  onEditChat: void;
   editMode: boolean;
   selectedChat: TChat | undefined;
 };
 
 type TEditModeChatStateChunk = {
-  editMode: boolean
-}
+  editMode: boolean;
+};
 
- class ChatMessageSection extends Block<TChatMessageSection> {
+class ChatMessageSection extends Block<TChatMessageSection> {
   constructor(props: TChatMessageSection) {
     super({
       ...props,
@@ -31,23 +29,19 @@ type TEditModeChatStateChunk = {
       },
       selectedChat: setSelectedChat(),
     });
-    
 
-   function setSelectedChat() {
-      const {chats, selectedChatId} = getChatState();
-      console.log('Hello', chats, selectedChatId)
-      if( chats !== null && chats !== undefined) {
-        console.log(chats?.find((element)=> element.id === selectedChatId))
-        return chats?.find((element)=> element.id === selectedChatId)
-        
+    function setSelectedChat() {
+      const { chats, selectedChatId } = getChatState();
+      if (chats !== null && chats !== undefined) {
+        console.log(chats?.find((element) => element.id === selectedChatId));
+        return chats?.find((element) => element.id === selectedChatId);
       }
-      return undefined
+      return undefined;
     }
-  
   }
 
- protected render(): string {
-    const {selectedChat, editMode} = this.props;
+  protected render(): string {
+    const { selectedChat, editMode } = this.props;
     const chatHeaderSection = `
       <img src="${selectedChat?.avatar}" alt="chat bage"/>
       <p>${selectedChat?.title}</p>
@@ -75,10 +69,10 @@ type TEditModeChatStateChunk = {
   }
 }
 
-const mapStateToProps = (state: TAppState): TEditModeChatStateChunk=> {
+const mapStateToProps = (state: TAppState): TEditModeChatStateChunk => {
   return {
-    editMode: state.chat.editMode
-  }
-}
+    editMode: state.chat.editMode,
+  };
+};
 
 export default connect(ChatMessageSection, mapStateToProps);

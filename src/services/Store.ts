@@ -1,6 +1,6 @@
-import { EventBus } from '../core/EventBus';
 import { TChat, TMessage } from '../pages/chat/chat';
 import { TUser } from '../api/auth-api';
+import { Store } from '../core/MyRedux';
 
 export enum StoreEvents {
   Updated = 'Updated',
@@ -19,33 +19,16 @@ export type TChatState = {
 };
 
 export type TAppState = {
-  userSlice:{
+  userSlice: {
     user: TUser | null;
     loading: boolean;
-  }; 
+  };
   profile: TProflieState;
   chat: TChatState;
 };
 
-class Store<State extends Record<string, unknown>> extends EventBus {
-  private state: State = {} as State;
-  constructor(defaultState: State) {
-    super();
-    this.state = defaultState;
-    this.set(defaultState);
-  }
-  public getState() {
-    return this.state;
-  }
-  public set(nextState: Partial<State>) {
-    const prevState = { ...this.state };
-    this.state = { ...this.state, ...nextState };
-    this.emit(StoreEvents.Updated, prevState, nextState);
-  }
-}
-
 const defaultState: TAppState = {
-  userSlice: {user: null, loading: false},
+  userSlice: { user: null, loading: false },
   profile: {
     editMode: false,
   },

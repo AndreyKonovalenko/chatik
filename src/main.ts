@@ -35,7 +35,6 @@ import uiConstants from './utils/ui-constants';
 import Router from './core/Router';
 const { routes, PROTECTED_ROUTE } = uiConstants;
 import { getUser } from './services/controllers/auth-controller';
-import store from './services/Store';
 
 Handlebars.registerPartial('Layout', Layout);
 Handlebars.registerPartial('Form', Form);
@@ -62,17 +61,14 @@ registerComponent('ChatEditSection', ChatEditSection as typeof Block);
 
 window.addEventListener('DOMContentLoaded', async () => {
   Router.use(routes.INDEX, LoginPage as typeof Block)
-    .use(routes.REGISTER, RegisterPage as typeof Block )
+    .use(routes.REGISTER, RegisterPage as typeof Block)
     .use(routes.PROFILE, ProfilePage as typeof Block, PROTECTED_ROUTE)
-    .use(routes.CHAT, ChatPage as typeof Block)
-    .start();  
-    console.log(store)
-    try {
-      await  getUser();   
-      Router.go(routes.CHAT)
-    } catch (error) {
-       console.log(error)
-       Router.go(routes.INDEX)
-    }
-
+    .use(routes.CHAT, ChatPage as typeof Block, PROTECTED_ROUTE)
+    .start();
+  try {
+    await getUser();
+    Router.go(routes.CHAT);
+  } catch (error) {
+    Router.go(routes.INDEX);
+  }
 });

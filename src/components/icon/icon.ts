@@ -9,7 +9,7 @@ export class Icon extends Block<TIcon> {
   constructor(props: TIcon) {
     super(props);
     this.props.events = {
-      click: this.props.onClick,
+      click: this.props.onClick
     };
   }
 
@@ -27,5 +27,3 @@ export class Icon extends Block<TIcon> {
         `;
   }
 }
-
-export default Icon;

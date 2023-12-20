@@ -1,8 +1,10 @@
 import { InputField } from '../../components/input-field/input-field.ts';
 import Block from '../../core/Block.ts';
 import uiConstants from '../../utils/ui-constants.ts';
+import Router from '../../core/Router.ts';
 import { validate } from '../../utils/validate.ts';
-const { headers, placeholders, buttons } = uiConstants;
+import { signup } from '../../services/controllers/auth-controller.ts';
+const { headers, placeholders, buttons, routes } = uiConstants;
 
 type TRegisterPage = {
   onRegister: () => void;
@@ -20,6 +22,7 @@ class RegisterPage extends Block<TRegisterPage> {
       },
       onHaveAccount: (event: Event) => {
         event.preventDefault();
+        Router.go(routes.INDEX)
       },
     });
   }
@@ -31,15 +34,17 @@ class RegisterPage extends Block<TRegisterPage> {
     const phone = (this.refs.phone as unknown as InputField).isValidValue();
     const password = (this.refs.password as unknown as InputField).isValidValue();
     const repeat_password = (this.refs.repeat_password as unknown as InputField).isValidValue();
-    console.log({
-      email,
-      login,
-      first_name,
-      second_name,
-      phone,
-      password,
-      repeat_password,
-    });
+
+    if(email && login && first_name && second_name && phone && password && password === repeat_password) {
+      signup({
+        first_name,
+        second_name,
+        login,
+        phone,
+        password,
+        email,
+      })
+    }
   }
 
   protected render(): string {

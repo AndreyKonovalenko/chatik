@@ -8,6 +8,7 @@
   background-color: $on-primary;
   border-radius: $radius;
   padding: 0 #{$baseline * 4}px;
+  position: relative;
 }
 
 .profile-field-name {

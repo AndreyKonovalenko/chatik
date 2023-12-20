@@ -16,7 +16,7 @@ export type TValidate  =  {
 
 export const validate: TValidate = {
   login: (value: string) => {
-    const regExp = /^[a-z]([a-z0-9_-]){3,20}$/gi;
+    const regExp = /^(?!\d+$)[a-zA-Z0-9_-]{3,20}$/gi;
     return value.match(regExp) === null ? errors.LOGIN_VALIDATION_FAILED : '';
   },
   password: (value: string) => {

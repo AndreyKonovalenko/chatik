@@ -71,6 +71,14 @@ const uiConstants = {
   settings: {
     edit_mode: true,
   },
+  routes: {
+    INDEX: '/',
+    REGISTER: '/sing-up',
+    PROFILE: '/settings',
+    CHAT: '/messenger',
+  },
+  BASE_URL: 'https://ya-praktikum.tech/api/v2',
+  PROTECTED_ROUTE: "PROTECTED_ROUTE"
 };
 
 export default uiConstants;

@@ -1,6 +1,7 @@
 import Block from '../../core/Block';
 import { chatsMock } from '../../mocks/chats-mock';
-import { messagesMock } from '../../mocks/messages-mock';
+import store, { TAppState, TChatState } from '../../services/store';
+import { connect } from '../../core/connect';
 
 export type TMessage = {
   chat_id: number;
@@ -14,9 +15,9 @@ export type TUser = {
   id: string;
   first_name: string;
   second_name: string;
-  display_name?:string;
-  email?:string,
-  phone?:string,
+  display_name?: string;
+  email?: string;
+  phone?: string;
   avatar: string;
   login: string;
 };
@@ -35,54 +36,70 @@ export type TChat = {
   last_message: TLast_message;
 };
 
-export type TChatProps = {
-  chatState: {
-    selectedChatId: null | string | number;
-    chat: TChat | undefined;
-    messages: Array<TMessage>;
-    currentUserId: string;
-  };
+export type TChatProps = TChatState & {
+  editMode: boolean;
   onChatSelectedHandler: (id: string | number) => void;
+};
+
+type TChatStateEditModeChunk = {
+  editMode: boolean;
 };
 
 class ChatPage extends Block<TChatProps> {
   constructor(props: TChatProps) {
-    super({
-      ...props,
-      chatState: {
-        selectedChatId: null,
-        chat: null,
-        messages: messagesMock,
-        currentUserId: '1',
-      },
-      onChatSelectHandler: (id: string | number) => {
-        this.setSelectedChatId(id);
-      },
-    });
+    super(props);
+
+    getChats();
+    // getChat controller
+    function getChats() {
+      const state = { ...store.getState() };
+      store.set({
+        ...state,
+        chat: { ...state.chat, chats: chatsMock },
+      });
+    }
   }
-  public setSelectedChatId(id: string | number) {
-    this.props.chatState = { ...this.props.chatState, selectedChatId: id };
-    this.props.chatState = {
-      ...this.props.chatState,
-      chat: chatsMock.find((element: TChat) => element.id === id),
-    };
-  }
+  // public setSelectedChatId(id: string | number) {
+  //   console.log()
+  //   // this.props.chatState = { ...this.props.chatState, selectedChatId: id };
+  //   // this.props.chatState = {
+  //   //   ...this.props.chatState,
+  //   //   chat: chatsMock.find((element: TChat) => element.id === id),
+  //   // };
+  // }
+
+  // // action GET CHATS
+  // public getChats() {
+  //   const state = { ...store.getState() };
+  //   store.set({
+  //     ...state,
+  //     chat: { ...state.chat, chats: chatsMock}
+  // })
+  // }
 
   // public getChatById(id: string | number) {}
 
   protected render(): string {
+    const chatEditSection = `{{{ ChatEditSection }}}`;
     return ` 
         {{#> Layout}}       
             <div class="chat-container">
-                {{{ ChatMainSection  onChatSelect=onChatSelectHandler chatState=chatState }}}
-                {{{ ChatMessageSection chatState=chatState chatState=chatState }}}
+                {{{ ChatMainSection  }}}
+                {{{ ChatMessageSection }}}
+                ${this.props.editMode ? chatEditSection : null}
             </div> 
         {{/ Layout}}
         `;
   }
 }
 
-export default ChatPage;
+const mapStateToProps = (state: TAppState): TChatStateEditModeChunk => {
+  return {
+    editMode: state.chat.editMode,
+  };
+};
+
+export default connect(ChatPage, mapStateToProps);
 
 // {{#> components/layout/layout}}
 //     <div class="chat-container">

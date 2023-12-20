@@ -1,13 +1,19 @@
 import { InputField } from '../../components/input-field/input-field.ts';
+//import store from '../../core/Store.ts';
+//import queryStringify from '../../utils/queryStringify.ts';
 import Block from '../../core/Block';
+import Router from '../../core/Router.ts';
+import { signin } from '../../services/controllers/auth-controller.ts';
 import uiConstants from '../../utils/ui-constants.ts';
 import { validate } from '../../utils/validate.ts';
-const { headers, placeholders, buttons } = uiConstants;
+const { headers, placeholders, buttons, routes } = uiConstants;
+
 
 type TLoginPage = {
   onLogin: () => void;
   onCreateAccount: () => void;
 };
+
 
 class LoginPage extends Block<TLoginPage> {
   constructor(props: TLoginPage) {
@@ -20,16 +26,21 @@ class LoginPage extends Block<TLoginPage> {
       },
       onCreateAccount: (event: Event) => {
         event.preventDefault();
+        Router.go(routes.REGISTER)
       },
     });
   }
   public sendForm() {
     const login = (this.refs.login as unknown as InputField).isValidValue();
-    const password = (this.refs.password as unknown as InputField).isValidValue();
-    console.log({ login, password });
+    const password = (
+      this.refs.password as unknown as InputField
+    ).isValidValue();
+    if(login&&password)
+    signin({ login, password });
   }
 
   protected render(): string {
+
     return ` 
         {{#> Layout}}
             <div class="login-form-container">
